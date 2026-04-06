@@ -1,91 +1,29 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
     "hero_jVaWmY": {
-      "type": "hero",
-      "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-secondary",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
+      "type": "custom-liquid",
       "settings": {
+        "custom_liquid": "<div style=\"text-align:center;padding:80px 20px;display:flex;flex-direction:column;align-items:center;\"><h2 style=\"max-width:70%;font-size:clamp(1.5rem,3vw,2.5rem);line-height:1.2;margin:0 auto 24px;\">TRANSFORM YOUR BODY IN THE COMFORT OF YOUR HOME</h2><a href=\"/collections/frontpage\" class=\"button button--primary\">SHOP SPRING SALE \u2192</a></div>",
+        "color_scheme": "scheme-1",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "hero_fullimage_banner": {
+      "type": "hero",
+      "blocks": {},
+      "block_order": [],
+      "name": "Hero Image",
+      "settings": {
+        "image_1": "shopify://shop_images/Screenshot_2026-02-25_at_3.36.48_PM.webp",
         "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "section_height": "auto",
+        "section_width": "full-width",
+        "color_scheme": "scheme-1",
+        "toggle_overlay": false,
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "product_list_fa6P9H": {
@@ -96,11 +34,11 @@
           "name": "t:names.header",
           "static": true,
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
             "gap": 12,
@@ -129,10 +67,10 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
+                "text": "<h3>ALL YOU NEED TO SCULPT YOUR BODY</h3>",
+                "width": "fill",
                 "max_width": "normal",
-                "alignment": "left",
+                "alignment": "center",
                 "type_preset": "h4",
                 "font": "var(--font-body--family)",
                 "font_size": "",
@@ -150,25 +88,10 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "product_list_button_MWeP9V": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
             }
           },
           "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
+            "product_list_text_YFtzcL"
           ]
         },
         "static-product-card": {
@@ -265,9 +188,9 @@
       "settings": {
         "collection": "all",
         "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 8,
-        "columns": 4,
+        "carousel_on_mobile": true,
+        "max_products": 3,
+        "columns": 3,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
         "columns_gap": 8,
@@ -275,16 +198,86 @@
         "icons_style": "arrow",
         "icons_shape": "none",
         "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
+        "horizontal_alignment": "center",
         "gap": 28,
         "color_scheme": "scheme-1",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "reviews_custom_section": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div style=\"padding:60px 20px;\"><h2 style=\"text-align:center;margin-bottom:40px;font-size:clamp(1.2rem,2.5vw,1.8rem);letter-spacing:0.05em;\">WHAT OUR CUSTOMERS SAY</h2><div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:1100px;margin:0 auto;\"><div style=\"border:1px solid #e5e5e5;border-radius:8px;padding:24px;\"><div style=\"display:flex;align-items:center;gap:12px;margin-bottom:16px;\"><div style=\"width:48px;height:48px;border-radius:50%;background:#2d6a4f;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.95rem;flex-shrink:0;\">SM</div><div><strong style=\"display:block;\">Sarah M.</strong><span style=\"color:#f5a623;\">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div><p style=\"font-style:italic;color:#555;margin:0;\">&ldquo;This equipment completely changed my home workout routine. Amazing quality!&rdquo;</p></div><div style=\"border:1px solid #e5e5e5;border-radius:8px;padding:24px;\"><div style=\"display:flex;align-items:center;gap:12px;margin-bottom:16px;\"><div style=\"width:48px;height:48px;border-radius:50%;background:#1d4e89;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.95rem;flex-shrink:0;\">JT</div><div><strong style=\"display:block;\">James T.</strong><span style=\"color:#f5a623;\">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div><p style=\"font-style:italic;color:#555;margin:0;\">&ldquo;Finally I can sculpt my body without going to the gym. Best investment ever!&rdquo;</p></div><div style=\"border:1px solid #e5e5e5;border-radius:8px;padding:24px;\"><div style=\"display:flex;align-items:center;gap:12px;margin-bottom:16px;\"><div style=\"width:48px;height:48px;border-radius:50%;background:#7b2d8b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.95rem;flex-shrink:0;\">ER</div><div><strong style=\"display:block;\">Emily R.</strong><span style=\"color:#f5a623;\">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div><p style=\"font-style:italic;color:#555;margin:0;\">&ldquo;Exceeded my expectations. Build quality is outstanding and so easy to use at home.&rdquo;</p></div><div style=\"border:1px solid #e5e5e5;border-radius:8px;padding:24px;\"><div style=\"display:flex;align-items:center;gap:12px;margin-bottom:16px;\"><div style=\"width:48px;height:48px;border-radius:50%;background:#b5451b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.95rem;flex-shrink:0;\">MK</div><div><strong style=\"display:block;\">Michael K.</strong><span style=\"color:#f5a623;\">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div><p style=\"font-style:italic;color:#555;margin:0;\">&ldquo;Lost 10kg in 3 months using this. Highly recommend for anyone serious about fitness.&rdquo;</p></div></div></div>",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "two_blocks_section": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>.tbs2{display:grid;grid-template-columns:2fr 1fr;}.tbs2-txt-top{background:#D2DAFF;padding:36px 32px;display:flex;align-items:flex-start;}.tbs2-img-top{overflow:hidden;}.tbs2-img-top img{width:100%;height:100%;object-fit:cover;display:block;}.tbs2-img-bot{overflow:hidden;}.tbs2-img-bot img{width:100%;height:100%;object-fit:cover;display:block;min-height:40vw;}.tbs2-txt-bot{background:#D2DAFF;padding:36px 32px;display:flex;flex-direction:column;justify-content:center;gap:24px;}@media(max-width:749px){.tbs2{grid-template-columns:1fr;}.tbs2-img-top,.tbs2-img-bot{min-height:60vw;}}</style><div class=\"tbs2\"><div class=\"tbs2-txt-top\"><h2 style=\"font-size:clamp(1rem,2.2vw,1.5rem);font-weight:700;line-height:1.25;margin:0;\">SNATCH YOUR WAIST &amp; MAXIMIZE YOUR WORKOUT</h2></div><div class=\"tbs2-img-top\"><img src=\"https://cdn.shopify.com/s/files/1/0984/7603/2311/files/Screen_Shot_2024-08-09_at_4.54.35_PM.webp\" alt=\"Workout\"></div><div class=\"tbs2-img-bot\"><img src=\"https://cdn.shopify.com/s/files/1/0984/7603/2311/files/Screen_Shot_2024-08-09_at_4.59.17_PM.webp\" alt=\"Fitness\"></div><div class=\"tbs2-txt-bot\"><h2 style=\"font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;margin:0;line-height:1.1;\">GET FIT NOW</h2><a href=\"/collections/all\" class=\"button button--secondary\">Shop all</a></div></div>",
+        "color_scheme": "scheme-1",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "email_signup_section": {
+      "type": "section",
+      "blocks": {
+        "text_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Subscribe to our emails</p>",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "h3"
+          },
+          "blocks": {}
+        },
+        "text_sub": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Be the first to know about new collections and exclusive offers.</p>",
+            "type_preset": "paragraph",
+            "width": "100%",
+            "alignment": "center"
+          },
+          "blocks": {}
+        },
+        "email_signup": {
+          "type": "email-signup",
+          "settings": {
+            "width": "custom",
+            "custom_width": 50,
+            "style_class": "button-unstyled",
+            "display_type": "arrow",
+            "integrated_button": true
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["text_heading", "text_sub", "email_signup"],
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "color_scheme": "scheme-2",
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
     }
   },
   "order": [
     "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "hero_fullimage_banner",
+    "product_list_fa6P9H",
+    "reviews_custom_section",
+    "two_blocks_section",
+    "email_signup_section"
   ]
 }
