@@ -9,13 +9,13 @@
           "settings": {
             "media_presentation": "grid",
             "media_columns": "two",
-            "image_gap": 4,
-            "large_first_image": false,
-            "icons_style": "none",
-            "slideshow_controls_style": "counter",
+            "image_gap": 8,
+            "large_first_image": true,
+            "icons_style": "arrow",
+            "slideshow_controls_style": "thumbnails",
             "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "right",
-            "thumbnail_width": 44,
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 64,
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
             "media_fit": "contain",
@@ -96,6 +96,18 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "review_stars_prod": {
+                  "type": "review",
+                  "settings": {
+                    "stars_style": "shaded",
+                    "show_number": true,
+                    "rating_color": "primary",
+                    "type_preset": "paragraph",
+                    "width": "fit-content",
+                    "alignment": "left"
+                  },
+                  "blocks": {}
+                },
                 "text_xrnftG": {
                   "type": "text",
                   "name": "Product title",
@@ -143,11 +155,20 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "discount_badge_prod": {
+                  "type": "custom-liquid",
+                  "settings": {
+                    "custom_liquid": "{%- assign sv = closest.product.selected_or_first_available_variant -%}{%- if sv.compare_at_price > sv.price -%}{%- assign disc = sv.compare_at_price | minus: sv.price | times: 100.0 | divided_by: sv.compare_at_price | round -%}<span style=\"display:inline-block;background:#e53935;color:#fff;font-weight:700;font-size:0.8rem;padding:3px 12px;border-radius:4px;letter-spacing:0.04em\">SAVE {{ disc }}%<\/span>{%- endif -%}"
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
+                "review_stars_prod",
                 "text_xrnftG",
-                "price_tVjtKg"
+                "price_tVjtKg",
+                "discount_badge_prod"
               ]
             },
             "divider_VJhene": {
@@ -166,12 +187,19 @@
               "type": "variant-picker",
               "settings": {
                 "variant_style": "buttons",
-                "show_swatches": false,
+                "show_swatches": true,
                 "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_now_block": {
+              "type": "custom-liquid",
+              "settings": {
+                "custom_liquid": "<style>.bn-btn{display:block;width:100%;padding:14px 24px;background:var(--color-primary);color:var(--color-on-primary,#fff);font-weight:700;font-size:1rem;border:2px solid var(--color-primary);border-radius:var(--style-border-radius-buttons-primary,6px);cursor:pointer;text-align:center;letter-spacing:0.04em;transition:opacity .2s}.bn-btn:hover{opacity:.85}.bn-btn:disabled{opacity:.6;cursor:not-allowed}<\/style><button class=\"bn-btn\" type=\"button\" data-variant-id=\"{{ closest.product.selected_or_first_available_variant.id }}\" onclick=\"(function(btn){btn.disabled=true;btn.textContent='Processing\u2026';var vid=btn.dataset.variantId;var sel=document.querySelector('input[name=id]:checked,select[name=id]');if(sel&&sel.value)vid=sel.value;fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:parseInt(vid),quantity:1})}).then(function(){window.location.href='\/checkout';}).catch(function(){btn.disabled=false;btn.textContent='Buy Now';});})(this)\">Buy Now<\/button>"
               },
               "blocks": {}
             },
@@ -234,14 +262,226 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "faq_heading": {
+              "type": "text",
+              "name": "FAQ Heading",
+              "settings": {
+                "text": "<h2>Frequently Asked Questions<\/h2>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-primary--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 16,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "faq_accordion": {
+              "type": "accordion",
+              "settings": {
+                "icon": "caret",
+                "dividers": true,
+                "type_preset": "h6",
+                "inherit_color_scheme": true,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "faq_row_1": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Is this suitable for beginners or people who haven't exercised in years?",
+                    "open_by_default": false,
+                    "icon": "question_mark",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "faq_text_1": {
+                      "type": "text",
+                      "settings": { "text": "<p>Absolutely! The Rock Stepper is designed for all fitness levels. Start with just 5-10 minutes daily and build up gradually. The low-impact motion is gentle on joints, and the video guides you through beginner-friendly routines.<\/p>", "width": "100%" }
+                    }
+                  },
+                  "block_order": ["faq_text_1"]
+                },
+                "faq_row_2": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "How do I safely get on and off the stepper?",
+                    "open_by_default": false,
+                    "icon": "question_mark",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "faq_text_2": {
+                      "type": "text",
+                      "settings": { "text": "<p>Getting on is simple: Place one foot on the lower pedal, hold a chair\/wall if needed for balance, then step up with your other foot. After 2-3 uses, most people hop on and off naturally.<\/p>", "width": "100%" }
+                    }
+                  },
+                  "block_order": ["faq_text_2"]
+                },
+                "faq_row_3": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "How is this different from a regular mini stepper?",
+                    "open_by_default": false,
+                    "icon": "question_mark",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "faq_text_3": {
+                      "type": "text",
+                      "settings": { "text": "<p>Regular steppers only go up and down, working just your legs. The Rock Stepper\u2019s patented lateral rocking motion engages your legs, glutes, AND core simultaneously \u2014 giving you 3x the workout in the same time.<\/p>", "width": "100%" }
+                    }
+                  },
+                  "block_order": ["faq_text_3"]
+                },
+                "faq_row_4": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "What's the weight limit?",
+                    "open_by_default": false,
+                    "icon": "question_mark",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "faq_text_4": {
+                      "type": "text",
+                      "settings": { "text": "<p>The Rock Stepper\u2019s heavy-duty steel frame safely supports up to 350 lbs. The frame is tested to handle even vigorous workouts at maximum capacity without wobbling or breaking.<\/p>", "width": "100%" }
+                    }
+                  },
+                  "block_order": ["faq_text_4"]
+                },
+                "faq_row_5": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "How quickly will I see results?",
+                    "open_by_default": false,
+                    "icon": "question_mark",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "faq_text_5": {
+                      "type": "text",
+                      "settings": { "text": "<p>Based on customer feedback:<br>Week 1\u20132: You\u2019ll feel more energized and sleep better<br>Week 3\u20134: You\u2019ll notice clothes fitting better<br>Week 6\u20138: Others will start asking what you\u2019ve been doing differently<\/p>", "width": "100%" }
+                    }
+                  },
+                  "block_order": ["faq_text_5"]
+                },
+                "faq_row_6": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Will this work on carpet\/hardwood floors?",
+                    "open_by_default": false,
+                    "icon": "question_mark",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "faq_text_6": {
+                      "type": "text",
+                      "settings": { "text": "<p>Yes! The included non-slip mat provides stability on any surface. For carpet, you may not even need the mat. On hardwood, the mat prevents sliding and protects your floors.<\/p>", "width": "100%" }
+                    }
+                  },
+                  "block_order": ["faq_text_6"]
+                },
+                "faq_row_7": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "What if I have bad knees or joint problems?",
+                    "open_by_default": false,
+                    "icon": "question_mark",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "faq_text_7": {
+                      "type": "text",
+                      "settings": { "text": "<p>The Rock Stepper is specifically designed to be low-impact and joint-friendly. The smooth rocking motion actually helps lubricate joints without the harsh impact of running or regular stairs. However, always consult your doctor before starting any exercise program.<\/p>", "width": "100%" }
+                    }
+                  },
+                  "block_order": ["faq_text_7"]
+                },
+                "faq_row_8": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Does it require assembly or batteries?",
+                    "open_by_default": false,
+                    "icon": "question_mark",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "faq_text_8": {
+                      "type": "text",
+                      "settings": { "text": "<p>Zero assembly needed! Unlike most exercise equipment, The Rock Stepper arrives 100% ready to use. Just unbox, place on the floor, and start rocking. No tools, no frustration.<\/p>", "width": "100%" }
+                    }
+                  },
+                  "block_order": ["faq_text_8"]
+                },
+                "faq_row_9": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Is there an app or online workout program I can follow?",
+                    "open_by_default": false,
+                    "icon": "question_mark",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "faq_text_9": {
+                      "type": "text",
+                      "settings": { "text": "<p>Yes! Every Rock Stepper comes with exclusive workout guides that guide you through complete routines.<\/p>", "width": "100%" }
+                    }
+                  },
+                  "block_order": ["faq_text_9"]
+                },
+                "faq_row_10": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Can I return it if it's not for me?",
+                    "open_by_default": false,
+                    "icon": "question_mark",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "faq_text_10": {
+                      "type": "text",
+                      "settings": { "text": "<p>Absolutely! We offer a 30-day money-back guarantee. Try it risk-free. If you don\u2019t love how you feel after 30 days, return it for a full refund.<\/p>", "width": "100%" }
+                    }
+                  },
+                  "block_order": ["faq_text_10"]
+                }
+              },
+              "block_order": [
+                "faq_row_1","faq_row_2","faq_row_3","faq_row_4","faq_row_5",
+                "faq_row_6","faq_row_7","faq_row_8","faq_row_9","faq_row_10"
+              ]
             }
           },
           "block_order": [
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
+            "buy_now_block",
             "buy_buttons_eYQEYi",
-            "text_aEtTtq"
+            "text_aEtTtq",
+            "faq_heading",
+            "faq_accordion"
           ]
         }
       },
@@ -396,10 +636,21 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "product_reviews_section": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>.rv{font-family:var(--font-body--family)}.rv__header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:2px solid rgba(var(--color-foreground-rgb),.1)}.rv__left{display:flex;align-items:center;gap:.75rem}.rv__stars-big{color:#FFBE00;font-size:1.5rem;letter-spacing:1px}.rv__count{font-size:1rem;font-weight:600;cursor:pointer}.rv__write-btn{padding:9px 18px;border:1.5px solid rgba(var(--color-foreground-rgb),.4);border-radius:6px;font-weight:600;font-size:.875rem;background:transparent;color:var(--color-foreground);cursor:pointer;display:flex;align-items:center;gap:.5rem}.rv__write-btn:hover{border-color:var(--color-foreground)}.rv__grid{columns:4 220px;column-gap:14px}.rv__card{break-inside:avoid;border:1px solid rgba(var(--color-foreground-rgb),.1);border-radius:10px;overflow:hidden;margin-bottom:14px;background:var(--color-background)}.rv__img{width:100%;aspect-ratio:4\/3;object-fit:cover;display:block}.rv__body{padding:14px 16px}.rv__name{font-weight:700;font-size:.95rem;margin-bottom:2px;color:var(--color-foreground)}.rv__date{font-size:.8rem;color:rgba(var(--color-foreground-rgb),.45);margin-bottom:6px}.rv__stars{color:#FFBE00;font-size:1rem;margin-bottom:8px;letter-spacing:1px}.rv__text{font-size:.875rem;line-height:1.65;color:rgba(var(--color-foreground-rgb),.75)}@media(max-width:749px){.rv__grid{columns:2 160px}}<\/style>{%- assign imgs = product.images -%}<div class=\"rv\"><div class=\"rv__header\"><div class=\"rv__left\"><span class=\"rv__stars-big\">&#9733;&#9733;&#9733;&#9733;&#9733;<\/span><span class=\"rv__count\">20 Reviews &#9660;<\/span><\/div><button class=\"rv__write-btn\">Write a review &#x2261;<\/button><\/div><div class=\"rv__grid\"><div class=\"rv__card\">{%- if imgs.size > 0 -%}<img class=\"rv__img\" src=\"{{ imgs[0] | image_url: width: 400 }}\" alt=\"\" loading=\"lazy\">{%- endif -%}<div class=\"rv__body\"><div class=\"rv__name\">Ally J.<\/div><div class=\"rv__date\">2\/18\/2026<\/div><div class=\"rv__stars\">&#9733;&#9733;&#9733;&#9733;&#9733;<\/div><p class=\"rv__text\">Just had a kid, and this is 1000% THE way to lose the baby weight. And at your pace, too. \uD83D\uDC9C<\/p><\/div><\/div><div class=\"rv__card\">{%- if imgs.size > 1 -%}<img class=\"rv__img\" src=\"{{ imgs[1] | image_url: width: 400 }}\" alt=\"\" loading=\"lazy\">{%- endif -%}<div class=\"rv__body\"><div class=\"rv__name\">Ruth B.<\/div><div class=\"rv__date\">2\/23\/2026<\/div><div class=\"rv__stars\">&#9733;&#9733;&#9733;&#9733;&#9733;<\/div><p class=\"rv__text\">As someone who has an office job and sorely misses the life of constant walking that I had in retail, this is just perfection. \u2728 I use it daily.<\/p><\/div><\/div><div class=\"rv__card\">{%- if imgs.size > 2 -%}<img class=\"rv__img\" src=\"{{ imgs[2] | image_url: width: 400 }}\" alt=\"\" loading=\"lazy\">{%- endif -%}<div class=\"rv__body\"><div class=\"rv__name\">Marg<\/div><div class=\"rv__date\">2\/20\/2026<\/div><div class=\"rv__stars\">&#9733;&#9733;&#9733;&#9733;&#9733;<\/div><p class=\"rv__text\">This machine is the reason I haven\u2019t missed a workout day in 3 months. I\u2019m not even joking.<\/p><\/div><\/div><div class=\"rv__card\">{%- if imgs.size > 3 -%}<img class=\"rv__img\" src=\"{{ imgs[3] | image_url: width: 400 }}\" alt=\"\" loading=\"lazy\">{%- endif -%}<div class=\"rv__body\"><div class=\"rv__name\">Ashley F.<\/div><div class=\"rv__date\">2\/23\/2026<\/div><div class=\"rv__stars\">&#9733;&#9733;&#9733;&#9733;&#9733;<\/div><p class=\"rv__text\">So good!<\/p><\/div><\/div><div class=\"rv__card\"><div class=\"rv__body\"><div class=\"rv__name\">Mitzi N.<\/div><div class=\"rv__date\">3\/24\/2026<\/div><div class=\"rv__stars\">&#9733;&#9733;&#9733;&#9733;&#9733;<\/div><p class=\"rv__text\">Love it! Barely takes any effort to get started and the rocking motion feels so natural on my joints. I do 30 minutes while watching TV.<\/p><\/div><\/div><div class=\"rv__card\">{%- if imgs.size > 0 -%}<img class=\"rv__img\" src=\"{{ imgs[0] | image_url: width: 400 }}\" alt=\"\" loading=\"lazy\">{%- endif -%}<div class=\"rv__body\"><div class=\"rv__name\">Sarah K.<\/div><div class=\"rv__date\">3\/1\/2026<\/div><div class=\"rv__stars\">&#9733;&#9733;&#9733;&#9733;&#9733;<\/div><p class=\"rv__text\">I\u2019ve tried so many fitness gadgets and this is the only one I\u2019ve actually stuck with. 3 months in and still going strong!<\/p><\/div><\/div><div class=\"rv__card\"><div class=\"rv__body\"><div class=\"rv__name\">Jennifer M.<\/div><div class=\"rv__date\">2\/28\/2026<\/div><div class=\"rv__stars\">&#9733;&#9733;&#9733;&#9733;&#9733;<\/div><p class=\"rv__text\">Great low-impact workout. My knees thank me every single day. Wish I\u2019d found this sooner.<\/p><\/div><\/div><div class=\"rv__card\">{%- if imgs.size > 1 -%}<img class=\"rv__img\" src=\"{{ imgs[1] | image_url: width: 400 }}\" alt=\"\" loading=\"lazy\">{%- endif -%}<div class=\"rv__body\"><div class=\"rv__name\">Tom R.<\/div><div class=\"rv__date\">3\/10\/2026<\/div><div class=\"rv__stars\">&#9733;&#9733;&#9733;&#9733;&#9734;<\/div><p class=\"rv__text\">Really solid build quality. I use it while watching TV and barely notice the time passing. Good investment.<\/p><\/div><\/div><div class=\"rv__card\"><div class=\"rv__body\"><div class=\"rv__name\">Lisa C.<\/div><div class=\"rv__date\">3\/15\/2026<\/div><div class=\"rv__stars\">&#9733;&#9733;&#9733;&#9733;&#9733;<\/div><p class=\"rv__text\">Lost 8 pounds in the first month just using this for 20 minutes a day. My energy levels are through the roof. Amazing!<\/p><\/div><\/div><div class=\"rv__card\"><div class=\"rv__body\"><div class=\"rv__name\">David W.<\/div><div class=\"rv__date\">3\/20\/2026<\/div><div class=\"rv__stars\">&#9733;&#9733;&#9733;&#9733;&#9733;<\/div><p class=\"rv__text\">Bought this for my wife and she loves it. Now I use it too. Best purchase we\u2019ve made this year. Highly recommend!<\/p><\/div><\/div><\/div><\/div>",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 48,
+        "padding-block-end": 64
+      }
     }
   },
   "order": [
     "main",
-    "product_recommendations_qggXJq"
+    "product_recommendations_qggXJq",
+    "product_reviews_section"
   ]
 }

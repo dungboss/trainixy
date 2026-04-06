@@ -1,0 +1,43 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "content": {
+          "type": "text",
+          "settings": {
+            "text": "<h1>Affiliates Program<\/h1><p>Join our affiliate program and start earning money by promoting our products to your audience. It\u2019s free to join and easy to get started.<\/p><h2>How It Works<\/h2><ol><li>Sign up for our affiliate program \u2014 it\u2019s completely free<\/li><li>Get your unique referral link and promotional materials<\/li><li>Share with your audience through social media, email, or your website<\/li><li>Earn commissions for every sale made through your link<\/li><\/ol><h2>Commission Structure<\/h2><p>We offer competitive commissions for our affiliate partners:<\/p><ul><li>Standard commission: 15% per sale<\/li><li>High-volume bonus: up to 25% for top performers<\/li><li>30-day cookie window to track referrals<\/li><li>Monthly payouts via PayPal or bank transfer<\/li><\/ul><h2>Who Can Join?<\/h2><p>Anyone can apply! Whether you\u2019re a fitness blogger, social media influencer, or simply someone who loves our products, we\u2019d love to have you on board.<\/p><h2>Apply Now<\/h2><p>Ready to start earning? Contact us at affiliates@trainixy.com with your name, social media handles or website, and a brief description of your audience.<\/p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["content"],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    }
+  },
+  "order": ["main"]
+}
