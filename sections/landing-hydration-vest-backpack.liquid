@@ -1,0 +1,637 @@
+{%- comment -%}
+  Section: Running Hydration Vest Backpack landing page
+  Used with layout/landing.liquid and templates/product.hydration-vest-backpack.json
+{%- endcomment -%}
+
+<style>
+  .gradient-text {
+    background: linear-gradient(to right, #06b6d4, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .glow-btn { box-shadow: 0 0 20px rgba(6, 182, 212, 0.45); }
+  .glow-btn:hover { box-shadow: 0 0 32px rgba(6, 182, 212, 0.7); }
+</style>
+
+{%- liquid
+  assign p = product
+  assign variant = product.selected_or_first_available_variant
+  assign imgs = product.images
+-%}
+
+{%- comment -%} Announcement bar {%- endcomment -%}
+<div class="bg-cyan-600 text-white text-center py-2 text-sm font-semibold tracking-wide">
+  🏃 LIMITED OFFER – FREE SHIPPING NATIONWIDE – WHILE STOCKS LAST 🏃
+</div>
+
+{%- comment -%} Header {%- endcomment -%}
+<header class="sticky top-0 z-50 bg-black/95 border-b border-gray-800 py-4 px-4 md:px-8 flex justify-between items-center">
+  <div class="flex items-center gap-4">
+    <i data-lucide="menu" class="w-6 h-6 cursor-pointer md:hidden"></i>
+    <a href="/" class="text-2xl font-black italic tracking-tighter text-white">{{ shop.name }}</a>
+  </div>
+  <nav class="hidden md:flex gap-6 text-sm font-medium">
+    <a href="/collections/all" class="hover:text-cyan-400 transition">Products</a>
+    <a href="#features" class="hover:text-cyan-400 transition">Features</a>
+    <a href="#buy-section" class="hover:text-cyan-400 transition">Buy Now</a>
+  </nav>
+  <a href="/cart"><i data-lucide="shopping-cart" class="w-6 h-6 cursor-pointer hover:text-cyan-400 transition"></i></a>
+</header>
+
+{%- comment -%} Hero {%- endcomment -%}
+<section class="relative w-full bg-neutral-900 min-h-[600px] flex items-center py-16 md:py-24">
+  <div class="absolute inset-0 overflow-hidden">
+    <img
+      src="https://cdn.shopify.com/s/files/1/0984/7603/2311/files/20260316-bg1.webp"
+      class="w-full h-full object-cover object-top md:hidden"
+      alt="Background Mobile"
+      loading="eager"
+    >
+    <img
+      src="https://cdn.shopify.com/s/files/1/0984/7603/2311/files/20260316-bg1-pc.webp"
+      class="w-full h-full object-cover hidden md:block"
+      alt="Background Desktop"
+      loading="eager"
+    >
+    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20"></div>
+  </div>
+
+  <div class="relative z-10 container mx-auto px-4 max-w-3xl">
+    <div class="inline-flex items-center gap-2 bg-cyan-900/50 border border-cyan-700 text-cyan-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest">
+      <i data-lucide="zap" class="w-3.5 h-3.5"></i> Lightweight · Bounce-Free · Multi-Sport
+    </div>
+
+    <h1 class="text-4xl md:text-6xl font-black uppercase gradient-text leading-tight mb-6">
+      Run Further. <br> Stay Hydrated.
+    </h1>
+    <p class="text-xl md:text-2xl font-light text-gray-300 mb-8 max-w-lg">
+      {{ p.title }} — Carry water, your phone & essentials hands-free. Built for marathons, trails, hikes & rides.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4">
+      <button
+        onclick="document.getElementById('buy-section').scrollIntoView({ behavior: 'smooth' })"
+        class="glow-btn bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-4 px-10 rounded-full text-lg transition transform hover:scale-105"
+      >
+        ORDER NOW
+      </button>
+      <button
+        onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' })"
+        class="border border-white/40 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition"
+      >
+        Learn More
+      </button>
+    </div>
+
+    <div class="flex items-center gap-6 mt-8 text-sm text-gray-400">
+      <div class="flex items-center gap-1.5"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i> 4.9/5 (1,024 reviews)</div>
+      <div class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4 text-cyan-400"></i> 5,000+ athletes</div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Trust bar {%- endcomment -%}
+<div class="bg-neutral-800 py-4 border-y border-neutral-700">
+  <div class="container mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-16 text-sm font-semibold">
+    <div class="flex items-center gap-2"><i data-lucide="truck" class="text-cyan-400 w-5 h-5"></i> NATIONWIDE SHIPPING</div>
+    <div class="flex items-center gap-2"><i data-lucide="shield-check" class="text-cyan-400 w-5 h-5"></i> 12-MONTH WARRANTY</div>
+    <div class="flex items-center gap-2"><i data-lucide="rotate-ccw" class="text-cyan-400 w-5 h-5"></i> 30-DAY FREE RETURNS</div>
+  </div>
+</div>
+
+{%- comment -%} Features {%- endcomment -%}
+<section id="features" class="py-16 container mx-auto px-4">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-bold uppercase mb-4">Key Features</h2>
+    <div class="w-24 h-1 bg-cyan-500 mx-auto"></div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
+    <div>
+      {%- if imgs[1] -%}
+        <img src="{{ imgs[1] | image_url: width: 600 }}" class="w-full rounded-xl" alt="Features">
+      {%- else -%}
+        <img src="https://placehold.co/600x600/111827/374151?text=[Feature+Image]" class="w-full rounded-xl" alt="Features">
+      {%- endif -%}
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      {%- assign features = 'feather|Ultra Lightweight|Under 200g — barely feel it,smartphone|Phone Pocket|Fits phones up to 6.7 inches,droplets|2L Hydration Ready|Compatible with major bladder brands,wind|Bounce-Free Fit|Adjustable straps for all body types' | split: ',' -%}
+      {%- for feat in features -%}
+        {%- assign feat_parts = feat | split: '|' -%}
+        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-cyan-500 transition cursor-pointer group">
+          <div class="w-12 h-12 mx-auto bg-neutral-800 rounded-full flex items-center justify-center mb-4 group-hover:bg-cyan-900 transition">
+            <i data-lucide="{{ feat_parts[0] }}" class="w-6 h-6 text-cyan-400"></i>
+          </div>
+          <h3 class="font-bold text-sm">{{ feat_parts[1] }}</h3>
+          <p class="text-gray-400 text-xs mt-1">{{ feat_parts[2] }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Specs {%- endcomment -%}
+<section class="py-16 bg-neutral-950">
+  <div class="container mx-auto px-4 text-center max-w-4xl">
+    <h2 class="text-3xl font-bold uppercase mb-8"><span class="text-cyan-400">Technical</span> Specifications</h2>
+    {%- if imgs[2] -%}
+      <img src="{{ imgs[2] | image_url: width: 900 }}" class="w-full rounded-xl mb-8" alt="Specs">
+    {%- else -%}
+      <img src="https://placehold.co/900x400/111827/374151?text=[Specs+Image]" class="w-full rounded-xl mb-8" alt="Specs">
+    {%- endif -%}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
+        <p class="text-3xl font-black text-cyan-400">&lt;200g</p>
+        <p class="text-gray-400 text-sm mt-1">Vest Weight</p>
+      </div>
+      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
+        <p class="text-3xl font-black text-cyan-400">2L</p>
+        <p class="text-gray-400 text-sm mt-1">Bladder Capacity</p>
+      </div>
+      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
+        <p class="text-3xl font-black text-cyan-400">6+</p>
+        <p class="text-gray-400 text-sm mt-1">Storage Pockets</p>
+      </div>
+      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
+        <p class="text-3xl font-black text-cyan-400">4-in-1</p>
+        <p class="text-gray-400 text-sm mt-1">Run/Hike/Bike/Race</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Guarantee banner {%- endcomment -%}
+<div class="bg-gradient-to-r from-cyan-600 to-blue-700 py-6 text-center">
+  <h3 class="text-2xl font-bold text-white uppercase flex justify-center items-center gap-2">
+    <i data-lucide="shield-check" class="w-8 h-8"></i> FREE 30-DAY RETURNS — NO QUESTIONS ASKED
+  </h3>
+</div>
+
+{%- comment -%} Buy section {%- endcomment -%}
+<section id="buy-section" class="bg-white text-black py-16">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex flex-col md:flex-row gap-12">
+
+      {%- comment -%} Gallery {%- endcomment -%}
+      <div class="w-full md:w-1/2">
+        <div class="border border-gray-200 rounded-2xl overflow-hidden mb-4 relative p-4 bg-gray-50">
+          {%- if variant.compare_at_price > variant.price -%}
+            {%- assign discount_pct = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price -%}
+            <div class="absolute top-4 left-4 bg-cyan-600 text-white text-xs font-bold px-3 py-1 rounded-full z-10">-{{ discount_pct }}%</div>
+          {%- endif -%}
+          {%- if imgs[0] -%}
+            <img id="main-product-img" src="{{ imgs[0] | image_url: width: 600 }}" class="w-full object-contain h-[400px]" alt="{{ p.title }}">
+          {%- else -%}
+            <img id="main-product-img" src="https://placehold.co/600x600/f9fafb/374151?text=[Product+Image]" class="w-full object-contain h-[400px]" alt="{{ p.title }}">
+          {%- endif -%}
+        </div>
+        <div class="flex gap-4 overflow-x-auto pb-2">
+          {%- for img in imgs limit: 5 -%}
+            <img
+              src="{{ img | image_url: width: 100 }}"
+              class="w-20 h-20 border-2 rounded-lg cursor-pointer flex-shrink-0 hover:border-cyan-500 transition {% if forloop.first %}border-cyan-500{% else %}border-gray-200{% endif %}"
+              alt="Image {{ forloop.index }}"
+              onclick="document.getElementById('main-product-img').src='{{ img | image_url: width: 600 }}'; document.querySelectorAll('.thumb-list img').forEach(t=>t.classList.replace('border-cyan-500','border-gray-200')); this.classList.replace('border-gray-200','border-cyan-500')"
+            >
+          {%- else -%}
+            {%- for i in (1..4) -%}
+              <img src="https://placehold.co/100x100/f9fafb/374151?text=[{{ i }}]" class="w-20 h-20 border-2 rounded-lg cursor-pointer {% if forloop.first %}border-cyan-500{% else %}border-gray-200{% endif %}" alt="Image {{ i }}">
+            {%- endfor -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- comment -%} Product info {%- endcomment -%}
+      <div class="w-full md:w-1/2 flex flex-col justify-center">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="flex text-yellow-400">
+            {%- for i in (1..5) -%}<i data-lucide="star" class="w-4 h-4 fill-current"></i>{%- endfor -%}
+          </div>
+          <span class="text-sm text-gray-500">({{ p.metafields.reviews.rating_count | default: '1,024' }} reviews)</span>
+          {%- if variant.available -%}
+            <span class="text-sm text-green-600 font-medium ml-2 flex items-center">
+              <i data-lucide="check-circle-2" class="w-4 h-4 mr-1"></i> In Stock
+            </span>
+          {%- else -%}
+            <span class="text-sm text-red-500 font-medium ml-2">Out of Stock</span>
+          {%- endif -%}
+        </div>
+
+        <h2 class="text-3xl font-bold mb-4">{{ p.title }}</h2>
+
+        <div class="flex items-baseline gap-4 mb-6">
+          <span class="text-4xl font-black text-cyan-600">{{ variant.price | money }}</span>
+          {%- if variant.compare_at_price > variant.price -%}
+            <span class="text-xl text-gray-400 line-through">{{ variant.compare_at_price | money }}</span>
+          {%- endif -%}
+        </div>
+
+        <div class="bg-cyan-50 border border-cyan-100 rounded-lg p-4 mb-6">
+          <p class="text-sm text-cyan-800 font-medium">🏃 14 people are viewing this product right now.</p>
+        </div>
+
+        {%- if p.variants.size > 1 -%}
+          <div class="mb-6">
+            <p class="font-semibold mb-2">Variant:</p>
+            <select id="variant-select" class="border border-gray-300 rounded-lg px-4 py-2 text-base w-full focus:outline-none focus:border-cyan-500">
+              {%- for v in p.variants -%}
+                <option value="{{ v.id }}" {% unless v.available %}disabled{% endunless %}>
+                  {{ v.title }} — {{ v.price | money }}
+                </option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endif -%}
+
+        <div class="mb-6">
+          <p class="font-semibold mb-2">Quantity:</p>
+          <div class="flex items-center border border-gray-300 rounded-lg w-32">
+            <button onclick="updateQty(-1)" class="px-3 py-2 text-gray-600 hover:bg-gray-100"><i data-lucide="minus" class="w-4 h-4"></i></button>
+            <input type="text" id="quantity-input" value="1" readonly class="w-full text-center font-semibold text-lg outline-none bg-transparent">
+            <button onclick="updateQty(1)" class="px-3 py-2 text-gray-600 hover:bg-gray-100"><i data-lucide="plus" class="w-4 h-4"></i></button>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-3 mb-8">
+          <button
+            id="add-to-cart-btn"
+            onclick="handleAddToCart(false)"
+            data-variant-id="{{ variant.id }}"
+            class="w-full bg-white border-2 border-cyan-600 text-cyan-600 font-bold py-4 rounded-xl text-lg hover:bg-cyan-50 transition disabled:opacity-50"
+          >
+            ADD TO CART
+          </button>
+          <button
+            id="buy-now-btn"
+            onclick="handleAddToCart(true)"
+            data-variant-id="{{ variant.id }}"
+            class="w-full bg-cyan-600 text-white font-bold py-4 rounded-xl text-lg hover:bg-cyan-700 transition shadow-lg flex justify-center items-center gap-2 disabled:opacity-50"
+          >
+            BUY NOW <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} FAQ {%- endcomment -%}
+<section class="py-16 bg-neutral-950">
+  <div class="container mx-auto px-4 max-w-3xl">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold uppercase mb-4">Frequently Asked Questions</h2>
+      <div class="w-24 h-1 bg-cyan-500 mx-auto"></div>
+    </div>
+    <div class="space-y-4">
+      <details class="bg-neutral-900 border border-neutral-800 rounded-xl group open:border-cyan-500 transition">
+        <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold list-none">
+          <span>How much water can it hold?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-cyan-400 transition-transform group-open:rotate-180 flex-shrink-0 ml-4"></i>
+        </summary>
+        <p class="px-6 pb-5 text-gray-400 text-sm leading-relaxed">The vest fits most standard 1.5L–2L hydration bladders. The tube routes cleanly to your chest so you can drink without slowing down.</p>
+      </details>
+      <details class="bg-neutral-900 border border-neutral-800 rounded-xl group open:border-cyan-500 transition">
+        <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold list-none">
+          <span>Will it bounce during a run?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-cyan-400 transition-transform group-open:rotate-180 flex-shrink-0 ml-4"></i>
+        </summary>
+        <p class="px-6 pb-5 text-gray-400 text-sm leading-relaxed">No. The adjustable chest straps and snug wrap-around design keep the vest locked in place, even during fast sprints or rough trail terrain.</p>
+      </details>
+      <details class="bg-neutral-900 border border-neutral-800 rounded-xl group open:border-cyan-500 transition">
+        <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold list-none">
+          <span>Does it fit a phone?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-cyan-400 transition-transform group-open:rotate-180 flex-shrink-0 ml-4"></i>
+        </summary>
+        <p class="px-6 pb-5 text-gray-400 text-sm leading-relaxed">Yes. The front chest pocket fits most smartphones up to 6.7 inches with a secure zip and soft lining to protect your screen.</p>
+      </details>
+      <details class="bg-neutral-900 border border-neutral-800 rounded-xl group open:border-cyan-500 transition">
+        <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold list-none">
+          <span>Is it suitable for hiking and cycling?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-cyan-400 transition-transform group-open:rotate-180 flex-shrink-0 ml-4"></i>
+        </summary>
+        <p class="px-6 pb-5 text-gray-400 text-sm leading-relaxed">Absolutely. The vest is designed for multi-sport use — trail running, marathons, mountain biking, and day hikes. Lightweight enough not to slow you down in any activity.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Reviews {%- endcomment -%}
+<section class="py-16 bg-neutral-900">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold uppercase mb-2">What Our Customers Say</h2>
+      <div class="flex justify-center items-center gap-2 mt-3 mb-1">
+        <div class="flex text-yellow-400">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        <span class="text-white font-bold text-lg">4.9</span>
+        <span class="text-gray-400 text-sm">/ 5 · 1,024 reviews</span>
+      </div>
+      <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4"></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden flex flex-col">
+        {%- if imgs[3] -%}<img src="{{ imgs[3] | image_url: width: 600 }}" class="w-full h-44 object-cover" alt="Review photo">{%- else -%}<img src="https://placehold.co/600x280/1f2937/374151?text=[Photo]" class="w-full h-44 object-cover" alt="Review photo">{%- endif -%}
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+          <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Used this on my first marathon. Zero bouncing, phone pocket is perfect, and I stayed hydrated the whole race. Absolutely love it."</p>
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-cyan-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">MT</div>
+            <div><p class="text-white text-xs font-semibold">Megan T.</p><p class="text-gray-500 text-xs">Verified · Mar 2026</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden flex flex-col">
+        {%- if imgs[4] -%}<img src="{{ imgs[4] | image_url: width: 600 }}" class="w-full h-44 object-cover" alt="Review photo">{%- else -%}<img src="https://placehold.co/600x280/1f2937/374151?text=[Photo]" class="w-full h-44 object-cover" alt="Review photo">{%- endif -%}
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+          <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Incredibly lightweight — I barely feel it. Used for a 25km trail run and it held water, gels, phone, and keys with no issue."</p>
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">CB</div>
+            <div><p class="text-white text-xs font-semibold">Chris B.</p><p class="text-gray-500 text-xs">Verified · Mar 2026</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden flex flex-col">
+        {%- if imgs[5] -%}<img src="{{ imgs[5] | image_url: width: 600 }}" class="w-full h-44 object-cover" alt="Review photo">{%- else -%}<img src="https://placehold.co/600x280/1f2937/374151?text=[Photo]" class="w-full h-44 object-cover" alt="Review photo">{%- endif -%}
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+          <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Snug fit without being tight. As a female runner, this vest actually fits my shape really well — a huge plus."</p>
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">RS</div>
+            <div><p class="text-white text-xs font-semibold">Rachel S.</p><p class="text-gray-500 text-xs">Verified · Feb 2026</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden flex flex-col">
+        {%- if imgs[6] -%}<img src="{{ imgs[6] | image_url: width: 600 }}" class="w-full h-44 object-cover" alt="Review photo">{%- else -%}<img src="https://placehold.co/600x280/1f2937/374151?text=[Photo]" class="w-full h-44 object-cover" alt="Review photo">{%- endif -%}
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+          <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Works great for cycling too. Chest pockets are easy to access on the bike. Build quality is excellent for the price."</p>
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">JL</div>
+            <div><p class="text-white text-xs font-semibold">James L.</p><p class="text-gray-500 text-xs">Verified · Jan 2026</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"I do long hikes every weekend. This vest keeps me hydrated and has just enough room for snacks and a light jacket. Absolutely love it."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-green-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">PN</div>
+          <div><p class="text-white text-xs font-semibold">Priya N.</p><p class="text-gray-500 text-xs">Verified · Dec 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..4) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}<i data-lucide="star" class="w-3.5 h-3.5 text-gray-600"></i></div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Solid vest. My only note is the bladder tube clip could be a bit firmer, but everything else is perfect. Great value overall."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">TW</div>
+          <div><p class="text-white text-xs font-semibold">Tom W.</p><p class="text-gray-500 text-xs">Verified · Dec 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Most breathable hydration vest I have ever used. The mesh back panel keeps me cool even on hot summer runs."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-sky-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">LK</div>
+          <div><p class="text-white text-xs font-semibold">Linda K.</p><p class="text-gray-500 text-xs">Verified · Nov 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Wore it for a 50K ultramarathon. Zero chafing, great storage, smooth water flow the entire way. Will buy another one as a backup."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">DO</div>
+          <div><p class="text-white text-xs font-semibold">Daniel O.</p><p class="text-gray-500 text-xs">Verified · Nov 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Fast shipping and great packaging. Vest is exactly as described — lightweight, compact, well made. Phone fit perfectly in the chest pocket."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-rose-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">SM</div>
+          <div><p class="text-white text-xs font-semibold">Sophie M.</p><p class="text-gray-500 text-xs">Verified · Oct 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Bought this for my wife who runs marathons. She says it is the best gift I have ever given her. Now ordering one for myself."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">KR</div>
+          <div><p class="text-white text-xs font-semibold">Kevin R.</p><p class="text-gray-500 text-xs">Verified · Oct 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Used it for a 3-day hiking trip in the mountains. Held up perfectly. The multiple pockets meant I had everything organized and easy to reach."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">BF</div>
+          <div><p class="text-white text-xs font-semibold">Ben F.</p><p class="text-gray-500 text-xs">Verified · Sep 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"I am a running coach and now recommend this vest to all my athletes. The fit consistency between sizes is impressive."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-cyan-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">AH</div>
+          <div><p class="text-white text-xs font-semibold">Anna H.</p><p class="text-gray-500 text-xs">Verified · Sep 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..4) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}<i data-lucide="star" class="w-3.5 h-3.5 text-gray-600"></i></div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Great product overall. Would love a slightly larger back pocket but the current size is fine for half marathon distances and shorter hikes."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">MV</div>
+          <div><p class="text-white text-xs font-semibold">Marco V.</p><p class="text-gray-500 text-xs">Verified · Aug 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Perfect for Spartan races. The secure fit means it stayed put through every obstacle. Nothing fell out and water was always accessible."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">NP</div>
+          <div><p class="text-white text-xs font-semibold">Nina P.</p><p class="text-gray-500 text-xs">Verified · Aug 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Easy to clean after muddy trail runs. A quick rinse and it was fresh again. Very durable material that shows no signs of wear after months of use."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-fuchsia-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">GW</div>
+          <div><p class="text-white text-xs font-semibold">Grace W.</p><p class="text-gray-500 text-xs">Verified · Jul 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Got this for a cycling gran fondo. Front pockets gave me instant access to gels without stopping. Will use on every long ride from now on."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-lime-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">EC</div>
+          <div><p class="text-white text-xs font-semibold">Ethan C.</p><p class="text-gray-500 text-xs">Verified · Jul 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"My teenage daughter uses this for cross-country. She loves how light it feels and that she can carry her phone safely. Great for young athletes."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">PY</div>
+          <div><p class="text-white text-xs font-semibold">Patricia Y.</p><p class="text-gray-500 text-xs">Verified · Jun 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Reliable, comfortable, and well priced. I have now completed 3 marathons with this vest and it has never let me down."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-stone-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">OB</div>
+          <div><p class="text-white text-xs font-semibold">Owen B.</p><p class="text-gray-500 text-xs">Verified · Jun 2025</p></div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Best hydration vest under this price point. I compared 5 brands before buying and this one won on fit, storage, and weight. No regrets."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">AL</div>
+          <div><p class="text-white text-xs font-semibold">Amy L.</p><p class="text-gray-500 text-xs">Verified · May 2025</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Toast {%- endcomment -%}
+<div
+  id="cart-toast"
+  class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg z-50 transition-all duration-300 opacity-0 pointer-events-none flex items-center gap-2"
+>
+  <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+  <span id="cart-toast-msg">Added to cart!</span>
+</div>
+
+{%- comment -%} Footer {%- endcomment -%}
+<footer class="bg-black text-gray-400 py-12 border-t border-gray-800">
+  <div class="container mx-auto px-4 max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+    <div>
+      <a href="/" class="text-2xl font-black italic tracking-tighter text-white mb-4 block">{{ shop.name }}</a>
+      <p>{{ shop.description | default: 'Premium fitness equipment, delivered nationwide.' }}</p>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-4 uppercase">Quick Links</h4>
+      <ul class="space-y-2">
+        <li><a href="/collections/all" class="hover:text-white transition">All Products</a></li>
+        <li><a href="/policies/shipping-policy" class="hover:text-white transition">Shipping Policy</a></li>
+        <li><a href="/policies/refund-policy" class="hover:text-white transition">Return Policy</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-4 uppercase">Stay Updated</h4>
+      <div class="flex">
+        <input type="email" placeholder="Enter your email" class="bg-gray-900 border border-gray-700 px-4 py-2 w-full focus:outline-none focus:border-cyan-500 rounded-l-lg">
+        <button class="bg-cyan-600 text-white px-4 py-2 font-bold hover:bg-cyan-700 rounded-r-lg">GO</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+
+  function updateQty(change) {
+    const input = document.getElementById('quantity-input');
+    const newVal = parseInt(input.value) + change;
+    if (newVal >= 1) input.value = newVal;
+  }
+
+  function getCurrentVariantId() {
+    const select = document.getElementById('variant-select');
+    if (select) return select.value;
+    return document.getElementById('add-to-cart-btn')?.dataset.variantId;
+  }
+
+  function showToast(msg, isError = false) {
+    const toast = document.getElementById('cart-toast');
+    document.getElementById('cart-toast-msg').textContent = msg;
+    toast.classList.toggle('bg-green-600', !isError);
+    toast.classList.toggle('bg-red-500', isError);
+    toast.classList.remove('opacity-0', 'pointer-events-none');
+    toast.classList.add('opacity-100');
+    setTimeout(() => {
+      toast.classList.remove('opacity-100');
+      toast.classList.add('opacity-0', 'pointer-events-none');
+    }, 3000);
+  }
+
+  async function handleAddToCart(buyNow = false) {
+    const variantId = getCurrentVariantId();
+    const quantity = parseInt(document.getElementById('quantity-input').value);
+
+    if (!variantId || variantId === 'undefined' || variantId === '') {
+      showToast('Please select a product variant.', true);
+      return;
+    }
+
+    const addBtn = document.getElementById('add-to-cart-btn');
+    const buyBtn = document.getElementById('buy-now-btn');
+    addBtn.disabled = true;
+    buyBtn.disabled = true;
+
+    try {
+      const response = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ id: parseInt(variantId), quantity })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        showToast(data.description || 'Something went wrong. Please try again.', true);
+        return;
+      }
+
+      if (buyNow) {
+        window.location.href = '/checkout';
+      } else {
+        showToast('Added to cart!');
+        document.dispatchEvent(new CustomEvent('cart:update', { bubbles: true, detail: { itemCount: data.quantity } }));
+      }
+    } catch (err) {
+      showToast('Connection error. Please try again.', true);
+    } finally {
+      addBtn.disabled = false;
+      buyBtn.disabled = false;
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Hydration Vest Landing",
+  "settings": []
+}
+{% endschema %}
