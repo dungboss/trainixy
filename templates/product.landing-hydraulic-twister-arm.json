@@ -1,0 +1,10 @@
+{
+  "layout": "landing",
+  "sections": {
+    "main": {
+      "type": "landing-hydraulic-twister-arm",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

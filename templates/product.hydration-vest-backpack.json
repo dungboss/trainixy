@@ -1,0 +1,10 @@
+{
+  "layout": "landing",
+  "sections": {
+    "main": {
+      "type": "landing-hydration-vest-backpack",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
