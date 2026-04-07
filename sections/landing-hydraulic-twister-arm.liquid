@@ -1,0 +1,684 @@
+{%- comment -%}
+  Section: Adjustable Hydraulic Power Twister landing page
+  Used with layout/landing.liquid and templates/product.landing-aeroracer.json
+{%- endcomment -%}
+
+<style>
+  /* Gradient text — fix Safari / iOS */
+  .gradient-text {
+    background: linear-gradient(to right, #f97316, #ef4444);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .glow-btn { box-shadow: 0 0 20px rgba(249, 115, 22, 0.45); }
+  .glow-btn:hover { box-shadow: 0 0 32px rgba(249, 115, 22, 0.7); }
+</style>
+
+{%- liquid
+  assign p = product
+  assign variant = product.selected_or_first_available_variant
+  assign imgs = product.images
+-%}
+
+{%- comment -%} Announcement bar {%- endcomment -%}
+<div class="bg-orange-600 text-white text-center py-2 text-sm font-semibold tracking-wide">
+  💪 LIMITED OFFER – FREE SHIPPING NATIONWIDE – WHILE STOCKS LAST 💪
+</div>
+
+{%- comment -%} Header {%- endcomment -%}
+<header class="sticky top-0 z-50 bg-black/95 border-b border-gray-800 py-4 px-4 md:px-8 flex justify-between items-center">
+  <div class="flex items-center gap-4">
+    <i data-lucide="menu" class="w-6 h-6 cursor-pointer md:hidden"></i>
+    <a href="/" class="text-2xl font-black italic tracking-tighter text-white">{{ shop.name }}</a>
+  </div>
+  <nav class="hidden md:flex gap-6 text-sm font-medium">
+    <a href="/collections/all" class="hover:text-orange-400 transition">Products</a>
+    <a href="#features" class="hover:text-orange-400 transition">Features</a>
+    <a href="#buy-section" class="hover:text-orange-400 transition">Buy Now</a>
+  </nav>
+  <a href="/cart"><i data-lucide="shopping-cart" class="w-6 h-6 cursor-pointer hover:text-orange-400 transition"></i></a>
+</header>
+
+{%- comment -%} Hero {%- endcomment -%}
+<section class="relative w-full bg-neutral-900 min-h-[600px] flex items-center py-16 md:py-24">
+  <div class="absolute inset-0 overflow-hidden">
+    <img
+      src="https://cdn.shopify.com/s/files/1/0984/7603/2311/files/20260316-bg1.webp"
+      class="w-full h-full object-cover object-top md:hidden"
+      alt="Background Mobile"
+      loading="eager"
+    >
+    <img
+      src="https://cdn.shopify.com/s/files/1/0984/7603/2311/files/20260316-bg1-pc.webp"
+      class="w-full h-full object-cover hidden md:block"
+      alt="Background Desktop"
+      loading="eager"
+    >
+    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20"></div>
+  </div>
+
+  <div class="relative z-10 container mx-auto px-4 max-w-3xl">
+    <div class="inline-flex items-center gap-2 bg-orange-900/50 border border-orange-700 text-orange-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest">
+      <i data-lucide="zap" class="w-3.5 h-3.5"></i> Adjustable Hydraulic Resistance
+    </div>
+
+    <h1 class="text-4xl md:text-6xl font-black uppercase gradient-text leading-tight mb-6">
+      Build Power. <br> Train Anywhere.
+    </h1>
+    <p class="text-xl md:text-2xl font-light text-gray-300 mb-8 max-w-lg">
+      {{ p.title }} — Target your arms, chest, forearms, biceps & core with one versatile tool.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4">
+      <button
+        onclick="document.getElementById('buy-section').scrollIntoView({ behavior: 'smooth' })"
+        class="glow-btn bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white font-bold py-4 px-10 rounded-full text-lg transition transform hover:scale-105"
+      >
+        ORDER NOW
+      </button>
+      <button
+        onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' })"
+        class="border border-white/40 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition"
+      >
+        Learn More
+      </button>
+    </div>
+
+    <div class="flex items-center gap-6 mt-8 text-sm text-gray-400">
+      <div class="flex items-center gap-1.5"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i> 4.9/5 (856 reviews)</div>
+      <div class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4 text-orange-400"></i> 3,000+ customers</div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Trust bar {%- endcomment -%}
+<div class="bg-neutral-800 py-4 border-y border-neutral-700">
+  <div class="container mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-16 text-sm font-semibold">
+    <div class="flex items-center gap-2"><i data-lucide="truck" class="text-orange-400 w-5 h-5"></i> NATIONWIDE SHIPPING</div>
+    <div class="flex items-center gap-2"><i data-lucide="shield-check" class="text-orange-400 w-5 h-5"></i> 12-MONTH WARRANTY</div>
+    <div class="flex items-center gap-2"><i data-lucide="rotate-ccw" class="text-orange-400 w-5 h-5"></i> 30-DAY FREE RETURNS</div>
+  </div>
+</div>
+
+{%- comment -%} Features {%- endcomment -%}
+<section id="features" class="py-16 container mx-auto px-4">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-bold uppercase mb-4">Key Features</h2>
+    <div class="w-24 h-1 bg-orange-500 mx-auto"></div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
+    <div>
+      {%- if imgs[1] -%}
+        <img src="{{ imgs[1] | image_url: width: 600 }}" class="w-full rounded-xl" alt="Features">
+      {%- else -%}
+        <img src="https://placehold.co/600x600/111827/374151?text=[Feature+Image]" class="w-full rounded-xl" alt="Features">
+      {%- endif -%}
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      {%- assign features = 'sliders|Adjustable Resistance|Hydraulic dial: 10–100 lbs,activity|Multi-Muscle Training|Arms, chest, abs & back,hand|Ergonomic Grip|Non-slip foam handles,dumbbell|Compact & Portable|Train at home or the gym' | split: ',' -%}
+      {%- for feat in features -%}
+        {%- assign feat_parts = feat | split: '|' -%}
+        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-orange-500 transition cursor-pointer group">
+          <div class="w-12 h-12 mx-auto bg-neutral-800 rounded-full flex items-center justify-center mb-4 group-hover:bg-orange-900 transition">
+            <i data-lucide="{{ feat_parts[0] }}" class="w-6 h-6 text-orange-400"></i>
+          </div>
+          <h3 class="font-bold text-sm">{{ feat_parts[1] }}</h3>
+          <p class="text-gray-400 text-xs mt-1">{{ feat_parts[2] }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Specs {%- endcomment -%}
+<section class="py-16 bg-neutral-950">
+  <div class="container mx-auto px-4 text-center max-w-4xl">
+    <h2 class="text-3xl font-bold uppercase mb-8"><span class="text-orange-400">Technical</span> Specifications</h2>
+    {%- if imgs[2] -%}
+      <img src="{{ imgs[2] | image_url: width: 900 }}" class="w-full rounded-xl mb-8" alt="Specs">
+    {%- else -%}
+      <img src="https://placehold.co/900x400/111827/374151?text=[Specs+Image]" class="w-full rounded-xl mb-8" alt="Specs">
+    {%- endif -%}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
+        <p class="text-3xl font-black text-orange-400">100 lbs</p>
+        <p class="text-gray-400 text-sm mt-1">Max Resistance</p>
+      </div>
+      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
+        <p class="text-3xl font-black text-orange-400">6+</p>
+        <p class="text-gray-400 text-sm mt-1">Muscle Groups</p>
+      </div>
+      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
+        <p class="text-3xl font-black text-orange-400">Steel</p>
+        <p class="text-gray-400 text-sm mt-1">Heavy-duty Frame</p>
+      </div>
+      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
+        <p class="text-3xl font-black text-orange-400">1 Tool</p>
+        <p class="text-gray-400 text-sm mt-1">Full Upper Body</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Guarantee banner {%- endcomment -%}
+<div class="bg-gradient-to-r from-orange-600 to-red-700 py-6 text-center">
+  <h3 class="text-2xl font-bold text-white uppercase flex justify-center items-center gap-2">
+    <i data-lucide="shield-check" class="w-8 h-8"></i> FREE 30-DAY RETURNS — NO QUESTIONS ASKED
+  </h3>
+</div>
+
+{%- comment -%} Buy section {%- endcomment -%}
+<section id="buy-section" class="bg-white text-black py-16">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex flex-col md:flex-row gap-12">
+
+      {%- comment -%} Gallery {%- endcomment -%}
+      <div class="w-full md:w-1/2">
+        <div class="border border-gray-200 rounded-2xl overflow-hidden mb-4 relative p-4 bg-gray-50">
+          {%- if variant.compare_at_price > variant.price -%}
+            {%- assign discount_pct = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price -%}
+            <div class="absolute top-4 left-4 bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full z-10">-{{ discount_pct }}%</div>
+          {%- endif -%}
+          {%- if imgs[0] -%}
+            <img id="main-product-img" src="{{ imgs[0] | image_url: width: 600 }}" class="w-full object-contain h-[400px]" alt="{{ p.title }}">
+          {%- else -%}
+            <img id="main-product-img" src="https://placehold.co/600x600/f9fafb/374151?text=[Product+Image]" class="w-full object-contain h-[400px]" alt="{{ p.title }}">
+          {%- endif -%}
+        </div>
+        <div class="flex gap-4 overflow-x-auto pb-2">
+          {%- for img in imgs limit: 5 -%}
+            <img
+              src="{{ img | image_url: width: 100 }}"
+              class="w-20 h-20 border-2 rounded-lg cursor-pointer flex-shrink-0 hover:border-orange-500 transition {% if forloop.first %}border-orange-500{% else %}border-gray-200{% endif %}"
+              alt="Image {{ forloop.index }}"
+              onclick="document.getElementById('main-product-img').src='{{ img | image_url: width: 600 }}'; document.querySelectorAll('.thumb-list img').forEach(t=>t.classList.replace('border-orange-500','border-gray-200')); this.classList.replace('border-gray-200','border-orange-500')"
+            >
+          {%- else -%}
+            {%- for i in (1..4) -%}
+              <img src="https://placehold.co/100x100/f9fafb/374151?text=[{{ i }}]" class="w-20 h-20 border-2 rounded-lg cursor-pointer {% if forloop.first %}border-orange-500{% else %}border-gray-200{% endif %}" alt="Image {{ i }}">
+            {%- endfor -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- comment -%} Product info {%- endcomment -%}
+      <div class="w-full md:w-1/2 flex flex-col justify-center">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="flex text-yellow-400">
+            {%- for i in (1..5) -%}<i data-lucide="star" class="w-4 h-4 fill-current"></i>{%- endfor -%}
+          </div>
+          <span class="text-sm text-gray-500">({{ p.metafields.reviews.rating_count | default: '856' }} reviews)</span>
+          {%- if variant.available -%}
+            <span class="text-sm text-green-600 font-medium ml-2 flex items-center">
+              <i data-lucide="check-circle-2" class="w-4 h-4 mr-1"></i> In Stock
+            </span>
+          {%- else -%}
+            <span class="text-sm text-red-500 font-medium ml-2">Out of Stock</span>
+          {%- endif -%}
+        </div>
+
+        <h2 class="text-3xl font-bold mb-4">{{ p.title }}</h2>
+
+        <div class="flex items-baseline gap-4 mb-6">
+          <span class="text-4xl font-black text-orange-600">{{ variant.price | money }}</span>
+          {%- if variant.compare_at_price > variant.price -%}
+            <span class="text-xl text-gray-400 line-through">{{ variant.compare_at_price | money }}</span>
+          {%- endif -%}
+        </div>
+
+        <div class="bg-orange-50 border border-orange-100 rounded-lg p-4 mb-6">
+          <p class="text-sm text-orange-800 font-medium">🔥 12 people are viewing this product right now.</p>
+        </div>
+
+        {%- if p.variants.size > 1 -%}
+          <div class="mb-6">
+            <p class="font-semibold mb-2">Variant:</p>
+            <select id="variant-select" class="border border-gray-300 rounded-lg px-4 py-2 text-base w-full focus:outline-none focus:border-orange-500">
+              {%- for v in p.variants -%}
+                <option value="{{ v.id }}" {% unless v.available %}disabled{% endunless %}>
+                  {{ v.title }} — {{ v.price | money }}
+                </option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endif -%}
+
+        <div class="mb-6">
+          <p class="font-semibold mb-2">Quantity:</p>
+          <div class="flex items-center border border-gray-300 rounded-lg w-32">
+            <button onclick="updateQty(-1)" class="px-3 py-2 text-gray-600 hover:bg-gray-100"><i data-lucide="minus" class="w-4 h-4"></i></button>
+            <input type="text" id="quantity-input" value="1" readonly class="w-full text-center font-semibold text-lg outline-none bg-transparent">
+            <button onclick="updateQty(1)" class="px-3 py-2 text-gray-600 hover:bg-gray-100"><i data-lucide="plus" class="w-4 h-4"></i></button>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-3 mb-8">
+          <button
+            id="add-to-cart-btn"
+            onclick="handleAddToCart(false)"
+            data-variant-id="{{ variant.id }}"
+            class="w-full bg-white border-2 border-orange-600 text-orange-600 font-bold py-4 rounded-xl text-lg hover:bg-orange-50 transition disabled:opacity-50"
+          >
+            ADD TO CART
+          </button>
+          <button
+            id="buy-now-btn"
+            onclick="handleAddToCart(true)"
+            data-variant-id="{{ variant.id }}"
+            class="w-full bg-orange-600 text-white font-bold py-4 rounded-xl text-lg hover:bg-orange-700 transition shadow-lg flex justify-center items-center gap-2 disabled:opacity-50"
+          >
+            BUY NOW <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Reviews {%- endcomment -%}
+<section class="py-16 bg-neutral-900">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold uppercase mb-2">What Our Customers Say</h2>
+      <div class="flex justify-center items-center gap-2 mt-3 mb-1">
+        <div class="flex text-yellow-400">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        <span class="text-white font-bold text-lg">4.9</span>
+        <span class="text-gray-400 text-sm">/ 5 · 856 reviews</span>
+      </div>
+      <div class="w-24 h-1 bg-orange-500 mx-auto mt-4"></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+      {%- comment -%} Review 1 — with photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden flex flex-col">
+        {%- if imgs[3] -%}
+          <img src="{{ imgs[3] | image_url: width: 600 }}" class="w-full h-44 object-cover" alt="Review photo">
+        {%- else -%}
+          <img src="https://placehold.co/600x280/1f2937/374151?text=[Photo]" class="w-full h-44 object-cover" alt="Review photo">
+        {%- endif -%}
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+          <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"After 3 weeks of daily use my arm strength is noticeably better. Started at 22 lbs and now hitting 60 lbs. Love the smooth hydraulic feel."</p>
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">JM</div>
+            <div><p class="text-white text-xs font-semibold">James M.</p><p class="text-gray-500 text-xs">Verified · Mar 2026</p></div>
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 2 — with photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden flex flex-col">
+        {%- if imgs[4] -%}
+          <img src="{{ imgs[4] | image_url: width: 600 }}" class="w-full h-44 object-cover" alt="Review photo">
+        {%- else -%}
+          <img src="https://placehold.co/600x280/1f2937/374151?text=[Photo]" class="w-full h-44 object-cover" alt="Review photo">
+        {%- endif -%}
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+          <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Keep it on my desk and squeeze reps during work calls. My forearms are noticeably stronger. LCD counter keeps me on track."</p>
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">SL</div>
+            <div><p class="text-white text-xs font-semibold">Sarah L.</p><p class="text-gray-500 text-xs">Verified · Feb 2026</p></div>
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 3 — with photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden flex flex-col">
+        {%- if imgs[5] -%}
+          <img src="{{ imgs[5] | image_url: width: 600 }}" class="w-full h-44 object-cover" alt="Review photo">
+        {%- else -%}
+          <img src="https://placehold.co/600x280/1f2937/374151?text=[Photo]" class="w-full h-44 object-cover" alt="Review photo">
+        {%- endif -%}
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+          <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"No oil leaks after 2 months of daily use. Great for chest and bicep warmups before lifting. Resistance range is impressive."</p>
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">DK</div>
+            <div><p class="text-white text-xs font-semibold">David K.</p><p class="text-gray-500 text-xs">Verified · Jan 2026</p></div>
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 4 — with photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden flex flex-col">
+        {%- if imgs[6] -%}
+          <img src="{{ imgs[6] | image_url: width: 600 }}" class="w-full h-44 object-cover" alt="Review photo">
+        {%- else -%}
+          <img src="https://placehold.co/600x280/1f2937/374151?text=[Photo]" class="w-full h-44 object-cover" alt="Review photo">
+        {%- endif -%}
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+          <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Perfect for my home gym setup. I use it for forearm training between sets. Build quality far exceeds the price point."</p>
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">RT</div>
+            <div><p class="text-white text-xs font-semibold">Ryan T.</p><p class="text-gray-500 text-xs">Verified · Jan 2026</p></div>
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 5 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"My physical therapist actually recommended this type of device. At this price it's a steal. Helped me recover grip strength after carpal tunnel surgery."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-green-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">MP</div>
+          <div><p class="text-white text-xs font-semibold">Michelle P.</p><p class="text-gray-500 text-xs">Verified · Dec 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 6 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Got this as a gift for my dad who does woodworking. He loves it for hand and forearm strength. He's been using it every day for 6 weeks now."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">KW</div>
+          <div><p class="text-white text-xs font-semibold">Kevin W.</p><p class="text-gray-500 text-xs">Verified · Dec 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 7 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..4) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}<i data-lucide="star" class="w-3.5 h-3.5 text-gray-600"></i></div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Really solid product. Knocked one star only because the resistance dial is a bit stiff at first, but loosens up after a week of use. Otherwise excellent."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">AN</div>
+          <div><p class="text-white text-xs font-semibold">Alex N.</p><p class="text-gray-500 text-xs">Verified · Nov 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 8 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"I'm a climber and grip training is essential. This hits every angle — wrist flexion, extension, and squeeze. My crimping strength improved in under a month."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-rose-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">LC</div>
+          <div><p class="text-white text-xs font-semibold">Laura C.</p><p class="text-gray-500 text-xs">Verified · Nov 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 9 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Bought two — one for home, one for the office. Super lightweight and portable. No excuses to skip training anymore."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-cyan-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">BH</div>
+          <div><p class="text-white text-xs font-semibold">Brian H.</p><p class="text-gray-500 text-xs">Verified · Oct 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 10 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"I'm 58 and use this for light chest and arm toning. The lower resistance settings are gentle enough for seniors. Shipping was fast too."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">DM</div>
+          <div><p class="text-white text-xs font-semibold">Dorothy M.</p><p class="text-gray-500 text-xs">Verified · Oct 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 11 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Used this to prepare for a tennis season. My serve speed went up noticeably. The ab and chest exercises are an unexpected bonus."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-orange-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">TR</div>
+          <div><p class="text-white text-xs font-semibold">Tom R.</p><p class="text-gray-500 text-xs">Verified · Sep 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 12 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Packaging was great, arrived undamaged. Easy to assemble. I was skeptical but it genuinely feels premium — not plasticky at all."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-lime-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">JB</div>
+          <div><p class="text-white text-xs font-semibold">Jessica B.</p><p class="text-gray-500 text-xs">Verified · Sep 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 13 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..4) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}<i data-lucide="star" class="w-3.5 h-3.5 text-gray-600"></i></div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Works exactly as described. My only suggestion: include a carrying pouch. Still a great buy for the price — does what it says."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-pink-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">OG</div>
+          <div><p class="text-white text-xs font-semibold">Oscar G.</p><p class="text-gray-500 text-xs">Verified · Aug 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 14 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"I bought this for my husband who does MMA. He uses it every morning for wrist and grip work. His coaches noticed the improvement in clinch strength."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-red-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">NF</div>
+          <div><p class="text-white text-xs font-semibold">Nina F.</p><p class="text-gray-500 text-xs">Verified · Aug 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 15 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Fantastic for travel. Takes up no space in my bag. I got a full upper body pump in my hotel room with just this device."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-violet-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">CJ</div>
+          <div><p class="text-white text-xs font-semibold">Chris J.</p><p class="text-gray-500 text-xs">Verified · Jul 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 16 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"I've tried cheap spring-based twisters before and they all broke. This hydraulic one is a completely different experience — smooth, durable, and progressive."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-sky-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">EL</div>
+          <div><p class="text-white text-xs font-semibold">Ethan L.</p><p class="text-gray-500 text-xs">Verified · Jul 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 17 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"My 16-year-old son uses this for basketball training. His ball-handling improved in weeks. Highly recommend for young athletes."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-emerald-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">PY</div>
+          <div><p class="text-white text-xs font-semibold">Patricia Y.</p><p class="text-gray-500 text-xs">Verified · Jun 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 18 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Customer support was very helpful when I had a question about the resistance settings. The product itself is excellent — 5 stars all around."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-fuchsia-700 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">WS</div>
+          <div><p class="text-white text-xs font-semibold">William S.</p><p class="text-gray-500 text-xs">Verified · Jun 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 19 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..4) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}<i data-lucide="star" class="w-3.5 h-3.5 text-gray-600"></i></div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Great product. I use it for upper body activation before yoga. The handles are a little wide for my small hands but I adapted quickly."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-stone-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">AR</div>
+          <div><p class="text-white text-xs font-semibold">Amy R.</p><p class="text-gray-500 text-xs">Verified · May 2025</p></div>
+        </div>
+      </div>
+
+      {%- comment -%} Review 20 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"I'm a personal trainer and I now recommend this to all my clients for home days. Versatile enough to target arms, chest, and core — genuinely impressive."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">MO</div>
+          <div><p class="text-white text-xs font-semibold">Marcus O.</p><p class="text-gray-500 text-xs">Verified · May 2025</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{%- comment -%} FAQ {%- endcomment -%}
+<section class="py-16 bg-neutral-950">
+  <div class="container mx-auto px-4 max-w-3xl">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold uppercase mb-4">Frequently Asked Questions</h2>
+      <div class="w-24 h-1 bg-orange-500 mx-auto"></div>
+    </div>
+    <div class="space-y-4">
+      <details class="bg-neutral-900 border border-neutral-800 rounded-xl group open:border-orange-500 transition">
+        <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold list-none">
+          <span>Is it safe for beginners?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-orange-400 transition-transform group-open:rotate-180 flex-shrink-0 ml-4"></i>
+        </summary>
+        <p class="px-6 pb-5 text-gray-400 text-sm leading-relaxed">Absolutely. The lowest setting (22 lbs) is perfect for warmups or those just starting out.</p>
+      </details>
+      <details class="bg-neutral-900 border border-neutral-800 rounded-xl group open:border-orange-500 transition">
+        <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold list-none">
+          <span>How do I adjust the resistance?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-orange-400 transition-transform group-open:rotate-180 flex-shrink-0 ml-4"></i>
+        </summary>
+        <p class="px-6 pb-5 text-gray-400 text-sm leading-relaxed">It's simple! Just turn the central knob. Turn right to increase resistance and left to decrease it.</p>
+      </details>
+      <details class="bg-neutral-900 border border-neutral-800 rounded-xl group open:border-orange-500 transition">
+        <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold list-none">
+          <span>Will the hydraulic oil leak?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-orange-400 transition-transform group-open:rotate-180 flex-shrink-0 ml-4"></i>
+        </summary>
+        <p class="px-6 pb-5 text-gray-400 text-sm leading-relaxed">Our cylinder is double-sealed and made of aviation-grade components to prevent any leaking.</p>
+      </details>
+      <details class="bg-neutral-900 border border-neutral-800 rounded-xl group open:border-orange-500 transition">
+        <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold list-none">
+          <span>Does the LCD counter require batteries?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-orange-400 transition-transform group-open:rotate-180 flex-shrink-0 ml-4"></i>
+        </summary>
+        <p class="px-6 pb-5 text-gray-400 text-sm leading-relaxed">Yes, it uses an included long-lasting button cell to track thousands of reps.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Toast {%- endcomment -%}
+<div
+  id="cart-toast"
+  class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg z-50 transition-all duration-300 opacity-0 pointer-events-none flex items-center gap-2"
+>
+  <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+  <span id="cart-toast-msg">Added to cart!</span>
+</div>
+
+{%- comment -%} Footer {%- endcomment -%}
+<footer class="bg-black text-gray-400 py-12 border-t border-gray-800">
+  <div class="container mx-auto px-4 max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+    <div>
+      <a href="/" class="text-2xl font-black italic tracking-tighter text-white mb-4 block">{{ shop.name }}</a>
+      <p>{{ shop.description | default: 'Premium fitness equipment, delivered nationwide.' }}</p>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-4 uppercase">Quick Links</h4>
+      <ul class="space-y-2">
+        <li><a href="/collections/all" class="hover:text-white transition">All Products</a></li>
+        <li><a href="/policies/shipping-policy" class="hover:text-white transition">Shipping Policy</a></li>
+        <li><a href="/policies/refund-policy" class="hover:text-white transition">Return Policy</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-4 uppercase">Stay Updated</h4>
+      <div class="flex">
+        <input type="email" placeholder="Enter your email" class="bg-gray-900 border border-gray-700 px-4 py-2 w-full focus:outline-none focus:border-orange-500 rounded-l-lg">
+        <button class="bg-orange-600 text-white px-4 py-2 font-bold hover:bg-orange-700 rounded-r-lg">GO</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+
+  function updateQty(change) {
+    const input = document.getElementById('quantity-input');
+    const newVal = parseInt(input.value) + change;
+    if (newVal >= 1) input.value = newVal;
+  }
+
+  function getCurrentVariantId() {
+    const select = document.getElementById('variant-select');
+    if (select) return select.value;
+    return document.getElementById('add-to-cart-btn')?.dataset.variantId;
+  }
+
+  function showToast(msg, isError = false) {
+    const toast = document.getElementById('cart-toast');
+    document.getElementById('cart-toast-msg').textContent = msg;
+    toast.classList.toggle('bg-green-600', !isError);
+    toast.classList.toggle('bg-red-500', isError);
+    toast.classList.remove('opacity-0', 'pointer-events-none');
+    toast.classList.add('opacity-100');
+    setTimeout(() => {
+      toast.classList.remove('opacity-100');
+      toast.classList.add('opacity-0', 'pointer-events-none');
+    }, 3000);
+  }
+
+  async function handleAddToCart(buyNow = false) {
+    const variantId = getCurrentVariantId();
+    const quantity = parseInt(document.getElementById('quantity-input').value);
+
+    if (!variantId || variantId === 'undefined' || variantId === '') {
+      showToast('Please select a product variant.', true);
+      return;
+    }
+
+    const addBtn = document.getElementById('add-to-cart-btn');
+    const buyBtn = document.getElementById('buy-now-btn');
+    addBtn.disabled = true;
+    buyBtn.disabled = true;
+
+    try {
+      const response = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ id: parseInt(variantId), quantity })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        showToast(data.description || 'Something went wrong. Please try again.', true);
+        return;
+      }
+
+      if (buyNow) {
+        window.location.href = '/checkout';
+      } else {
+        showToast('Added to cart!');
+        document.dispatchEvent(new CustomEvent('cart:update', { bubbles: true, detail: { itemCount: data.quantity } }));
+      }
+    } catch (err) {
+      showToast('Connection error. Please try again.', true);
+    } finally {
+      addBtn.disabled = false;
+      buyBtn.disabled = false;
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Power Twister Landing",
+  "settings": []
+}
+{% endschema %}
