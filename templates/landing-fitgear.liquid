@@ -1,0 +1,222 @@
+{% layout none %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitGear - Sức Mạnh Thuỷ Lực</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Ẩn thanh cuộn ngang để tránh lỗi layout */
+    body { overflow-x: hidden; }
+  </style>
+</head>
+<body class="min-h-screen bg-black text-white font-sans">
+
+  <div class="bg-red-600 text-white text-center py-2 text-sm font-semibold tracking-wide">
+    🔥 FLASHSALE TẶNG KÈM QUÀ TẶNG - SỐ LƯỢNG CÓ HẠN 🔥
+  </div>
+
+  <header class="sticky top-0 z-50 bg-black/95 border-b border-gray-800 py-4 px-4 md:px-8 flex justify-between items-center">
+    <div class="flex items-center gap-4">
+      <i data-lucide="menu" class="w-6 h-6 cursor-pointer md:hidden"></i>
+      <div class="text-2xl font-black italic tracking-tighter text-white">FIT<span class="text-red-500">GEAR</span></div>
+    </div>
+    <nav class="hidden md:flex gap-6 text-sm font-medium">
+      <a href="#" class="hover:text-red-500 transition">Sản Phẩm</a>
+      <a href="#" class="hover:text-red-500 transition">Hướng Dẫn</a>
+      <a href="#" class="hover:text-red-500 transition">Đánh Giá</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <i data-lucide="shopping-cart" class="w-6 h-6 cursor-pointer"></i>
+    </div>
+  </header>
+
+  <section class="relative w-full bg-neutral-900 pb-16">
+    <div class="absolute inset-0 overflow-hidden">
+       <img src="https://placehold.co/1200x800/1a1a1a/333333?text=[Ảnh+Nền+Phòng+Gym]" class="w-full h-full object-cover opacity-40" alt="Hero Background">
+    </div>
+    
+    <div class="relative z-10 container mx-auto px-4 pt-16 md:pt-24 flex flex-col items-center text-center">
+      <h1 class="text-4xl md:text-6xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500 leading-tight mb-4">
+        Sức Mạnh Thuỷ Lực <br> Có Thể Điều Chỉnh
+      </h1>
+      <p class="text-xl md:text-2xl font-light mb-8 max-w-2xl">
+        Định hình cơ bắp tại nhà. Không cần tạ nặng, không gây chấn thương.
+      </p>
+      <button onclick="document.getElementById('buy-section').scrollIntoView({ behavior: 'smooth' })" class="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-orange-500 text-white font-bold py-4 px-12 rounded-full text-lg shadow-[0_0_20px_rgba(239,68,68,0.5)] transition transform hover:scale-105">
+        MUA NGAY HÔM NAY
+      </button>
+      
+      <div class="mt-12 w-full max-w-3xl mx-auto">
+         <img src="https://placehold.co/800x600/222/555?text=[Ảnh+Người+Mẫu+Cầm+Sản+Phẩm]" class="w-full rounded-2xl shadow-2xl" alt="Product Demo">
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-neutral-800 py-4 border-y border-neutral-700">
+    <div class="container mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-16 text-sm font-semibold">
+      <div class="flex items-center gap-2"><i data-lucide="truck" class="text-red-500 w-5 h-5"></i> GIAO HÀNG 3-5 NGÀY</div>
+      <div class="flex items-center gap-2"><i data-lucide="shield-check" class="text-red-500 w-5 h-5"></i> BẢO HÀNH 1 NĂM</div>
+      <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="text-red-500 w-5 h-5"></i> 100% CHÍNH HÃNG</div>
+    </div>
+  </div>
+
+  <section class="py-16 container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold uppercase mb-4">Luyện Tập Hiệu Quả Toàn Diện</h2>
+      <div class="w-24 h-1 bg-red-600 mx-auto"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
+      <div>
+        <img src="https://placehold.co/600x600/111/444?text=[Ảnh+Minh+Hoạ+Cơ+Bắp]" class="w-full rounded-xl" alt="Muscle Groups">
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-red-500 transition cursor-pointer">
+          <div class="w-12 h-12 mx-auto bg-neutral-800 rounded-full flex items-center justify-center mb-4 text-red-500 font-bold">1</div>
+          <h3 class="font-bold">Đốt Mỡ Nhanh</h3>
+        </div>
+        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-red-500 transition cursor-pointer">
+          <div class="w-12 h-12 mx-auto bg-neutral-800 rounded-full flex items-center justify-center mb-4 text-red-500 font-bold">2</div>
+          <h3 class="font-bold">Tăng Cơ Ngực</h3>
+        </div>
+        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-red-500 transition cursor-pointer">
+          <div class="w-12 h-12 mx-auto bg-neutral-800 rounded-full flex items-center justify-center mb-4 text-red-500 font-bold">3</div>
+          <h3 class="font-bold">Săn Chắc Tay</h3>
+        </div>
+        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-red-500 transition cursor-pointer">
+          <div class="w-12 h-12 mx-auto bg-neutral-800 rounded-full flex items-center justify-center mb-4 text-red-500 font-bold">4</div>
+          <h3 class="font-bold">An Toàn Tuyệt Đối</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-neutral-950">
+     <div class="container mx-auto px-4 text-center max-w-4xl">
+        <h2 class="text-3xl font-bold uppercase mb-8"><span class="text-red-500">20 Mức Độ</span> Điều Chỉnh Lực</h2>
+        <img src="https://placehold.co/800x400/222/555?text=[Ảnh+Chi+Tiết+Nút+Vặn+Thuỷ+Lực]" class="w-full rounded-xl mb-6" alt="Adjustment Dial">
+        <p class="text-gray-400">Từ 10kg đến 200kg, phù hợp cho cả người mới bắt đầu và vận động viên chuyên nghiệp. Chỉ cần vặn nhẹ để thay đổi.</p>
+     </div>
+  </section>
+
+  <div class="bg-gradient-to-r from-orange-500 to-red-600 py-6 text-center">
+    <h3 class="text-2xl font-bold text-white uppercase flex justify-center items-center gap-2">
+      <i data-lucide="shield-check" class="w-8 h-8"></i> DÙNG THỬ KHÔNG RỦI RO TRONG 30 NGÀY
+    </h3>
+  </div>
+
+  <section id="buy-section" class="bg-white text-black py-16">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="flex flex-col md:flex-row gap-12">
+        
+        <div class="w-full md:w-1/2">
+          <div class="border border-gray-200 rounded-2xl overflow-hidden mb-4 relative p-4 bg-gray-50">
+             <div class="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">-50%</div>
+             <img src="https://placehold.co/600x600/fff/333?text=[Ảnh+Sản+Phẩm+Nền+Trắng]" class="w-full object-contain h-[400px]" alt="Main Product">
+          </div>
+          <div class="flex gap-4 overflow-x-auto pb-2">
+            <img src="https://placehold.co/100x100/fff/333?text=[Ảnh+1]" class="w-20 h-20 border-2 rounded-lg cursor-pointer border-red-500" alt="Thumb 1">
+            <img src="https://placehold.co/100x100/fff/333?text=[Ảnh+2]" class="w-20 h-20 border-2 rounded-lg cursor-pointer border-gray-200" alt="Thumb 2">
+            <img src="https://placehold.co/100x100/fff/333?text=[Ảnh+3]" class="w-20 h-20 border-2 rounded-lg cursor-pointer border-gray-200" alt="Thumb 3">
+            <img src="https://placehold.co/100x100/fff/333?text=[Ảnh+4]" class="w-20 h-20 border-2 rounded-lg cursor-pointer border-gray-200" alt="Thumb 4">
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 flex flex-col justify-center">
+          
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex text-yellow-400">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <span class="text-sm text-gray-500">(1,284 Đánh giá)</span>
+            <span class="text-sm text-green-600 font-medium ml-2 flex items-center"><i data-lucide="check-circle-2" class="w-4 h-4 mr-1"></i> Còn hàng</span>
+          </div>
+
+          <h1 class="text-3xl font-bold mb-4">Dụng Cụ Tập Cơ Ngực Lực Thuỷ Lực PowerTwister 20-200KG</h1>
+          
+          <div class="flex items-baseline gap-4 mb-6">
+            <span class="text-4xl font-black text-red-600">₫899.000</span>
+            <span class="text-xl text-gray-400 line-through">₫1.800.000</span>
+          </div>
+
+          <div class="bg-red-50 border border-red-100 rounded-lg p-4 mb-6">
+             <p class="text-sm text-red-800 font-medium flex items-center gap-2">🔥 Đang có 43 người đang xem sản phẩm này.</p>
+          </div>
+
+          <div class="mb-6">
+            <p class="font-semibold mb-2">Màu sắc: <span class="font-normal text-gray-600">Đỏ/Đen</span></p>
+            <div class="flex gap-3">
+              <button class="w-12 h-12 rounded-full bg-red-600 border-2 border-black ring-2 ring-red-200"></button>
+              <button class="w-12 h-12 rounded-full bg-blue-600 border-2 border-gray-300"></button>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <p class="font-semibold mb-2">Số lượng:</p>
+            <div class="flex items-center border border-gray-300 rounded-lg w-32">
+              <button onclick="updateQty(-1)" class="px-3 py-2 text-gray-600 hover:bg-gray-100"><i data-lucide="minus" class="w-4 h-4"></i></button>
+              <input type="text" id="quantity-input" value="1" readonly class="w-full text-center font-semibold text-lg outline-none bg-transparent">
+              <button onclick="updateQty(1)" class="px-3 py-2 text-gray-600 hover:bg-gray-100"><i data-lucide="plus" class="w-4 h-4"></i></button>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-3 mb-8">
+            <button class="w-full bg-white border-2 border-red-600 text-red-600 font-bold py-4 rounded-xl text-lg hover:bg-red-50 transition">
+              THÊM VÀO GIỎ HÀNG
+            </button>
+            <button class="w-full bg-red-600 text-white font-bold py-4 rounded-xl text-lg hover:bg-red-700 transition shadow-lg flex justify-center items-center gap-2">
+              MUA NGAY <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-black text-gray-400 py-12 border-t border-gray-800">
+    <div class="container mx-auto px-4 max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+      <div>
+        <div class="text-2xl font-black italic tracking-tighter text-white mb-4">FIT<span class="text-red-500">GEAR</span></div>
+        <p class="mb-4">Chúng tôi cung cấp thiết bị tập luyện tại nhà chất lượng cao, giúp bạn đạt được thân hình mong muốn một cách an toàn và hiệu quả.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4 uppercase">Liên kết nhanh</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-white transition">Tìm kiếm</a></li>
+          <li><a href="#" class="hover:text-white transition">Chính sách vận chuyển</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4 uppercase">Nhận thông báo</h4>
+        <div class="flex">
+          <input type="email" placeholder="Nhập email của bạn" class="bg-gray-900 border border-gray-700 px-4 py-2 w-full focus:outline-none focus:border-red-500">
+          <button class="bg-red-600 text-white px-4 py-2 font-bold hover:bg-red-700">GỬI</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Khởi tạo icons của Lucide
+    lucide.createIcons();
+
+    // Logic thay đổi số lượng (thay thế cho React useState)
+    function updateQty(change) {
+      const input = document.getElementById('quantity-input');
+      let currentVal = parseInt(input.value);
+      let newVal = currentVal + change;
+      if (newVal >= 1) {
+        input.value = newVal;
+      }
+    }
+  </script>
+</body>
+</html>
