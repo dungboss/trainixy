@@ -1,6 +1,6 @@
 {%- comment -%}
   Section: Adjustable Hydraulic Power Twister landing page
-  Used with layout/landing.liquid and templates/product.landing-aeroracer.json
+  Used with layout/landing.liquid and templates/product.landing-hydraulic-twister-arm.json
 {%- endcomment -%}
 
 <style>
@@ -14,12 +14,126 @@
   }
   .glow-btn { box-shadow: 0 0 20px rgba(249, 115, 22, 0.45); }
   .glow-btn:hover { box-shadow: 0 0 32px rgba(249, 115, 22, 0.7); }
+
+  .twister-compare-card {
+    border-radius: 1.25rem;
+    overflow: hidden;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.07);
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    height: 100%;
+  }
+
+  .twister-compare-problem {
+    background: #949494;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .twister-compare-solution {
+    background: linear-gradient(135deg, #ffd54f 0%, #ffbf00 100%);
+    min-height: 170px;
+  }
+
+  .twister-compare-title {
+    min-height: 120px;
+  }
+
+  .twister-compare-solution-copy {
+    min-height: 116px;
+  }
+
+  .twister-compare-photo {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 0.875rem;
+    filter: grayscale(100%);
+  }
+
+  .twister-compare-track {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .twister-compare-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .twister-before-after-track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc(100% - 0.25rem);
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .twister-before-after-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .twister-before-after-track.is-dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+
+  .twister-before-after-card {
+    background: #000;
+    border: 1.5px solid #f97316;
+    border-radius: 0.875rem;
+    padding: 0.625rem;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+    user-select: none;
+  }
+
+  .twister-before-after-image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    background: #1f2937;
+    border-radius: 0.35rem;
+    aspect-ratio: 16 / 6.4;
+    pointer-events: none;
+    -webkit-user-drag: none;
+  }
+
+  @media (min-width: 768px) {
+    .twister-compare-photo {
+      height: 220px;
+    }
+
+    .twister-compare-title {
+      min-height: 132px;
+    }
+
+    .twister-compare-solution-copy {
+      min-height: 124px;
+    }
+
+    .twister-before-after-track {
+      grid-auto-columns: calc((100% - 1.5rem) / 2);
+    }
+
+    .twister-before-after-card {
+      padding: 0.75rem;
+    }
+  }
 </style>
 
 {%- liquid
   assign p = product
   assign variant = product.selected_or_first_available_variant
   assign imgs = product.images
+  assign hero_bg = 'hydraulic-twister-gym-hero.jpg' | asset_url
+  assign before_after_images = 'https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-4-pc.png||https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-1-pc.png||https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-2-pc.png||https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-3-pc.png' | split: '||'
+  assign compare_items = 'https://cdn.myshopage.com/af890d5a-9317-4602-a938-bf46d7e33f00/w400.jpg##Your home gym ends up cluttered with separate dumbbells and plates just to train your chest and arms.##Train your arms, chest, forearms and core with one compact tool instead of a pile of bulky gear.||https://cdn.myshopage.com/039bce89-25cb-4e30-5744-28d0686f2900/w400.jpg##Old spring-based twisters can snap back hard and give you almost no control.##The hydraulic resistance stays smooth and controlled, helping reduce harsh snap-back during every rep.||https://cdn.myshopage.com/2180b2a1-8bbf-4fae-e958-697de033d400/w400.jpg##It is easy to lose count of reps or wonder whether you are actually making progress.##The built-in LCD counter tracks each rep so you can focus on form and progression.||https://cdn.myshopage.com/083e8d3a-551e-4b51-d6fc-1b57ac4eaf00/w400.jpg##Most home equipment is either too easy or too intense, which slows down progress.##A quick turn of the knob lets you dial the resistance for beginners, daily training or tougher sets.' | split: '||'
 -%}
 
 {%- comment -%} Announcement bar {%- endcomment -%}
@@ -45,15 +159,16 @@
 <section class="relative w-full bg-neutral-900 min-h-[600px] flex items-center py-16 md:py-24">
   <div class="absolute inset-0 overflow-hidden">
     <img
-      src="https://cdn.shopify.com/s/files/1/0984/7603/2311/files/20260316-bg1.webp"
+      src="{{ hero_bg }}"
       class="w-full h-full object-cover object-top md:hidden"
-      alt="Background Mobile"
+      alt="Gym background"
       loading="eager"
     >
     <img
-      src="https://cdn.shopify.com/s/files/1/0984/7603/2311/files/20260316-bg1-pc.webp"
+      src="{{ hero_bg }}"
       class="w-full h-full object-cover hidden md:block"
-      alt="Background Desktop"
+      alt="Gym background"
+      style="object-position: center 18%;"
       loading="eager"
     >
     <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20"></div>
@@ -117,7 +232,7 @@
       {%- endif -%}
     </div>
     <div class="grid grid-cols-2 gap-4">
-      {%- assign features = 'sliders|Adjustable Resistance|Hydraulic dial: 10–100 lbs,activity|Multi-Muscle Training|Arms, chest, abs & back,hand|Ergonomic Grip|Non-slip foam handles,dumbbell|Compact & Portable|Train at home or the gym' | split: ',' -%}
+      {%- assign features = 'sliders|Adjustable Resistance|Resistance Range: 22 - 440 lbs||activity|Multi-Muscle Training|Chest, Shoulders, Arms, Forearms,…||shield|Heavy-Duty Carbon Steel|Tested For 10000 cycles||monitor|See Your Progress In Real-Time|The clear LCD counter tracks your reps||hand|Ergonomic Grip|Non-slip foam handles||dumbbell|Compact & Portable|Train at home or the gym' | split: '||' -%}
       {%- for feat in features -%}
         {%- assign feat_parts = feat | split: '|' -%}
         <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-orange-500 transition cursor-pointer group">
@@ -143,7 +258,7 @@
     {%- endif -%}
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-orange-400">100 lbs</p>
+        <p class="text-3xl font-black text-orange-400">440 Lbs</p>
         <p class="text-gray-400 text-sm mt-1">Max Resistance</p>
       </div>
       <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
@@ -158,6 +273,86 @@
         <p class="text-3xl font-black text-orange-400">1 Tool</p>
         <p class="text-gray-400 text-sm mt-1">Full Upper Body</p>
       </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Before & After {%- endcomment -%}
+<section class="bg-black text-white py-12 md:py-14">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="text-center max-w-4xl mx-auto mb-6 md:mb-8">
+      <p class="text-xs md:text-sm font-bold uppercase tracking-[0.24em] text-orange-500 mb-3">Before & After</p>
+      <h2 class="text-xl md:text-3xl font-black leading-tight">See the Visual Difference</h2>
+    </div>
+
+    <div
+      class="twister-before-after-track gap-3 md:gap-6 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-2"
+      data-before-after-track
+      aria-label="Before and after gallery"
+    >
+      {%- for image in before_after_images -%}
+        <article class="twister-before-after-card snap-start" data-before-after-card>
+          <div class="flex items-center gap-3 md:gap-5 mb-3 md:mb-4">
+            <span class="text-zinc-200 text-lg md:text-2xl font-black leading-none">Before</span>
+            <span class="h-px flex-1 bg-white/35"></span>
+            <span class="text-orange-500 text-lg md:text-2xl font-black leading-none">After</span>
+          </div>
+
+          <img
+            src="{{ image }}"
+            class="twister-before-after-image"
+            alt="Before and after result {{ forloop.index }}"
+            loading="lazy"
+            draggable="false"
+          >
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Comparison {%- endcomment -%}
+<section class="bg-white text-black py-12 md:py-14">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="text-center max-w-4xl mx-auto mb-8 md:mb-10">
+      <p class="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-orange-500 mb-3">Why Upgrade</p>
+      <h2 class="text-2xl md:text-4xl font-black leading-tight mb-3">Why Old Home Workout Gear Falls Short</h2>
+      <p class="text-2xl md:text-3xl font-black text-amber-500 leading-tight">Switch to the Twister Arm Exerciser</p>
+    </div>
+
+    <div class="twister-compare-track flex items-stretch md:grid md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none -mx-4 px-4 md:mx-0 md:px-0 pb-2 md:pb-0">
+      {%- for item in compare_items -%}
+        {%- assign compare_parts = item | split: '##' -%}
+        <article class="twister-compare-card flex-none w-[280px] sm:w-[320px] md:w-auto md:min-w-0 snap-start">
+          <div class="twister-compare-problem p-4 md:p-5 flex-1">
+            <div class="twister-compare-title flex items-start gap-3 mb-4">
+              <span class="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center flex-shrink-0">
+                <i data-lucide="alert-circle" class="w-4 h-4"></i>
+              </span>
+              <h3 class="text-lg md:text-xl font-black leading-snug">{{ compare_parts[1] }}</h3>
+            </div>
+
+            <img
+              src="{{ compare_parts[0] }}"
+              class="twister-compare-photo"
+              alt="{{ compare_parts[1] | escape }}"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="twister-compare-solution p-4 md:p-5">
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center flex-shrink-0">
+                <i data-lucide="check" class="w-4 h-4"></i>
+              </span>
+              <div class="twister-compare-solution-copy">
+                <p class="text-lg md:text-xl font-black leading-none mb-2">Our Solution:</p>
+                <p class="text-base md:text-lg leading-relaxed font-medium">{{ compare_parts[2] }}</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
     </div>
   </div>
 </section>
@@ -674,6 +869,193 @@
       buyBtn.disabled = false;
     }
   }
+
+  (function initBeforeAfterCarousel() {
+    const track = document.querySelector('[data-before-after-track]');
+    if (!track) return;
+
+    const originalCards = Array.from(track.querySelectorAll('[data-before-after-card]'));
+    if (originalCards.length < 2) return;
+
+    const prependFragment = document.createDocumentFragment();
+    const appendFragment = document.createDocumentFragment();
+
+    originalCards.forEach((card) => {
+      const prependClone = card.cloneNode(true);
+      prependClone.dataset.beforeAfterClone = 'true';
+      prependClone.setAttribute('aria-hidden', 'true');
+      prependFragment.appendChild(prependClone);
+
+      const appendClone = card.cloneNode(true);
+      appendClone.dataset.beforeAfterClone = 'true';
+      appendClone.setAttribute('aria-hidden', 'true');
+      appendFragment.appendChild(appendClone);
+    });
+
+    track.prepend(prependFragment);
+    track.append(appendFragment);
+
+    const originalCount = originalCards.length;
+    let currentIndex = originalCount;
+    let autoTimer = null;
+    let isDragging = false;
+    let dragMode = null;
+    let dragStartX = 0;
+    let dragStartScrollLeft = 0;
+    let scrollTimer = null;
+
+    function allCards() {
+      return Array.from(track.children);
+    }
+
+    function cardOffsets() {
+      return allCards().map((card) => card.offsetLeft - track.offsetLeft);
+    }
+
+    function scrollToIndex(index, behavior = 'smooth') {
+      const offsets = cardOffsets();
+      const clampedIndex = Math.max(0, Math.min(index, offsets.length - 1));
+      currentIndex = clampedIndex;
+      track.scrollTo({
+        left: offsets[clampedIndex] ?? 0,
+        behavior
+      });
+    }
+
+    function nearestIndex() {
+      const scrollLeft = track.scrollLeft;
+      const offsets = cardOffsets();
+      let nearest = 0;
+      let minDistance = Number.POSITIVE_INFINITY;
+
+      offsets.forEach((offset, index) => {
+        const distance = Math.abs(offset - scrollLeft);
+        if (distance < minDistance) {
+          minDistance = distance;
+          nearest = index;
+        }
+      });
+
+      return nearest;
+    }
+
+    function normalizeIndex(index) {
+      if (index < originalCount) return index + originalCount;
+      if (index >= originalCount * 2) return index - originalCount;
+      return index;
+    }
+
+    function syncLoopPosition() {
+      const normalizedIndex = normalizeIndex(currentIndex);
+      if (normalizedIndex === currentIndex) return;
+
+      currentIndex = normalizedIndex;
+      const offsets = cardOffsets();
+      track.scrollTo({
+        left: offsets[normalizedIndex] ?? 0,
+        behavior: 'auto'
+      });
+    }
+
+    function stopAuto() {
+      if (autoTimer) {
+        window.clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = window.setInterval(() => {
+        currentIndex = normalizeIndex(currentIndex);
+        scrollToIndex(currentIndex + 1);
+      }, 3000);
+    }
+
+    function beginDrag(clientX, mode) {
+      isDragging = true;
+      dragMode = mode;
+      dragStartX = clientX;
+      dragStartScrollLeft = track.scrollLeft;
+      track.classList.add('is-dragging');
+      stopAuto();
+    }
+
+    function updateDrag(clientX) {
+      const deltaX = clientX - dragStartX;
+      track.scrollLeft = dragStartScrollLeft - deltaX;
+    }
+
+    function endDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+      dragMode = null;
+      track.classList.remove('is-dragging');
+      currentIndex = normalizeIndex(nearestIndex());
+      scrollToIndex(currentIndex);
+      startAuto();
+    }
+
+    track.addEventListener('mousedown', (event) => {
+      if (event.button !== 0) return;
+      event.preventDefault();
+      beginDrag(event.clientX, 'mouse');
+    });
+
+    window.addEventListener('mousemove', (event) => {
+      if (!isDragging || dragMode !== 'mouse') return;
+      event.preventDefault();
+      updateDrag(event.clientX);
+    }, { passive: false });
+
+    track.addEventListener('dragstart', (event) => event.preventDefault());
+    window.addEventListener('mouseup', () => {
+      if (dragMode !== 'mouse') return;
+      endDrag();
+    });
+
+    track.addEventListener('touchstart', (event) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+      beginDrag(touch.clientX, 'touch');
+    }, { passive: true });
+
+    track.addEventListener('touchmove', (event) => {
+      if (!isDragging || dragMode !== 'touch') return;
+      const touch = event.touches[0];
+      if (!touch) return;
+      if (event.cancelable) event.preventDefault();
+      updateDrag(touch.clientX);
+    }, { passive: false });
+
+    window.addEventListener('touchend', () => {
+      if (dragMode !== 'touch') return;
+      endDrag();
+    }, { passive: true });
+    window.addEventListener('touchcancel', () => {
+      if (dragMode !== 'touch') return;
+      endDrag();
+    }, { passive: true });
+
+    track.addEventListener('scroll', () => {
+      if (isDragging) return;
+      window.clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(() => {
+        currentIndex = normalizeIndex(nearestIndex());
+        syncLoopPosition();
+      }, 120);
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      currentIndex = normalizeIndex(currentIndex);
+      scrollToIndex(currentIndex, 'auto');
+    });
+
+    requestAnimationFrame(() => {
+      scrollToIndex(originalCount, 'auto');
+      startAuto();
+    });
+  })();
 </script>
 
 {% schema %}
