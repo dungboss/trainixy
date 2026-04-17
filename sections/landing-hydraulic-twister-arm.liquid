@@ -15,6 +15,61 @@
   .glow-btn { box-shadow: 0 0 20px rgba(249, 115, 22, 0.45); }
   .glow-btn:hover { box-shadow: 0 0 32px rgba(249, 115, 22, 0.7); }
 
+  .twister-hero-shell {
+    background:
+      radial-gradient(circle at 78% 40%, rgba(249, 115, 22, 0.2), transparent 22rem),
+      linear-gradient(90deg, #020617 0%, #020617 36%, rgba(2, 6, 23, 0.88) 56%, rgba(2, 6, 23, 0.26) 82%, rgba(2, 6, 23, 0.08) 100%);
+  }
+
+  .twister-hero-product {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 1.25rem 0 0 34%;
+    pointer-events: none;
+  }
+
+  .twister-hero-product::before {
+    content: '';
+    position: absolute;
+    width: min(88vw, 28rem);
+    aspect-ratio: 1 / 1;
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.18) 18%, rgba(249, 115, 22, 0.16) 38%, rgba(15, 23, 42, 0) 72%);
+    filter: blur(10px);
+  }
+
+  .twister-hero-product-media {
+    position: relative;
+    z-index: 1;
+    width: min(110vw, 560px);
+    max-height: 52%;
+    filter:
+      blur(0.75px)
+      brightness(0.96)
+      contrast(1.06)
+      drop-shadow(0 20px 32px rgba(0, 0, 0, 0.24))
+      drop-shadow(0 34px 64px rgba(0, 0, 0, 0.42));
+    opacity: 0.84;
+    overflow: visible;
+    transform: translateX(18%) scale(1.5);
+    transform-origin: top right;
+  }
+
+  .twister-hero-product-media image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .twister-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(2, 6, 23, 0.94) 0%, rgba(2, 6, 23, 0.62) 28%, rgba(2, 6, 23, 0.18) 55%, rgba(2, 6, 23, 0.88) 100%);
+  }
+
   .twister-compare-card {
     border-radius: 1.25rem;
     overflow: hidden;
@@ -105,6 +160,33 @@
   }
 
   @media (min-width: 768px) {
+    .twister-hero-product {
+      align-items: center;
+      justify-content: flex-end;
+      padding: 1rem 4vw 1rem 44%;
+    }
+
+    .twister-hero-product::before {
+      width: min(40vw, 42rem);
+      right: clamp(2rem, 7vw, 6rem);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .twister-hero-product-media {
+      width: min(48vw, 860px);
+      max-height: 92%;
+      filter:
+        drop-shadow(0 20px 32px rgba(0, 0, 0, 0.24))
+        drop-shadow(0 34px 64px rgba(0, 0, 0, 0.42));
+      opacity: 1;
+      transform: none;
+    }
+
+    .twister-hero-overlay {
+      background: linear-gradient(90deg, rgba(2, 6, 23, 0.98) 0%, rgba(2, 6, 23, 0.94) 35%, rgba(2, 6, 23, 0.58) 56%, rgba(2, 6, 23, 0.08) 78%, rgba(2, 6, 23, 0) 100%);
+    }
+
     .twister-compare-photo {
       height: 220px;
     }
@@ -131,7 +213,8 @@
   assign p = product
   assign variant = product.selected_or_first_available_variant
   assign imgs = product.images
-  assign hero_bg = 'hydraulic-twister-gym-hero.jpg' | asset_url
+  assign hero_image_url = 'https://m.media-amazon.com/images/I/61ZpwVMIMzL._AC_SX679_.jpg'
+  assign hero_filter_id = 'twister-remove-white-bg-' | append: section.id
   assign before_after_images = 'https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-4-pc.png||https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-1-pc.png||https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-2-pc.png||https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-3-pc.png' | split: '||'
   assign compare_items = 'https://cdn.myshopage.com/af890d5a-9317-4602-a938-bf46d7e33f00/w400.jpg##Your home gym ends up cluttered with separate dumbbells and plates just to train your chest and arms.##Train your arms, chest, forearms and core with one compact tool instead of a pile of bulky gear.||https://cdn.myshopage.com/039bce89-25cb-4e30-5744-28d0686f2900/w400.jpg##Old spring-based twisters can snap back hard and give you almost no control.##The hydraulic resistance stays smooth and controlled, helping reduce harsh snap-back during every rep.||https://cdn.myshopage.com/2180b2a1-8bbf-4fae-e958-697de033d400/w400.jpg##It is easy to lose count of reps or wonder whether you are actually making progress.##The built-in LCD counter tracks each rep so you can focus on form and progression.||https://cdn.myshopage.com/083e8d3a-551e-4b51-d6fc-1b57ac4eaf00/w400.jpg##Most home equipment is either too easy or too intense, which slows down progress.##A quick turn of the knob lets you dial the resistance for beginners, daily training or tougher sets.' | split: '||'
 -%}
@@ -156,54 +239,77 @@
 </header>
 
 {%- comment -%} Hero {%- endcomment -%}
-<section class="relative w-full bg-neutral-900 min-h-[600px] flex items-center py-16 md:py-24">
+<section class="twister-hero-shell relative w-full min-h-[600px] flex items-center py-16 md:py-24">
   <div class="absolute inset-0 overflow-hidden">
-    <img
-      src="{{ hero_bg }}"
-      class="w-full h-full object-cover object-top md:hidden"
-      alt="Gym background"
-      loading="eager"
-    >
-    <img
-      src="{{ hero_bg }}"
-      class="w-full h-full object-cover hidden md:block"
-      alt="Gym background"
-      style="object-position: center 18%;"
-      loading="eager"
-    >
-    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20"></div>
+    <div class="twister-hero-product" aria-hidden="true">
+      {%- if hero_image_url != blank -%}
+        <svg
+          class="twister-hero-product-media"
+          viewBox="0 0 1000 1000"
+          preserveAspectRatio="xMidYMid meet"
+          role="presentation"
+        >
+          <defs>
+            <filter id="{{ hero_filter_id }}" color-interpolation-filters="sRGB">
+              <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="bg-alpha"></feColorMatrix>
+              <feComponentTransfer in="bg-alpha" result="cutout-alpha">
+                <feFuncA type="table" tableValues="1 1 1 1 1 1 0.98 0.94 0.86 0.58 0.16 0"></feFuncA>
+              </feComponentTransfer>
+              <feComposite in="SourceGraphic" in2="cutout-alpha" operator="in"></feComposite>
+            </filter>
+          </defs>
+          <image
+            href="{{ hero_image_url }}"
+            width="1000"
+            height="1000"
+            preserveAspectRatio="xMidYMid meet"
+            filter="url(#{{ hero_filter_id }})"
+          ></image>
+        </svg>
+      {%- else -%}
+        <img
+          src="https://placehold.co/1200x1200/111827/f9fafb?text=[Product+Image]"
+          class="twister-hero-product-media"
+          alt=""
+          loading="eager"
+        >
+      {%- endif -%}
+    </div>
+    <div class="twister-hero-overlay"></div>
   </div>
 
-  <div class="relative z-10 container mx-auto px-4 max-w-3xl">
-    <div class="inline-flex items-center gap-2 bg-orange-900/50 border border-orange-700 text-orange-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest">
-      <i data-lucide="zap" class="w-3.5 h-3.5"></i> Adjustable Hydraulic Resistance
-    </div>
+  <div class="relative z-10 container mx-auto px-4 max-w-6xl">
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-2 bg-orange-900/50 border border-orange-700 text-orange-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest">
+        <i data-lucide="zap" class="w-3.5 h-3.5"></i> Adjustable Hydraulic Resistance
+      </div>
 
-    <h1 class="text-4xl md:text-6xl font-black uppercase gradient-text leading-tight mb-6">
-      Build Power. <br> Train Anywhere.
-    </h1>
-    <p class="text-xl md:text-2xl font-light text-gray-300 mb-8 max-w-lg">
-      {{ p.title }} — Target your arms, chest, forearms, biceps & core with one versatile tool.
-    </p>
+      <h1 class="text-4xl md:text-6xl font-black uppercase gradient-text leading-tight mb-6">
+        Build Power. <br> Train Anywhere.
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-gray-300 mb-8 max-w-lg">
+        {{ p.title }} — Target your arms, chest, forearms, biceps & core with one versatile tool.
+      </p>
 
-    <div class="flex flex-col sm:flex-row gap-4">
-      <button
-        onclick="document.getElementById('buy-section').scrollIntoView({ behavior: 'smooth' })"
-        class="glow-btn bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white font-bold py-4 px-10 rounded-full text-lg transition transform hover:scale-105"
-      >
-        ORDER NOW
-      </button>
-      <button
-        onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' })"
-        class="border border-white/40 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition"
-      >
-        Learn More
-      </button>
-    </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <button
+          onclick="document.getElementById('buy-section').scrollIntoView({ behavior: 'smooth' })"
+          class="glow-btn bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white font-bold py-4 px-10 rounded-full text-lg transition transform hover:scale-105"
+        >
+          ORDER NOW
+        </button>
+        <button
+          onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' })"
+          class="border border-white/40 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition"
+        >
+          Learn More
+        </button>
+      </div>
 
-    <div class="flex items-center gap-6 mt-8 text-sm text-gray-400">
-      <div class="flex items-center gap-1.5"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i> 4.9/5 (856 reviews)</div>
-      <div class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4 text-orange-400"></i> 3,000+ customers</div>
+      <div class="flex items-center gap-6 mt-8 text-sm text-gray-400">
+        <div class="flex items-center gap-1.5"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i> 4.9/5 (856 reviews)</div>
+        <div class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4 text-orange-400"></i> 3,000+ customers</div>
+      </div>
     </div>
   </div>
 </section>
