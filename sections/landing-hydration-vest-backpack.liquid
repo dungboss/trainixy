@@ -19,11 +19,49 @@
   assign p = product
   assign variant = product.selected_or_first_available_variant
   assign imgs = product.images
+
+  if section.settings.hero_background_image != blank
+    assign hero_background_url = section.settings.hero_background_image | image_url: width: 2000
+  else
+    assign hero_background_url = 'https://cdn.shopify.com/s/files/1/0984/7603/2311/files/Gemini_Generated_Image_cvq1upcvq1upcvq1.png'
+  endif
+
+  assign announcement_text = section.settings.announcement_text | default: '🏃 LIMITED OFFER – FREE SHIPPING NATIONWIDE – WHILE STOCKS LAST 🏃'
+  assign nav_products_label = section.settings.nav_products_label | default: 'Products'
+  assign nav_features_label = section.settings.nav_features_label | default: 'Features'
+  assign nav_buy_label = section.settings.nav_buy_label | default: 'Buy Now'
+  assign hero_badge_text = section.settings.hero_badge_text | default: 'Lightweight · Bounce-Free · Multi-Sport'
+  assign hero_title = section.settings.hero_title | default: 'Run Further.||Stay Hydrated.'
+  assign hero_subtitle = section.settings.hero_subtitle | default: 'Carry water, your phone & essentials hands-free. Built for marathons, trails, hikes & rides.'
+  assign primary_button_label = section.settings.primary_button_label | default: 'ORDER NOW'
+  assign secondary_button_label = section.settings.secondary_button_label | default: 'Learn More'
+  assign hero_rating_text = section.settings.hero_rating_text | default: '4.9/5 (1,024 reviews)'
+  assign hero_social_text = section.settings.hero_social_text | default: '5,000+ athletes'
+  assign trust_shipping_text = section.settings.trust_shipping_text | default: 'NATIONWIDE SHIPPING'
+  assign trust_warranty_text = section.settings.trust_warranty_text | default: '12-MONTH WARRANTY'
+  assign trust_returns_text = section.settings.trust_returns_text | default: '30-DAY FREE RETURNS'
+  assign features_heading = section.settings.features_heading | default: 'Key Features'
+  assign features_data = section.settings.features_data | default: 'feather|Ultra Lightweight|Under 200g — barely feel it||smartphone|Phone Pocket|Fits phones up to 6.7 inches||droplets|2L Hydration Ready|Compatible with major bladder brands||wind|Bounce-Free Fit|Adjustable straps for all body types'
+  assign specs_heading_accent = section.settings.specs_heading_accent | default: 'Technical'
+  assign specs_heading_text = section.settings.specs_heading_text | default: 'Specifications'
+  assign specs_data = section.settings.specs_data | default: '<200g|Vest Weight||2L|Bladder Capacity||6+|Storage Pockets||4-in-1|Run/Hike/Bike/Race'
+  assign guarantee_text = section.settings.guarantee_text | default: 'FREE 30-DAY RETURNS — NO QUESTIONS ASKED'
+  assign footer_description = section.settings.footer_description | default: shop.description | default: 'Premium fitness equipment, delivered nationwide.'
+  assign footer_links_heading = section.settings.footer_links_heading | default: 'Quick Links'
+  assign footer_link_1_label = section.settings.footer_link_1_label | default: 'All Products'
+  assign footer_link_1_url = section.settings.footer_link_1_url | default: '/collections/all'
+  assign footer_link_2_label = section.settings.footer_link_2_label | default: 'Shipping Policy'
+  assign footer_link_2_url = section.settings.footer_link_2_url | default: '/policies/shipping-policy'
+  assign footer_link_3_label = section.settings.footer_link_3_label | default: 'Return Policy'
+  assign footer_link_3_url = section.settings.footer_link_3_url | default: '/policies/refund-policy'
+  assign footer_newsletter_heading = section.settings.footer_newsletter_heading | default: 'Stay Updated'
+  assign footer_newsletter_placeholder = section.settings.footer_newsletter_placeholder | default: 'Enter your email'
+  assign footer_newsletter_button = section.settings.footer_newsletter_button | default: 'GO'
 -%}
 
 {%- comment -%} Announcement bar {%- endcomment -%}
 <div class="bg-cyan-600 text-white text-center py-2 text-sm font-semibold tracking-wide">
-  🏃 LIMITED OFFER – FREE SHIPPING NATIONWIDE – WHILE STOCKS LAST 🏃
+  {{ announcement_text }}
 </div>
 
 {%- comment -%} Header {%- endcomment -%}
@@ -35,9 +73,9 @@
     </a>
   </div>
   <nav class="hidden md:flex gap-6 text-sm font-medium">
-    <a href="/collections/all" class="hover:text-cyan-400 transition">Products</a>
-    <a href="#features" class="hover:text-cyan-400 transition">Features</a>
-    <a href="#buy-section" class="hover:text-cyan-400 transition">Buy Now</a>
+    <a href="/collections/all" class="hover:text-cyan-400 transition">{{ nav_products_label }}</a>
+    <a href="#features" class="hover:text-cyan-400 transition">{{ nav_features_label }}</a>
+    <a href="#buy-section" class="hover:text-cyan-400 transition">{{ nav_buy_label }}</a>
   </nav>
   <a href="/cart"><i data-lucide="shopping-cart" class="w-6 h-6 cursor-pointer hover:text-cyan-400 transition"></i></a>
 </header>
@@ -46,7 +84,7 @@
 <section class="relative w-full bg-neutral-900 min-h-[600px] flex items-center py-16 md:py-24">
   <div class="absolute inset-0 overflow-hidden">
     <img
-      src="https://cdn.shopify.com/s/files/1/0984/7603/2311/files/Gemini_Generated_Image_cvq1upcvq1upcvq1.png"
+      src="{{ hero_background_url }}"
       class="w-full h-full object-cover object-center"
       alt="Hydration Vest Backpack Background"
       loading="eager"
@@ -56,14 +94,14 @@
 
   <div class="relative z-10 container mx-auto px-4 max-w-3xl">
     <div class="inline-flex items-center gap-2 bg-cyan-900/50 border border-cyan-700 text-cyan-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest">
-      <i data-lucide="zap" class="w-3.5 h-3.5"></i> Lightweight · Bounce-Free · Multi-Sport
+      <i data-lucide="zap" class="w-3.5 h-3.5"></i> {{ hero_badge_text }}
     </div>
 
     <h1 class="text-4xl md:text-6xl font-black uppercase gradient-text leading-tight mb-6">
-      Run Further. <br> Stay Hydrated.
+      {{ hero_title | newline_to_br | replace: '||', '<br>' }}
     </h1>
     <p class="text-xl md:text-2xl font-light text-gray-300 mb-8 max-w-lg">
-      {{ p.title }} — Carry water, your phone & essentials hands-free. Built for marathons, trails, hikes & rides.
+      {{ p.title }} — {{ hero_subtitle }}
     </p>
 
     <div class="flex flex-col sm:flex-row gap-4">
@@ -71,19 +109,19 @@
         onclick="document.getElementById('buy-section').scrollIntoView({ behavior: 'smooth' })"
         class="glow-btn bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-4 px-10 rounded-full text-lg transition transform hover:scale-105"
       >
-        ORDER NOW
+        {{ primary_button_label }}
       </button>
       <button
         onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' })"
         class="border border-white/40 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition"
       >
-        Learn More
+        {{ secondary_button_label }}
       </button>
     </div>
 
     <div class="flex items-center gap-6 mt-8 text-sm text-gray-400">
-      <div class="flex items-center gap-1.5"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i> 4.9/5 (1,024 reviews)</div>
-      <div class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4 text-cyan-400"></i> 5,000+ athletes</div>
+      <div class="flex items-center gap-1.5"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i> {{ hero_rating_text }}</div>
+      <div class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4 text-cyan-400"></i> {{ hero_social_text }}</div>
     </div>
   </div>
 </section>
@@ -91,16 +129,16 @@
 {%- comment -%} Trust bar {%- endcomment -%}
 <div class="bg-neutral-800 py-4 border-y border-neutral-700">
   <div class="container mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-16 text-sm font-semibold">
-    <div class="flex items-center gap-2"><i data-lucide="truck" class="text-cyan-400 w-5 h-5"></i> NATIONWIDE SHIPPING</div>
-    <div class="flex items-center gap-2"><i data-lucide="shield-check" class="text-cyan-400 w-5 h-5"></i> 12-MONTH WARRANTY</div>
-    <div class="flex items-center gap-2"><i data-lucide="rotate-ccw" class="text-cyan-400 w-5 h-5"></i> 30-DAY FREE RETURNS</div>
+    <div class="flex items-center gap-2"><i data-lucide="truck" class="text-cyan-400 w-5 h-5"></i> {{ trust_shipping_text }}</div>
+    <div class="flex items-center gap-2"><i data-lucide="shield-check" class="text-cyan-400 w-5 h-5"></i> {{ trust_warranty_text }}</div>
+    <div class="flex items-center gap-2"><i data-lucide="rotate-ccw" class="text-cyan-400 w-5 h-5"></i> {{ trust_returns_text }}</div>
   </div>
 </div>
 
 {%- comment -%} Features {%- endcomment -%}
 <section id="features" class="py-16 container mx-auto px-4">
   <div class="text-center mb-12">
-    <h2 class="text-3xl font-bold uppercase mb-4">Key Features</h2>
+    <h2 class="text-3xl font-bold uppercase mb-4">{{ features_heading }}</h2>
     <div class="w-24 h-1 bg-cyan-500 mx-auto"></div>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
@@ -112,16 +150,18 @@
       {%- endif -%}
     </div>
     <div class="grid grid-cols-2 gap-4">
-      {%- assign features = 'feather|Ultra Lightweight|Under 200g — barely feel it,smartphone|Phone Pocket|Fits phones up to 6.7 inches,droplets|2L Hydration Ready|Compatible with major bladder brands,wind|Bounce-Free Fit|Adjustable straps for all body types' | split: ',' -%}
+      {%- assign features = features_data | newline_to_br | replace: '<br />', '||' | replace: '<br>', '||' | split: '||' -%}
       {%- for feat in features -%}
-        {%- assign feat_parts = feat | split: '|' -%}
-        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-cyan-500 transition cursor-pointer group">
-          <div class="w-12 h-12 mx-auto bg-neutral-800 rounded-full flex items-center justify-center mb-4 group-hover:bg-cyan-900 transition">
-            <i data-lucide="{{ feat_parts[0] }}" class="w-6 h-6 text-cyan-400"></i>
+        {%- if feat != blank -%}
+          {%- assign feat_parts = feat | split: '|' -%}
+          <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-cyan-500 transition cursor-pointer group">
+            <div class="w-12 h-12 mx-auto bg-neutral-800 rounded-full flex items-center justify-center mb-4 group-hover:bg-cyan-900 transition">
+              <i data-lucide="{{ feat_parts[0] }}" class="w-6 h-6 text-cyan-400"></i>
+            </div>
+            <h3 class="font-bold text-sm">{{ feat_parts[1] }}</h3>
+            <p class="text-gray-400 text-xs mt-1">{{ feat_parts[2] }}</p>
           </div>
-          <h3 class="font-bold text-sm">{{ feat_parts[1] }}</h3>
-          <p class="text-gray-400 text-xs mt-1">{{ feat_parts[2] }}</p>
-        </div>
+        {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
@@ -130,29 +170,23 @@
 {%- comment -%} Specs {%- endcomment -%}
 <section class="py-16 bg-neutral-950">
   <div class="container mx-auto px-4 text-center max-w-4xl">
-    <h2 class="text-3xl font-bold uppercase mb-8"><span class="text-cyan-400">Technical</span> Specifications</h2>
+    <h2 class="text-3xl font-bold uppercase mb-8"><span class="text-cyan-400">{{ specs_heading_accent }}</span> {{ specs_heading_text }}</h2>
     {%- if imgs[2] -%}
       <img src="{{ imgs[2] | image_url: width: 900 }}" class="w-full rounded-xl mb-8" alt="Specs">
     {%- else -%}
       <img src="https://placehold.co/900x400/111827/374151?text=[Specs+Image]" class="w-full rounded-xl mb-8" alt="Specs">
     {%- endif -%}
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-cyan-400">&lt;200g</p>
-        <p class="text-gray-400 text-sm mt-1">Vest Weight</p>
-      </div>
-      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-cyan-400">2L</p>
-        <p class="text-gray-400 text-sm mt-1">Bladder Capacity</p>
-      </div>
-      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-cyan-400">6+</p>
-        <p class="text-gray-400 text-sm mt-1">Storage Pockets</p>
-      </div>
-      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-cyan-400">4-in-1</p>
-        <p class="text-gray-400 text-sm mt-1">Run/Hike/Bike/Race</p>
-      </div>
+      {%- assign specs_items = specs_data | newline_to_br | replace: '<br />', '||' | replace: '<br>', '||' | split: '||' -%}
+      {%- for spec in specs_items -%}
+        {%- if spec != blank -%}
+          {%- assign spec_parts = spec | split: '|' -%}
+          <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
+            <p class="text-3xl font-black text-cyan-400">{{ spec_parts[0] }}</p>
+            <p class="text-gray-400 text-sm mt-1">{{ spec_parts[1] }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
 </section>
@@ -160,7 +194,7 @@
 {%- comment -%} Guarantee banner {%- endcomment -%}
 <div class="bg-gradient-to-r from-cyan-600 to-blue-700 py-6 text-center">
   <h3 class="text-2xl font-bold text-white uppercase flex justify-center items-center gap-2">
-    <i data-lucide="shield-check" class="w-8 h-8"></i> FREE 30-DAY RETURNS — NO QUESTIONS ASKED
+    <i data-lucide="shield-check" class="w-8 h-8"></i> {{ guarantee_text }}
   </h3>
 </div>
 
@@ -536,21 +570,21 @@
       <a href="/" class="inline-flex items-center mb-4">
         <img src="{{ 'trainixy-logo-white.png' | asset_url }}" class="h-12 w-auto md:h-14" alt="{{ shop.name }}" loading="lazy">
       </a>
-      <p>{{ shop.description | default: 'Premium fitness equipment, delivered nationwide.' }}</p>
+      <p>{{ footer_description }}</p>
     </div>
     <div>
-      <h4 class="text-white font-bold mb-4 uppercase">Quick Links</h4>
+      <h4 class="text-white font-bold mb-4 uppercase">{{ footer_links_heading }}</h4>
       <ul class="space-y-2">
-        <li><a href="/collections/all" class="hover:text-white transition">All Products</a></li>
-        <li><a href="/policies/shipping-policy" class="hover:text-white transition">Shipping Policy</a></li>
-        <li><a href="/policies/refund-policy" class="hover:text-white transition">Return Policy</a></li>
+        <li><a href="{{ footer_link_1_url }}" class="hover:text-white transition">{{ footer_link_1_label }}</a></li>
+        <li><a href="{{ footer_link_2_url }}" class="hover:text-white transition">{{ footer_link_2_label }}</a></li>
+        <li><a href="{{ footer_link_3_url }}" class="hover:text-white transition">{{ footer_link_3_label }}</a></li>
       </ul>
     </div>
     <div>
-      <h4 class="text-white font-bold mb-4 uppercase">Stay Updated</h4>
+      <h4 class="text-white font-bold mb-4 uppercase">{{ footer_newsletter_heading }}</h4>
       <div class="flex">
-        <input type="email" placeholder="Enter your email" class="bg-gray-900 border border-gray-700 px-4 py-2 w-full focus:outline-none focus:border-cyan-500 rounded-l-lg">
-        <button class="bg-cyan-600 text-white px-4 py-2 font-bold hover:bg-cyan-700 rounded-r-lg">GO</button>
+        <input type="email" placeholder="{{ footer_newsletter_placeholder }}" class="bg-gray-900 border border-gray-700 px-4 py-2 w-full focus:outline-none focus:border-cyan-500 rounded-l-lg">
+        <button class="bg-cyan-600 text-white px-4 py-2 font-bold hover:bg-cyan-700 rounded-r-lg">{{ footer_newsletter_button }}</button>
       </div>
     </div>
   </div>
@@ -630,6 +664,50 @@
 {% schema %}
 {
   "name": "Hydration Vest Landing",
-  "settings": []
+  "settings": [
+    { "type": "header", "content": "Announcement" },
+    { "type": "text", "id": "announcement_text", "label": "Announcement text", "default": "🏃 LIMITED OFFER – FREE SHIPPING NATIONWIDE – WHILE STOCKS LAST 🏃" },
+
+    { "type": "header", "content": "Header Navigation" },
+    { "type": "text", "id": "nav_products_label", "label": "Products label", "default": "Products" },
+    { "type": "text", "id": "nav_features_label", "label": "Features label", "default": "Features" },
+    { "type": "text", "id": "nav_buy_label", "label": "Buy label", "default": "Buy Now" },
+
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_background_image", "label": "Hero background image" },
+    { "type": "text", "id": "hero_badge_text", "label": "Hero badge", "default": "Lightweight · Bounce-Free · Multi-Sport" },
+    { "type": "textarea", "id": "hero_title", "label": "Hero title", "default": "Run Further.\nStay Hydrated." },
+    { "type": "textarea", "id": "hero_subtitle", "label": "Hero subtitle", "default": "Carry water, your phone & essentials hands-free. Built for marathons, trails, hikes & rides." },
+    { "type": "text", "id": "primary_button_label", "label": "Primary button label", "default": "ORDER NOW" },
+    { "type": "text", "id": "secondary_button_label", "label": "Secondary button label", "default": "Learn More" },
+    { "type": "text", "id": "hero_rating_text", "label": "Rating text", "default": "4.9/5 (1,024 reviews)" },
+    { "type": "text", "id": "hero_social_text", "label": "Social proof text", "default": "5,000+ athletes" },
+
+    { "type": "header", "content": "Trust Bar" },
+    { "type": "text", "id": "trust_shipping_text", "label": "Shipping text", "default": "NATIONWIDE SHIPPING" },
+    { "type": "text", "id": "trust_warranty_text", "label": "Warranty text", "default": "12-MONTH WARRANTY" },
+    { "type": "text", "id": "trust_returns_text", "label": "Returns text", "default": "30-DAY FREE RETURNS" },
+
+    { "type": "header", "content": "Section Headings" },
+    { "type": "text", "id": "features_heading", "label": "Features heading", "default": "Key Features" },
+    { "type": "textarea", "id": "features_data", "label": "Features data", "info": "One item per line: icon|title|description", "default": "feather|Ultra Lightweight|Under 200g — barely feel it\nsmartphone|Phone Pocket|Fits phones up to 6.7 inches\ndroplets|2L Hydration Ready|Compatible with major bladder brands\nwind|Bounce-Free Fit|Adjustable straps for all body types" },
+    { "type": "text", "id": "specs_heading_accent", "label": "Specs accent heading", "default": "Technical" },
+    { "type": "text", "id": "specs_heading_text", "label": "Specs heading", "default": "Specifications" },
+    { "type": "textarea", "id": "specs_data", "label": "Specs data", "info": "One item per line: value|label", "default": "<200g|Vest Weight\n2L|Bladder Capacity\n6+|Storage Pockets\n4-in-1|Run/Hike/Bike/Race" },
+    { "type": "text", "id": "guarantee_text", "label": "Guarantee banner text", "default": "FREE 30-DAY RETURNS — NO QUESTIONS ASKED" },
+
+    { "type": "header", "content": "Footer" },
+    { "type": "textarea", "id": "footer_description", "label": "Footer description", "default": "Premium fitness equipment, delivered nationwide." },
+    { "type": "text", "id": "footer_links_heading", "label": "Footer links heading", "default": "Quick Links" },
+    { "type": "text", "id": "footer_link_1_label", "label": "Footer link 1 label", "default": "All Products" },
+    { "type": "url", "id": "footer_link_1_url", "label": "Footer link 1 URL" },
+    { "type": "text", "id": "footer_link_2_label", "label": "Footer link 2 label", "default": "Shipping Policy" },
+    { "type": "url", "id": "footer_link_2_url", "label": "Footer link 2 URL" },
+    { "type": "text", "id": "footer_link_3_label", "label": "Footer link 3 label", "default": "Return Policy" },
+    { "type": "url", "id": "footer_link_3_url", "label": "Footer link 3 URL" },
+    { "type": "text", "id": "footer_newsletter_heading", "label": "Newsletter heading", "default": "Stay Updated" },
+    { "type": "text", "id": "footer_newsletter_placeholder", "label": "Newsletter placeholder", "default": "Enter your email" },
+    { "type": "text", "id": "footer_newsletter_button", "label": "Newsletter button label", "default": "GO" }
+  ]
 }
 {% endschema %}

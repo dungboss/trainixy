@@ -20,11 +20,56 @@
   assign p = product
   assign variant = product.selected_or_first_available_variant
   assign imgs = product.images
+
+  if section.settings.hero_background_image != blank
+    assign hero_background_url = section.settings.hero_background_image | image_url: width: 2000
+  elsif imgs[0]
+    assign hero_background_url = imgs[0] | image_url: width: 1400
+  else
+    assign hero_background_url = 'https://placehold.co/1400x800/0a0a0a/1e3a5f?text=[Anh+Nen+Drone]'
+  endif
+
+  if section.settings.hero_showcase_image != blank
+    assign hero_showcase_url = section.settings.hero_showcase_image | image_url: width: 1200
+  elsif imgs[0]
+    assign hero_showcase_url = imgs[0] | image_url: width: 900
+  else
+    assign hero_showcase_url = 'https://placehold.co/900x600/111827/374151?text=[Anh+AeroRacer+Hero]'
+  endif
+
+  assign announcement_text = section.settings.announcement_text | default: '🚀 FLASH SALE – MIỄN PHÍ VẬN CHUYỂN TOÀN QUỐC – SỐ LƯỢNG CÓ HẠN 🚀'
+  assign nav_products_label = section.settings.nav_products_label | default: 'Sản Phẩm'
+  assign nav_features_label = section.settings.nav_features_label | default: 'Tính Năng'
+  assign nav_buy_label = section.settings.nav_buy_label | default: 'Mua Ngay'
+  assign hero_badge_text = section.settings.hero_badge_text | default: 'Công Nghệ 2-in-1'
+  assign hero_title = section.settings.hero_title | default: 'Bay Trên Trời||Phóng Trên Đất'
+  assign hero_subtitle = section.settings.hero_subtitle | default: 'Vừa là drone bay lượn, vừa là xe đua địa hình. Một thiết bị, vô vàn cuộc phiêu lưu.'
+  assign primary_button_label = section.settings.primary_button_label | default: 'ĐẶT HÀNG NGAY'
+  assign trust_shipping_text = section.settings.trust_shipping_text | default: 'GIAO HÀNG TOÀN QUỐC'
+  assign trust_warranty_text = section.settings.trust_warranty_text | default: 'BẢO HÀNH 12 THÁNG'
+  assign trust_returns_text = section.settings.trust_returns_text | default: 'ĐỔI TRẢ 30 NGÀY'
+  assign features_heading = section.settings.features_heading | default: 'Tính Năng Vượt Trội'
+  assign features_data = section.settings.features_data | default: 'plane|Chế Độ Bay|Ổn định 6 trục||car|Chế Độ Xe|Địa hình mọi loại||rotate-3d|Nhào Lộn 360°|Flip & Roll||battery-charging|Pin Bền|Bay 15–20 phút/lần'
+  assign specs_heading_accent = section.settings.specs_heading_accent | default: 'Thông Số'
+  assign specs_heading_text = section.settings.specs_heading_text | default: 'Kỹ Thuật'
+  assign specs_data = section.settings.specs_data | default: '2-in-1|Drone + Xe||50m|Tầm điều khiển||20 phút|Thời gian bay||6|Trục con quay'
+  assign guarantee_text = section.settings.guarantee_text | default: 'ĐỔI TRẢ MIỄN PHÍ TRONG 30 NGÀY'
+  assign footer_description = section.settings.footer_description | default: shop.description | default: 'Sản phẩm công nghệ độc đáo, giao hàng toàn quốc.'
+  assign footer_links_heading = section.settings.footer_links_heading | default: 'Liên kết nhanh'
+  assign footer_link_1_label = section.settings.footer_link_1_label | default: 'Tất cả sản phẩm'
+  assign footer_link_1_url = section.settings.footer_link_1_url | default: '/collections/all'
+  assign footer_link_2_label = section.settings.footer_link_2_label | default: 'Chính sách vận chuyển'
+  assign footer_link_2_url = section.settings.footer_link_2_url | default: '/policies/shipping-policy'
+  assign footer_link_3_label = section.settings.footer_link_3_label | default: 'Chính sách đổi trả'
+  assign footer_link_3_url = section.settings.footer_link_3_url | default: '/policies/refund-policy'
+  assign footer_newsletter_heading = section.settings.footer_newsletter_heading | default: 'Nhận thông báo'
+  assign footer_newsletter_placeholder = section.settings.footer_newsletter_placeholder | default: 'Nhập email của bạn'
+  assign footer_newsletter_button = section.settings.footer_newsletter_button | default: 'GỬI'
 -%}
 
 {%- comment -%} Announcement bar {%- endcomment -%}
 <div class="bg-cyan-600 text-white text-center py-2 text-sm font-semibold tracking-wide">
-  🚀 FLASH SALE – MIỄN PHÍ VẬN CHUYỂN TOÀN QUỐC – SỐ LƯỢNG CÓ HẠN 🚀
+  {{ announcement_text }}
 </div>
 
 {%- comment -%} Header {%- endcomment -%}
@@ -36,9 +81,9 @@
     </a>
   </div>
   <nav class="hidden md:flex gap-6 text-sm font-medium">
-    <a href="/collections/all" class="hover:text-cyan-400 transition">Sản Phẩm</a>
-    <a href="#features" class="hover:text-cyan-400 transition">Tính Năng</a>
-    <a href="#buy-section" class="hover:text-cyan-400 transition">Mua Ngay</a>
+    <a href="/collections/all" class="hover:text-cyan-400 transition">{{ nav_products_label }}</a>
+    <a href="#features" class="hover:text-cyan-400 transition">{{ nav_features_label }}</a>
+    <a href="#buy-section" class="hover:text-cyan-400 transition">{{ nav_buy_label }}</a>
   </nav>
   <a href="/cart"><i data-lucide="shopping-cart" class="w-6 h-6 cursor-pointer hover:text-cyan-400 transition"></i></a>
 </header>
@@ -46,38 +91,30 @@
 {%- comment -%} Hero {%- endcomment -%}
 <section class="relative w-full bg-neutral-900 pb-16">
   <div class="absolute inset-0 overflow-hidden">
-    {%- if imgs[0] -%}
-      <img src="{{ imgs[0] | image_url: width: 1400 }}" class="w-full h-full object-cover opacity-30" alt="{{ p.title }}" loading="eager">
-    {%- else -%}
-      <img src="https://placehold.co/1400x800/0a0a0a/1e3a5f?text=[Anh+Nen+Drone]" class="w-full h-full object-cover opacity-30" alt="Hero" loading="eager">
-    {%- endif -%}
+    <img src="{{ hero_background_url }}" class="w-full h-full object-cover opacity-30" alt="{{ p.title }}" loading="eager">
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-neutral-900"></div>
   </div>
 
   <div class="relative z-10 container mx-auto px-4 pt-16 md:pt-24 flex flex-col items-center text-center">
     <div class="inline-flex items-center gap-2 bg-cyan-900/50 border border-cyan-700 text-cyan-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest">
-      <i data-lucide="zap" class="w-3.5 h-3.5"></i> Công Nghệ 2-in-1
+      <i data-lucide="zap" class="w-3.5 h-3.5"></i> {{ hero_badge_text }}
     </div>
 
     <h1 class="text-4xl md:text-6xl font-black uppercase gradient-text leading-tight mb-4">
-      Bay Trên Trời <br> Phóng Trên Đất
+      {{ hero_title | newline_to_br | replace: '||', '<br>' }}
     </h1>
     <p class="text-xl md:text-2xl font-light text-gray-300 mb-8 max-w-2xl">
-      {{ p.title }} — Vừa là drone bay lượn, vừa là xe đua địa hình. Một thiết bị, vô vàn cuộc phiêu lưu.
+      {{ p.title }} — {{ hero_subtitle }}
     </p>
     <button
       onclick="document.getElementById('buy-section').scrollIntoView({ behavior: 'smooth' })"
       class="glow-btn bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-4 px-12 rounded-full text-lg transition transform hover:scale-105"
     >
-      ĐẶT HÀNG NGAY
+      {{ primary_button_label }}
     </button>
 
     <div class="mt-12 w-full max-w-3xl mx-auto">
-      {%- if imgs[0] -%}
-        <img src="{{ imgs[0] | image_url: width: 900 }}" class="w-full rounded-2xl shadow-2xl" alt="{{ p.title }}">
-      {%- else -%}
-        <img src="https://placehold.co/900x600/111827/374151?text=[Anh+AeroRacer+Hero]" class="w-full rounded-2xl shadow-2xl" alt="{{ p.title }}">
-      {%- endif -%}
+      <img src="{{ hero_showcase_url }}" class="w-full rounded-2xl shadow-2xl" alt="{{ p.title }}">
     </div>
   </div>
 </section>
@@ -85,16 +122,16 @@
 {%- comment -%} Trust bar {%- endcomment -%}
 <div class="bg-neutral-800 py-4 border-y border-neutral-700">
   <div class="container mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-16 text-sm font-semibold">
-    <div class="flex items-center gap-2"><i data-lucide="truck" class="text-cyan-400 w-5 h-5"></i> GIAO HÀNG TOÀN QUỐC</div>
-    <div class="flex items-center gap-2"><i data-lucide="shield-check" class="text-cyan-400 w-5 h-5"></i> BẢO HÀNH 12 THÁNG</div>
-    <div class="flex items-center gap-2"><i data-lucide="rotate-ccw" class="text-cyan-400 w-5 h-5"></i> ĐỔI TRẢ 30 NGÀY</div>
+    <div class="flex items-center gap-2"><i data-lucide="truck" class="text-cyan-400 w-5 h-5"></i> {{ trust_shipping_text }}</div>
+    <div class="flex items-center gap-2"><i data-lucide="shield-check" class="text-cyan-400 w-5 h-5"></i> {{ trust_warranty_text }}</div>
+    <div class="flex items-center gap-2"><i data-lucide="rotate-ccw" class="text-cyan-400 w-5 h-5"></i> {{ trust_returns_text }}</div>
   </div>
 </div>
 
 {%- comment -%} Features {%- endcomment -%}
 <section id="features" class="py-16 container mx-auto px-4">
   <div class="text-center mb-12">
-    <h2 class="text-3xl font-bold uppercase mb-4">Tính Năng Vượt Trội</h2>
+    <h2 class="text-3xl font-bold uppercase mb-4">{{ features_heading }}</h2>
     <div class="w-24 h-1 bg-cyan-500 mx-auto"></div>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
@@ -106,16 +143,18 @@
       {%- endif -%}
     </div>
     <div class="grid grid-cols-2 gap-4">
-      {%- assign features = 'plane|Chế Độ Bay|Ổn định 6 trục,car|Chế Độ Xe|Địa hình mọi loại,rotate-3d|Nhào Lộn 360°|Flip & Roll,battery-charging|Pin Bền|Bay 15–20 phút/lần' | split: ',' -%}
+      {%- assign features = features_data | newline_to_br | replace: '<br />', '||' | replace: '<br>', '||' | split: '||' -%}
       {%- for feat in features -%}
-        {%- assign feat_parts = feat | split: '|' -%}
-        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-cyan-500 transition cursor-pointer group">
-          <div class="w-12 h-12 mx-auto bg-neutral-800 rounded-full flex items-center justify-center mb-4 group-hover:bg-cyan-900 transition">
-            <i data-lucide="{{ feat_parts[0] }}" class="w-6 h-6 text-cyan-400"></i>
+        {%- if feat != blank -%}
+          {%- assign feat_parts = feat | split: '|' -%}
+          <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-cyan-500 transition cursor-pointer group">
+            <div class="w-12 h-12 mx-auto bg-neutral-800 rounded-full flex items-center justify-center mb-4 group-hover:bg-cyan-900 transition">
+              <i data-lucide="{{ feat_parts[0] }}" class="w-6 h-6 text-cyan-400"></i>
+            </div>
+            <h3 class="font-bold text-sm">{{ feat_parts[1] }}</h3>
+            <p class="text-gray-400 text-xs mt-1">{{ feat_parts[2] }}</p>
           </div>
-          <h3 class="font-bold text-sm">{{ feat_parts[1] }}</h3>
-          <p class="text-gray-400 text-xs mt-1">{{ feat_parts[2] }}</p>
-        </div>
+        {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
@@ -124,29 +163,23 @@
 {%- comment -%} Specs {%- endcomment -%}
 <section class="py-16 bg-neutral-950">
   <div class="container mx-auto px-4 text-center max-w-4xl">
-    <h2 class="text-3xl font-bold uppercase mb-8"><span class="text-cyan-400">Thông Số</span> Kỹ Thuật</h2>
+    <h2 class="text-3xl font-bold uppercase mb-8"><span class="text-cyan-400">{{ specs_heading_accent }}</span> {{ specs_heading_text }}</h2>
     {%- if imgs[2] -%}
       <img src="{{ imgs[2] | image_url: width: 900 }}" class="w-full rounded-xl mb-8" alt="Specs">
     {%- else -%}
       <img src="https://placehold.co/900x400/111827/374151?text=[Anh+Thong+So+Ky+Thuat]" class="w-full rounded-xl mb-8" alt="Specs">
     {%- endif -%}
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-cyan-400">2-in-1</p>
-        <p class="text-gray-400 text-sm mt-1">Drone + Xe</p>
-      </div>
-      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-cyan-400">50m</p>
-        <p class="text-gray-400 text-sm mt-1">Tầm điều khiển</p>
-      </div>
-      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-cyan-400">20'</p>
-        <p class="text-gray-400 text-sm mt-1">Thời gian bay</p>
-      </div>
-      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-cyan-400">6</p>
-        <p class="text-gray-400 text-sm mt-1">Trục con quay</p>
-      </div>
+      {%- assign specs_items = specs_data | newline_to_br | replace: '<br />', '||' | replace: '<br>', '||' | split: '||' -%}
+      {%- for spec in specs_items -%}
+        {%- if spec != blank -%}
+          {%- assign spec_parts = spec | split: '|' -%}
+          <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
+            <p class="text-3xl font-black text-cyan-400">{{ spec_parts[0] }}</p>
+            <p class="text-gray-400 text-sm mt-1">{{ spec_parts[1] }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
 </section>
@@ -154,7 +187,7 @@
 {%- comment -%} Guarantee banner {%- endcomment -%}
 <div class="bg-gradient-to-r from-cyan-600 to-blue-700 py-6 text-center">
   <h3 class="text-2xl font-bold text-white uppercase flex justify-center items-center gap-2">
-    <i data-lucide="shield-check" class="w-8 h-8"></i> ĐỔI TRẢ MIỄN PHÍ TRONG 30 NGÀY
+    <i data-lucide="shield-check" class="w-8 h-8"></i> {{ guarantee_text }}
   </h3>
 </div>
 
@@ -288,21 +321,21 @@
       <a href="/" class="inline-flex items-center mb-4">
         <img src="{{ 'trainixy-logo-white.png' | asset_url }}" class="h-12 w-auto md:h-14" alt="{{ shop.name }}" loading="lazy">
       </a>
-      <p>{{ shop.description | default: 'Sản phẩm công nghệ độc đáo, giao hàng toàn quốc.' }}</p>
+      <p>{{ footer_description }}</p>
     </div>
     <div>
-      <h4 class="text-white font-bold mb-4 uppercase">Liên kết nhanh</h4>
+      <h4 class="text-white font-bold mb-4 uppercase">{{ footer_links_heading }}</h4>
       <ul class="space-y-2">
-        <li><a href="/collections/all" class="hover:text-white transition">Tất cả sản phẩm</a></li>
-        <li><a href="/policies/shipping-policy" class="hover:text-white transition">Chính sách vận chuyển</a></li>
-        <li><a href="/policies/refund-policy" class="hover:text-white transition">Chính sách đổi trả</a></li>
+        <li><a href="{{ footer_link_1_url }}" class="hover:text-white transition">{{ footer_link_1_label }}</a></li>
+        <li><a href="{{ footer_link_2_url }}" class="hover:text-white transition">{{ footer_link_2_label }}</a></li>
+        <li><a href="{{ footer_link_3_url }}" class="hover:text-white transition">{{ footer_link_3_label }}</a></li>
       </ul>
     </div>
     <div>
-      <h4 class="text-white font-bold mb-4 uppercase">Nhận thông báo</h4>
+      <h4 class="text-white font-bold mb-4 uppercase">{{ footer_newsletter_heading }}</h4>
       <div class="flex">
-        <input type="email" placeholder="Nhập email của bạn" class="bg-gray-900 border border-gray-700 px-4 py-2 w-full focus:outline-none focus:border-cyan-500 rounded-l-lg">
-        <button class="bg-cyan-600 text-white px-4 py-2 font-bold hover:bg-cyan-700 rounded-r-lg">GỬI</button>
+        <input type="email" placeholder="{{ footer_newsletter_placeholder }}" class="bg-gray-900 border border-gray-700 px-4 py-2 w-full focus:outline-none focus:border-cyan-500 rounded-l-lg">
+        <button class="bg-cyan-600 text-white px-4 py-2 font-bold hover:bg-cyan-700 rounded-r-lg">{{ footer_newsletter_button }}</button>
       </div>
     </div>
   </div>
@@ -382,6 +415,48 @@
 {% schema %}
 {
   "name": "AeroRacer Landing",
-  "settings": []
+  "settings": [
+    { "type": "header", "content": "Announcement" },
+    { "type": "text", "id": "announcement_text", "label": "Announcement text", "default": "🚀 FLASH SALE – MIỄN PHÍ VẬN CHUYỂN TOÀN QUỐC – SỐ LƯỢNG CÓ HẠN 🚀" },
+
+    { "type": "header", "content": "Header Navigation" },
+    { "type": "text", "id": "nav_products_label", "label": "Products label", "default": "Sản Phẩm" },
+    { "type": "text", "id": "nav_features_label", "label": "Features label", "default": "Tính Năng" },
+    { "type": "text", "id": "nav_buy_label", "label": "Buy label", "default": "Mua Ngay" },
+
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_background_image", "label": "Hero background image" },
+    { "type": "image_picker", "id": "hero_showcase_image", "label": "Hero showcase image" },
+    { "type": "text", "id": "hero_badge_text", "label": "Hero badge", "default": "Công Nghệ 2-in-1" },
+    { "type": "textarea", "id": "hero_title", "label": "Hero title", "default": "Bay Trên Trời\nPhóng Trên Đất" },
+    { "type": "textarea", "id": "hero_subtitle", "label": "Hero subtitle", "default": "Vừa là drone bay lượn, vừa là xe đua địa hình. Một thiết bị, vô vàn cuộc phiêu lưu." },
+    { "type": "text", "id": "primary_button_label", "label": "Primary button label", "default": "ĐẶT HÀNG NGAY" },
+
+    { "type": "header", "content": "Trust Bar" },
+    { "type": "text", "id": "trust_shipping_text", "label": "Shipping text", "default": "GIAO HÀNG TOÀN QUỐC" },
+    { "type": "text", "id": "trust_warranty_text", "label": "Warranty text", "default": "BẢO HÀNH 12 THÁNG" },
+    { "type": "text", "id": "trust_returns_text", "label": "Returns text", "default": "ĐỔI TRẢ 30 NGÀY" },
+
+    { "type": "header", "content": "Section Headings" },
+    { "type": "text", "id": "features_heading", "label": "Features heading", "default": "Tính Năng Vượt Trội" },
+    { "type": "textarea", "id": "features_data", "label": "Features data", "info": "One item per line: icon|title|description", "default": "plane|Chế Độ Bay|Ổn định 6 trục\ncar|Chế Độ Xe|Địa hình mọi loại\nrotate-3d|Nhào Lộn 360°|Flip & Roll\nbattery-charging|Pin Bền|Bay 15–20 phút/lần" },
+    { "type": "text", "id": "specs_heading_accent", "label": "Specs accent heading", "default": "Thông Số" },
+    { "type": "text", "id": "specs_heading_text", "label": "Specs heading", "default": "Kỹ Thuật" },
+    { "type": "textarea", "id": "specs_data", "label": "Specs data", "info": "One item per line: value|label", "default": "2-in-1|Drone + Xe\n50m|Tầm điều khiển\n20 phút|Thời gian bay\n6|Trục con quay" },
+    { "type": "text", "id": "guarantee_text", "label": "Guarantee banner text", "default": "ĐỔI TRẢ MIỄN PHÍ TRONG 30 NGÀY" },
+
+    { "type": "header", "content": "Footer" },
+    { "type": "textarea", "id": "footer_description", "label": "Footer description", "default": "Sản phẩm công nghệ độc đáo, giao hàng toàn quốc." },
+    { "type": "text", "id": "footer_links_heading", "label": "Footer links heading", "default": "Liên kết nhanh" },
+    { "type": "text", "id": "footer_link_1_label", "label": "Footer link 1 label", "default": "Tất cả sản phẩm" },
+    { "type": "url", "id": "footer_link_1_url", "label": "Footer link 1 URL" },
+    { "type": "text", "id": "footer_link_2_label", "label": "Footer link 2 label", "default": "Chính sách vận chuyển" },
+    { "type": "url", "id": "footer_link_2_url", "label": "Footer link 2 URL" },
+    { "type": "text", "id": "footer_link_3_label", "label": "Footer link 3 label", "default": "Chính sách đổi trả" },
+    { "type": "url", "id": "footer_link_3_url", "label": "Footer link 3 URL" },
+    { "type": "text", "id": "footer_newsletter_heading", "label": "Newsletter heading", "default": "Nhận thông báo" },
+    { "type": "text", "id": "footer_newsletter_placeholder", "label": "Newsletter placeholder", "default": "Nhập email của bạn" },
+    { "type": "text", "id": "footer_newsletter_button", "label": "Newsletter button label", "default": "GỬI" }
+  ]
 }
 {% endschema %}

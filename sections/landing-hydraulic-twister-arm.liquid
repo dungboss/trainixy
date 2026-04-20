@@ -200,15 +200,64 @@
   assign p = product
   assign variant = product.selected_or_first_available_variant
   assign imgs = product.images
-  assign hero_background_url = 'hydraulic-twister-background.png' | asset_url
-  assign hero_mobile_image_url = 'hydraulic-twister-mobile-hero.png' | asset_url
-  assign before_after_images = 'https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-4-pc.png||https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-1-pc.png||https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-2-pc.png||https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-3-pc.png' | split: '||'
-  assign compare_items = 'https://cdn.myshopage.com/af890d5a-9317-4602-a938-bf46d7e33f00/w400.jpg##Your home gym ends up cluttered with separate dumbbells and plates just to train your chest and arms.##Train your arms, chest, forearms and core with one compact tool instead of a pile of bulky gear.||https://cdn.myshopage.com/039bce89-25cb-4e30-5744-28d0686f2900/w400.jpg##Old spring-based twisters can snap back hard and give you almost no control.##The hydraulic resistance stays smooth and controlled, helping reduce harsh snap-back during every rep.||https://cdn.myshopage.com/2180b2a1-8bbf-4fae-e958-697de033d400/w400.jpg##It is easy to lose count of reps or wonder whether you are actually making progress.##The built-in LCD counter tracks each rep so you can focus on form and progression.||https://cdn.myshopage.com/083e8d3a-551e-4b51-d6fc-1b57ac4eaf00/w400.jpg##Most home equipment is either too easy or too intense, which slows down progress.##A quick turn of the knob lets you dial the resistance for beginners, daily training or tougher sets.' | split: '||'
+
+  if section.settings.hero_background_image != blank
+    assign hero_background_url = section.settings.hero_background_image | image_url: width: 2000
+  else
+    assign hero_background_url = 'hydraulic-twister-background.png' | asset_url
+  endif
+
+  if section.settings.hero_mobile_image != blank
+    assign hero_mobile_image_url = section.settings.hero_mobile_image | image_url: width: 1200
+  else
+    assign hero_mobile_image_url = 'hydraulic-twister-mobile-hero.png' | asset_url
+  endif
+
+  assign announcement_text = section.settings.announcement_text | default: '💪 LIMITED OFFER – FREE SHIPPING NATIONWIDE – WHILE STOCKS LAST 💪'
+  assign nav_products_label = section.settings.nav_products_label | default: 'Products'
+  assign nav_features_label = section.settings.nav_features_label | default: 'Features'
+  assign nav_buy_label = section.settings.nav_buy_label | default: 'Buy Now'
+  assign hero_badge_text = section.settings.hero_badge_text | default: 'Adjustable Hydraulic Resistance'
+  assign hero_title = section.settings.hero_title | default: 'Build Power.||Train Anywhere.'
+  assign hero_subtitle = section.settings.hero_subtitle | default: 'Target your arms, chest, forearms, biceps & core with one versatile tool.'
+  assign primary_button_label = section.settings.primary_button_label | default: 'ORDER NOW'
+  assign secondary_button_label = section.settings.secondary_button_label | default: 'Learn More'
+  assign hero_rating_text = section.settings.hero_rating_text | default: '4.9/5 (856 reviews)'
+  assign hero_social_text = section.settings.hero_social_text | default: '3,000+ customers'
+  assign trust_shipping_text = section.settings.trust_shipping_text | default: 'NATIONWIDE SHIPPING'
+  assign trust_warranty_text = section.settings.trust_warranty_text | default: '12-MONTH WARRANTY'
+  assign trust_returns_text = section.settings.trust_returns_text | default: '30-DAY FREE RETURNS'
+  assign features_heading = section.settings.features_heading | default: 'Key Features'
+  assign features_data = section.settings.features_data | default: 'sliders|Adjustable Resistance|Resistance Range: 22 - 440 lbs||activity|Multi-Muscle Training|Chest, Shoulders, Arms, Forearms, and more||shield|Heavy-Duty Carbon Steel|Tested for 10000 cycles||monitor|See Your Progress In Real-Time|The clear LCD counter tracks your reps||hand|Ergonomic Grip|Non-slip foam handles||dumbbell|Compact & Portable|Train at home or the gym'
+  assign specs_heading_accent = section.settings.specs_heading_accent | default: 'Technical'
+  assign specs_heading_text = section.settings.specs_heading_text | default: 'Specifications'
+  assign specs_data = section.settings.specs_data | default: '440 Lbs|Max Resistance||6+|Muscle Groups||Steel|Heavy-duty Frame||1 Tool|Full Upper Body'
+  assign guarantee_text = section.settings.guarantee_text | default: 'FREE 30-DAY RETURNS — NO QUESTIONS ASKED'
+  assign before_after_label = section.settings.before_after_label | default: 'Before & After'
+  assign before_after_heading = section.settings.before_after_heading | default: 'See the Visual Difference'
+  assign before_after_images_data = section.settings.before_after_images_data | default: 'https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-4-pc.png||https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-1-pc.png||https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-2-pc.png||https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-3-pc.png'
+  assign before_after_images = before_after_images_data | newline_to_br | replace: '<br />', '||' | replace: '<br>', '||' | split: '||'
+  assign compare_label = section.settings.compare_label | default: 'Why Upgrade'
+  assign compare_heading = section.settings.compare_heading | default: 'Why Old Home Workout Gear Falls Short'
+  assign compare_subheading = section.settings.compare_subheading | default: 'Switch to the Twister Arm Exerciser'
+  assign compare_items_data = section.settings.compare_items_data | default: 'https://cdn.myshopage.com/af890d5a-9317-4602-a938-bf46d7e33f00/w400.jpg##Your home gym ends up cluttered with separate dumbbells and plates just to train your chest and arms.##Train your arms, chest, forearms and core with one compact tool instead of a pile of bulky gear.||https://cdn.myshopage.com/039bce89-25cb-4e30-5744-28d0686f2900/w400.jpg##Old spring-based twisters can snap back hard and give you almost no control.##The hydraulic resistance stays smooth and controlled, helping reduce harsh snap-back during every rep.||https://cdn.myshopage.com/2180b2a1-8bbf-4fae-e958-697de033d400/w400.jpg##It is easy to lose count of reps or wonder whether you are actually making progress.##The built-in LCD counter tracks each rep so you can focus on form and progression.||https://cdn.myshopage.com/083e8d3a-551e-4b51-d6fc-1b57ac4eaf00/w400.jpg##Most home equipment is either too easy or too intense, which slows down progress.##A quick turn of the knob lets you dial the resistance for beginners, daily training or tougher sets.'
+  assign footer_description = section.settings.footer_description | default: shop.description | default: 'Premium fitness equipment, delivered nationwide.'
+  assign footer_links_heading = section.settings.footer_links_heading | default: 'Quick Links'
+  assign footer_link_1_label = section.settings.footer_link_1_label | default: 'All Products'
+  assign footer_link_1_url = section.settings.footer_link_1_url | default: '/collections/all'
+  assign footer_link_2_label = section.settings.footer_link_2_label | default: 'Shipping Policy'
+  assign footer_link_2_url = section.settings.footer_link_2_url | default: '/policies/shipping-policy'
+  assign footer_link_3_label = section.settings.footer_link_3_label | default: 'Return Policy'
+  assign footer_link_3_url = section.settings.footer_link_3_url | default: '/policies/refund-policy'
+  assign footer_newsletter_heading = section.settings.footer_newsletter_heading | default: 'Stay Updated'
+  assign footer_newsletter_placeholder = section.settings.footer_newsletter_placeholder | default: 'Enter your email'
+  assign footer_newsletter_button = section.settings.footer_newsletter_button | default: 'GO'
+  assign compare_items = compare_items_data | newline_to_br | replace: '<br />', '||' | replace: '<br>', '||' | split: '||'
 -%}
 
 {%- comment -%} Announcement bar {%- endcomment -%}
 <div class="bg-orange-600 text-white text-center py-2 text-sm font-semibold tracking-wide">
-  💪 LIMITED OFFER – FREE SHIPPING NATIONWIDE – WHILE STOCKS LAST 💪
+  {{ announcement_text }}
 </div>
 
 {%- comment -%} Header {%- endcomment -%}
@@ -220,9 +269,9 @@
     </a>
   </div>
   <nav class="hidden md:flex gap-6 text-sm font-medium">
-    <a href="/collections/all" class="hover:text-orange-400 transition">Products</a>
-    <a href="#features" class="hover:text-orange-400 transition">Features</a>
-    <a href="#buy-section" class="hover:text-orange-400 transition">Buy Now</a>
+    <a href="/collections/all" class="hover:text-orange-400 transition">{{ nav_products_label }}</a>
+    <a href="#features" class="hover:text-orange-400 transition">{{ nav_features_label }}</a>
+    <a href="#buy-section" class="hover:text-orange-400 transition">{{ nav_buy_label }}</a>
   </nav>
   <a href="/cart"><i data-lucide="shopping-cart" class="w-6 h-6 cursor-pointer hover:text-orange-400 transition"></i></a>
 </header>
@@ -243,11 +292,11 @@
   <div class="relative z-10 container mx-auto px-4 max-w-6xl">
     <div class="max-w-3xl mx-auto md:mx-0 text-center md:text-left">
       <div class="inline-flex items-center gap-2 bg-orange-900/50 border border-orange-700 text-orange-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest mx-auto md:mx-0">
-        <i data-lucide="zap" class="w-3.5 h-3.5"></i> Adjustable Hydraulic Resistance
+        <i data-lucide="zap" class="w-3.5 h-3.5"></i> {{ hero_badge_text }}
       </div>
 
       <h1 class="text-4xl md:text-6xl font-black uppercase gradient-text leading-tight mb-6">
-        Build Power. <br> Train Anywhere.
+        {{ hero_title | newline_to_br | replace: '||', '<br>' }}
       </h1>
       <div class="twister-hero-mobile-card">
         <img
@@ -258,22 +307,22 @@
         >
       </div>
       <p class="text-xl md:text-2xl font-light text-gray-300 mb-8 max-w-lg mx-auto md:mx-0">
-        {{ p.title }} — Target your arms, chest, forearms, biceps & core with one versatile tool.
+        {{ p.title }} — {{ hero_subtitle }}
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start">
         <button
           onclick="document.getElementById('buy-section').scrollIntoView({ behavior: 'smooth' })"
-          class="glow-btn bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white font-bold py-4 px-10 rounded-full text-lg transition transform hover:scale-105"
-        >
-          ORDER NOW
-        </button>
+        class="glow-btn bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white font-bold py-4 px-10 rounded-full text-lg transition transform hover:scale-105"
+      >
+        {{ primary_button_label }}
+      </button>
         <button
           onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' })"
-          class="border border-white/40 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition"
-        >
-          Learn More
-        </button>
+        class="border border-white/40 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition"
+      >
+        {{ secondary_button_label }}
+      </button>
       </div>
 
       <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6 mt-8 text-sm text-gray-400">
@@ -281,7 +330,7 @@
           <svg class="w-4 h-4 text-yellow-400 shrink-0 fill-current" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M11.48 3.5a.56.56 0 0 1 1.04 0l2.12 5.11a.56.56 0 0 0 .47.34l5.52.44c.5.04.7.66.32.98l-4.2 3.6a.56.56 0 0 0-.18.56l1.28 5.39a.56.56 0 0 1-.84.61L12.3 17.7a.56.56 0 0 0-.58 0l-4.74 2.88a.56.56 0 0 1-.84-.61l1.28-5.39a.56.56 0 0 0-.18-.56l-4.2-3.6a.56.56 0 0 1 .32-.98l5.52-.44a.56.56 0 0 0 .47-.34z"></path>
           </svg>
-          <span>4.9/5 (856 reviews)</span>
+          <span>{{ hero_rating_text }}</span>
         </div>
         <div class="flex items-center gap-1.5">
           <svg class="w-4 h-4 text-orange-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -290,7 +339,7 @@
             <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
             <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
           </svg>
-          <span>3,000+ customers</span>
+          <span>{{ hero_social_text }}</span>
         </div>
       </div>
     </div>
@@ -300,16 +349,16 @@
 {%- comment -%} Trust bar {%- endcomment -%}
 <div class="bg-neutral-800 py-4 border-y border-neutral-700">
   <div class="container mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-16 text-sm font-semibold">
-    <div class="flex items-center gap-2"><i data-lucide="truck" class="text-orange-400 w-5 h-5"></i> NATIONWIDE SHIPPING</div>
-    <div class="flex items-center gap-2"><i data-lucide="shield-check" class="text-orange-400 w-5 h-5"></i> 12-MONTH WARRANTY</div>
-    <div class="flex items-center gap-2"><i data-lucide="rotate-ccw" class="text-orange-400 w-5 h-5"></i> 30-DAY FREE RETURNS</div>
+    <div class="flex items-center gap-2"><i data-lucide="truck" class="text-orange-400 w-5 h-5"></i> {{ trust_shipping_text }}</div>
+    <div class="flex items-center gap-2"><i data-lucide="shield-check" class="text-orange-400 w-5 h-5"></i> {{ trust_warranty_text }}</div>
+    <div class="flex items-center gap-2"><i data-lucide="rotate-ccw" class="text-orange-400 w-5 h-5"></i> {{ trust_returns_text }}</div>
   </div>
 </div>
 
 {%- comment -%} Features {%- endcomment -%}
 <section id="features" class="py-16 container mx-auto px-4">
   <div class="text-center mb-12">
-    <h2 class="text-3xl font-bold uppercase mb-4">Key Features</h2>
+    <h2 class="text-3xl font-bold uppercase mb-4">{{ features_heading }}</h2>
     <div class="w-24 h-1 bg-orange-500 mx-auto"></div>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
@@ -321,16 +370,18 @@
       {%- endif -%}
     </div>
     <div class="grid grid-cols-2 gap-4">
-      {%- assign features = 'sliders|Adjustable Resistance|Resistance Range: 22 - 440 lbs||activity|Multi-Muscle Training|Chest, Shoulders, Arms, Forearms,…||shield|Heavy-Duty Carbon Steel|Tested For 10000 cycles||monitor|See Your Progress In Real-Time|The clear LCD counter tracks your reps||hand|Ergonomic Grip|Non-slip foam handles||dumbbell|Compact & Portable|Train at home or the gym' | split: '||' -%}
+      {%- assign features = features_data | newline_to_br | replace: '<br />', '||' | replace: '<br>', '||' | split: '||' -%}
       {%- for feat in features -%}
-        {%- assign feat_parts = feat | split: '|' -%}
-        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-orange-500 transition cursor-pointer group">
-          <div class="w-12 h-12 mx-auto bg-neutral-800 rounded-full flex items-center justify-center mb-4 group-hover:bg-orange-900 transition">
-            <i data-lucide="{{ feat_parts[0] }}" class="w-6 h-6 text-orange-400"></i>
+        {%- if feat != blank -%}
+          {%- assign feat_parts = feat | split: '|' -%}
+          <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 text-center hover:border-orange-500 transition cursor-pointer group">
+            <div class="w-12 h-12 mx-auto bg-neutral-800 rounded-full flex items-center justify-center mb-4 group-hover:bg-orange-900 transition">
+              <i data-lucide="{{ feat_parts[0] }}" class="w-6 h-6 text-orange-400"></i>
+            </div>
+            <h3 class="font-bold text-sm">{{ feat_parts[1] }}</h3>
+            <p class="text-gray-400 text-xs mt-1">{{ feat_parts[2] }}</p>
           </div>
-          <h3 class="font-bold text-sm">{{ feat_parts[1] }}</h3>
-          <p class="text-gray-400 text-xs mt-1">{{ feat_parts[2] }}</p>
-        </div>
+        {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
@@ -339,29 +390,23 @@
 {%- comment -%} Specs {%- endcomment -%}
 <section class="py-16 bg-neutral-950">
   <div class="container mx-auto px-4 text-center max-w-4xl">
-    <h2 class="text-3xl font-bold uppercase mb-8"><span class="text-orange-400">Technical</span> Specifications</h2>
+    <h2 class="text-3xl font-bold uppercase mb-8"><span class="text-orange-400">{{ specs_heading_accent }}</span> {{ specs_heading_text }}</h2>
     {%- if imgs[2] -%}
       <img src="{{ imgs[2] | image_url: width: 900 }}" class="w-full rounded-xl mb-8" alt="Specs">
     {%- else -%}
       <img src="https://placehold.co/900x400/111827/374151?text=[Specs+Image]" class="w-full rounded-xl mb-8" alt="Specs">
     {%- endif -%}
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-orange-400">440 Lbs</p>
-        <p class="text-gray-400 text-sm mt-1">Max Resistance</p>
-      </div>
-      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-orange-400">6+</p>
-        <p class="text-gray-400 text-sm mt-1">Muscle Groups</p>
-      </div>
-      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-orange-400">Steel</p>
-        <p class="text-gray-400 text-sm mt-1">Heavy-duty Frame</p>
-      </div>
-      <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
-        <p class="text-3xl font-black text-orange-400">1 Tool</p>
-        <p class="text-gray-400 text-sm mt-1">Full Upper Body</p>
-      </div>
+      {%- assign specs_items = specs_data | newline_to_br | replace: '<br />', '||' | replace: '<br>', '||' | split: '||' -%}
+      {%- for spec in specs_items -%}
+        {%- if spec != blank -%}
+          {%- assign spec_parts = spec | split: '|' -%}
+          <div class="bg-neutral-900 rounded-xl p-4 border border-neutral-800">
+            <p class="text-3xl font-black text-orange-400">{{ spec_parts[0] }}</p>
+            <p class="text-gray-400 text-sm mt-1">{{ spec_parts[1] }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
 </section>
@@ -370,8 +415,8 @@
 <section class="bg-black text-white py-12 md:py-14">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="text-center max-w-4xl mx-auto mb-6 md:mb-8">
-      <p class="text-xs md:text-sm font-bold uppercase tracking-[0.24em] text-orange-500 mb-3">Before & After</p>
-      <h2 class="text-xl md:text-3xl font-black leading-tight">See the Visual Difference</h2>
+      <p class="text-xs md:text-sm font-bold uppercase tracking-[0.24em] text-orange-500 mb-3">{{ before_after_label }}</p>
+      <h2 class="text-xl md:text-3xl font-black leading-tight">{{ before_after_heading }}</h2>
     </div>
 
     <div
@@ -380,21 +425,23 @@
       aria-label="Before and after gallery"
     >
       {%- for image in before_after_images -%}
-        <article class="twister-before-after-card snap-start" data-before-after-card>
-          <div class="flex items-center gap-3 md:gap-5 mb-3 md:mb-4">
-            <span class="text-zinc-200 text-lg md:text-2xl font-black leading-none">Before</span>
-            <span class="h-px flex-1 bg-white/35"></span>
-            <span class="text-orange-500 text-lg md:text-2xl font-black leading-none">After</span>
-          </div>
+        {%- if image != blank -%}
+          <article class="twister-before-after-card snap-start" data-before-after-card>
+            <div class="flex items-center gap-3 md:gap-5 mb-3 md:mb-4">
+              <span class="text-zinc-200 text-lg md:text-2xl font-black leading-none">Before</span>
+              <span class="h-px flex-1 bg-white/35"></span>
+              <span class="text-orange-500 text-lg md:text-2xl font-black leading-none">After</span>
+            </div>
 
-          <img
-            src="{{ image }}"
-            class="twister-before-after-image"
-            alt="Before and after result {{ forloop.index }}"
-            loading="lazy"
-            draggable="false"
-          >
-        </article>
+            <img
+              src="{{ image }}"
+              class="twister-before-after-image"
+              alt="Before and after result {{ forloop.index }}"
+              loading="lazy"
+              draggable="false"
+            >
+          </article>
+        {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
@@ -404,43 +451,45 @@
 <section class="bg-white text-black py-12 md:py-14">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="text-center max-w-4xl mx-auto mb-8 md:mb-10">
-      <p class="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-orange-500 mb-3">Why Upgrade</p>
-      <h2 class="text-2xl md:text-4xl font-black leading-tight mb-3">Why Old Home Workout Gear Falls Short</h2>
-      <p class="text-2xl md:text-3xl font-black text-amber-500 leading-tight">Switch to the Twister Arm Exerciser</p>
+      <p class="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-orange-500 mb-3">{{ compare_label }}</p>
+      <h2 class="text-2xl md:text-4xl font-black leading-tight mb-3">{{ compare_heading }}</h2>
+      <p class="text-2xl md:text-3xl font-black text-amber-500 leading-tight">{{ compare_subheading }}</p>
     </div>
 
     <div class="twister-compare-track flex items-stretch md:grid md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none -mx-4 px-4 md:mx-0 md:px-0 pb-2 md:pb-0">
       {%- for item in compare_items -%}
-        {%- assign compare_parts = item | split: '##' -%}
-        <article class="twister-compare-card flex-none w-[280px] sm:w-[320px] md:w-auto md:min-w-0 snap-start">
-          <div class="twister-compare-problem p-4 md:p-5 flex-1">
-            <div class="twister-compare-title flex items-start gap-3 mb-4">
-              <span class="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center flex-shrink-0">
-                <i data-lucide="alert-circle" class="w-4 h-4"></i>
-              </span>
-              <h3 class="text-lg md:text-xl font-black leading-snug">{{ compare_parts[1] }}</h3>
+        {%- if item != blank -%}
+          {%- assign compare_parts = item | split: '##' -%}
+          <article class="twister-compare-card flex-none w-[280px] sm:w-[320px] md:w-auto md:min-w-0 snap-start">
+            <div class="twister-compare-problem p-4 md:p-5 flex-1">
+              <div class="twister-compare-title flex items-start gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                </span>
+                <h3 class="text-lg md:text-xl font-black leading-snug">{{ compare_parts[1] }}</h3>
+              </div>
+
+              <img
+                src="{{ compare_parts[0] }}"
+                class="twister-compare-photo"
+                alt="{{ compare_parts[1] | escape }}"
+                loading="lazy"
+              >
             </div>
 
-            <img
-              src="{{ compare_parts[0] }}"
-              class="twister-compare-photo"
-              alt="{{ compare_parts[1] | escape }}"
-              loading="lazy"
-            >
-          </div>
-
-          <div class="twister-compare-solution p-4 md:p-5">
-            <div class="flex items-start gap-3">
-              <span class="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center flex-shrink-0">
-                <i data-lucide="check" class="w-4 h-4"></i>
-              </span>
-              <div class="twister-compare-solution-copy">
-                <p class="text-lg md:text-xl font-black leading-none mb-2">Our Solution:</p>
-                <p class="text-base md:text-lg leading-relaxed font-medium">{{ compare_parts[2] }}</p>
+            <div class="twister-compare-solution p-4 md:p-5">
+              <div class="flex items-start gap-3">
+                <span class="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                </span>
+                <div class="twister-compare-solution-copy">
+                  <p class="text-lg md:text-xl font-black leading-none mb-2">Our Solution:</p>
+                  <p class="text-base md:text-lg leading-relaxed font-medium">{{ compare_parts[2] }}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </article>
+          </article>
+        {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
@@ -449,7 +498,7 @@
 {%- comment -%} Guarantee banner {%- endcomment -%}
 <div class="bg-gradient-to-r from-orange-600 to-red-700 py-6 text-center">
   <h3 class="text-2xl font-bold text-white uppercase flex justify-center items-center gap-2">
-    <i data-lucide="shield-check" class="w-8 h-8"></i> FREE 30-DAY RETURNS — NO QUESTIONS ASKED
+    <i data-lucide="shield-check" class="w-8 h-8"></i> {{ guarantee_text }}
   </h3>
 </div>
 
@@ -871,21 +920,21 @@
       <a href="/" class="inline-flex items-center mb-4">
         <img src="{{ 'trainixy-logo-white.png' | asset_url }}" class="h-12 w-auto md:h-14" alt="{{ shop.name }}" loading="lazy">
       </a>
-      <p>{{ shop.description | default: 'Premium fitness equipment, delivered nationwide.' }}</p>
+      <p>{{ footer_description }}</p>
     </div>
     <div>
-      <h4 class="text-white font-bold mb-4 uppercase">Quick Links</h4>
+      <h4 class="text-white font-bold mb-4 uppercase">{{ footer_links_heading }}</h4>
       <ul class="space-y-2">
-        <li><a href="/collections/all" class="hover:text-white transition">All Products</a></li>
-        <li><a href="/policies/shipping-policy" class="hover:text-white transition">Shipping Policy</a></li>
-        <li><a href="/policies/refund-policy" class="hover:text-white transition">Return Policy</a></li>
+        <li><a href="{{ footer_link_1_url }}" class="hover:text-white transition">{{ footer_link_1_label }}</a></li>
+        <li><a href="{{ footer_link_2_url }}" class="hover:text-white transition">{{ footer_link_2_label }}</a></li>
+        <li><a href="{{ footer_link_3_url }}" class="hover:text-white transition">{{ footer_link_3_label }}</a></li>
       </ul>
     </div>
     <div>
-      <h4 class="text-white font-bold mb-4 uppercase">Stay Updated</h4>
+      <h4 class="text-white font-bold mb-4 uppercase">{{ footer_newsletter_heading }}</h4>
       <div class="flex">
-        <input type="email" placeholder="Enter your email" class="bg-gray-900 border border-gray-700 px-4 py-2 w-full focus:outline-none focus:border-orange-500 rounded-l-lg">
-        <button class="bg-orange-600 text-white px-4 py-2 font-bold hover:bg-orange-700 rounded-r-lg">GO</button>
+        <input type="email" placeholder="{{ footer_newsletter_placeholder }}" class="bg-gray-900 border border-gray-700 px-4 py-2 w-full focus:outline-none focus:border-orange-500 rounded-l-lg">
+        <button class="bg-orange-600 text-white px-4 py-2 font-bold hover:bg-orange-700 rounded-r-lg">{{ footer_newsletter_button }}</button>
       </div>
     </div>
   </div>
@@ -1152,6 +1201,60 @@
 {% schema %}
 {
   "name": "Power Twister Landing",
-  "settings": []
+  "settings": [
+    { "type": "header", "content": "Announcement" },
+    { "type": "text", "id": "announcement_text", "label": "Announcement text", "default": "💪 LIMITED OFFER – FREE SHIPPING NATIONWIDE – WHILE STOCKS LAST 💪" },
+
+    { "type": "header", "content": "Header Navigation" },
+    { "type": "text", "id": "nav_products_label", "label": "Products label", "default": "Products" },
+    { "type": "text", "id": "nav_features_label", "label": "Features label", "default": "Features" },
+    { "type": "text", "id": "nav_buy_label", "label": "Buy label", "default": "Buy Now" },
+
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_background_image", "label": "Hero background image" },
+    { "type": "image_picker", "id": "hero_mobile_image", "label": "Hero mobile image" },
+    { "type": "text", "id": "hero_badge_text", "label": "Hero badge", "default": "Adjustable Hydraulic Resistance" },
+    { "type": "textarea", "id": "hero_title", "label": "Hero title", "default": "Build Power.\nTrain Anywhere." },
+    { "type": "textarea", "id": "hero_subtitle", "label": "Hero subtitle", "default": "Target your arms, chest, forearms, biceps & core with one versatile tool." },
+    { "type": "text", "id": "primary_button_label", "label": "Primary button label", "default": "ORDER NOW" },
+    { "type": "text", "id": "secondary_button_label", "label": "Secondary button label", "default": "Learn More" },
+    { "type": "text", "id": "hero_rating_text", "label": "Rating text", "default": "4.9/5 (856 reviews)" },
+    { "type": "text", "id": "hero_social_text", "label": "Social proof text", "default": "3,000+ customers" },
+
+    { "type": "header", "content": "Trust Bar" },
+    { "type": "text", "id": "trust_shipping_text", "label": "Shipping text", "default": "NATIONWIDE SHIPPING" },
+    { "type": "text", "id": "trust_warranty_text", "label": "Warranty text", "default": "12-MONTH WARRANTY" },
+    { "type": "text", "id": "trust_returns_text", "label": "Returns text", "default": "30-DAY FREE RETURNS" },
+
+    { "type": "header", "content": "Section Headings" },
+    { "type": "text", "id": "features_heading", "label": "Features heading", "default": "Key Features" },
+    { "type": "textarea", "id": "features_data", "label": "Features data", "info": "One item per line: icon|title|description", "default": "sliders|Adjustable Resistance|Resistance Range: 22 - 440 lbs\nactivity|Multi-Muscle Training|Chest, Shoulders, Arms, Forearms, and more\nshield|Heavy-Duty Carbon Steel|Tested for 10000 cycles\nmonitor|See Your Progress In Real-Time|The clear LCD counter tracks your reps\nhand|Ergonomic Grip|Non-slip foam handles\ndumbbell|Compact & Portable|Train at home or the gym" },
+    { "type": "text", "id": "specs_heading_accent", "label": "Specs accent heading", "default": "Technical" },
+    { "type": "text", "id": "specs_heading_text", "label": "Specs heading", "default": "Specifications" },
+    { "type": "textarea", "id": "specs_data", "label": "Specs data", "info": "One item per line: value|label", "default": "440 Lbs|Max Resistance\n6+|Muscle Groups\nSteel|Heavy-duty Frame\n1 Tool|Full Upper Body" },
+    { "type": "header", "content": "Before & After" },
+    { "type": "text", "id": "before_after_label", "label": "Before & after label", "default": "Before & After" },
+    { "type": "text", "id": "before_after_heading", "label": "Before & after heading", "default": "See the Visual Difference" },
+    { "type": "textarea", "id": "before_after_images_data", "label": "Before & after image URLs", "info": "One image URL per line", "default": "https://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-4-pc.png\nhttps://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-1-pc.png\nhttps://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-2-pc.png\nhttps://cdn.shopify.com/s/files/1/0849/9606/3537/files/20260316-p3-3-pc.png" },
+    { "type": "header", "content": "Comparison" },
+    { "type": "text", "id": "compare_label", "label": "Comparison label", "default": "Why Upgrade" },
+    { "type": "text", "id": "compare_heading", "label": "Comparison heading", "default": "Why Old Home Workout Gear Falls Short" },
+    { "type": "text", "id": "compare_subheading", "label": "Comparison subheading", "default": "Switch to the Twister Arm Exerciser" },
+    { "type": "textarea", "id": "compare_items_data", "label": "Comparison items", "info": "One item per line: image_url##problem##solution", "default": "https://cdn.myshopage.com/af890d5a-9317-4602-a938-bf46d7e33f00/w400.jpg##Your home gym ends up cluttered with separate dumbbells and plates just to train your chest and arms.##Train your arms, chest, forearms and core with one compact tool instead of a pile of bulky gear.\nhttps://cdn.myshopage.com/039bce89-25cb-4e30-5744-28d0686f2900/w400.jpg##Old spring-based twisters can snap back hard and give you almost no control.##The hydraulic resistance stays smooth and controlled, helping reduce harsh snap-back during every rep.\nhttps://cdn.myshopage.com/2180b2a1-8bbf-4fae-e958-697de033d400/w400.jpg##It is easy to lose count of reps or wonder whether you are actually making progress.##The built-in LCD counter tracks each rep so you can focus on form and progression.\nhttps://cdn.myshopage.com/083e8d3a-551e-4b51-d6fc-1b57ac4eaf00/w400.jpg##Most home equipment is either too easy or too intense, which slows down progress.##A quick turn of the knob lets you dial the resistance for beginners, daily training or tougher sets." },
+    { "type": "text", "id": "guarantee_text", "label": "Guarantee banner text", "default": "FREE 30-DAY RETURNS — NO QUESTIONS ASKED" },
+
+    { "type": "header", "content": "Footer" },
+    { "type": "textarea", "id": "footer_description", "label": "Footer description", "default": "Premium fitness equipment, delivered nationwide." },
+    { "type": "text", "id": "footer_links_heading", "label": "Footer links heading", "default": "Quick Links" },
+    { "type": "text", "id": "footer_link_1_label", "label": "Footer link 1 label", "default": "All Products" },
+    { "type": "url", "id": "footer_link_1_url", "label": "Footer link 1 URL" },
+    { "type": "text", "id": "footer_link_2_label", "label": "Footer link 2 label", "default": "Shipping Policy" },
+    { "type": "url", "id": "footer_link_2_url", "label": "Footer link 2 URL" },
+    { "type": "text", "id": "footer_link_3_label", "label": "Footer link 3 label", "default": "Return Policy" },
+    { "type": "url", "id": "footer_link_3_url", "label": "Footer link 3 URL" },
+    { "type": "text", "id": "footer_newsletter_heading", "label": "Newsletter heading", "default": "Stay Updated" },
+    { "type": "text", "id": "footer_newsletter_placeholder", "label": "Newsletter placeholder", "default": "Enter your email" },
+    { "type": "text", "id": "footer_newsletter_button", "label": "Newsletter button label", "default": "GO" }
+  ]
 }
 {% endschema %}
