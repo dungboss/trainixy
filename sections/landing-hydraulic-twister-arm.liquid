@@ -229,18 +229,25 @@
   }
 
   .twister-table-product-image {
-    width: 100%;
-    max-width: 3.5rem;
-    height: auto;
+    width: auto;
+    max-width: 100%;
+    height: 100%;
     object-fit: contain;
-    margin: 0 auto 0.45rem;
+    margin: 0 auto;
+  }
+
+  .twister-table-product-media {
+    height: 4.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.45rem auto 0;
   }
 
   .twister-table-image-placeholder {
     width: 100%;
-    max-width: 3.5rem;
-    aspect-ratio: 1;
-    margin: 0 auto 0.45rem;
+    max-width: 4.75rem;
+    height: 100%;
     border-radius: 0.9rem;
     border: 1px dashed rgba(249, 115, 22, 0.22);
     background:
@@ -374,7 +381,11 @@
     .twister-table-product-image,
     .twister-table-image-placeholder {
       max-width: 6rem;
-      margin-bottom: 0.9rem;
+    }
+
+    .twister-table-product-media {
+      height: 6rem;
+      margin-top: 0.7rem;
     }
 
     .twister-table-image-placeholder {
@@ -712,28 +723,29 @@
               <span class="twister-table-pill">{{ comparison_table_left_badge }}</span>
             {%- endif -%}
 
-            {%- if section.settings.comparison_table_left_image != blank -%}
-              <img
-                src="{{ section.settings.comparison_table_left_image | image_url: width: 320 }}"
-                class="twister-table-product-image"
-                alt="{{ comparison_table_left_title | escape }}"
-                loading="lazy"
-              >
-            {%- elsif imgs[0] -%}
-              <img
-                src="{{ imgs[0] | image_url: width: 320 }}"
-                class="twister-table-product-image"
-                alt="{{ comparison_table_left_title | escape }}"
-                loading="lazy"
-              >
-            {%- else -%}
-              <div class="twister-table-image-placeholder">Product</div>
-            {%- endif -%}
-
             <h3 class="twister-table-column-title">{{ comparison_table_left_title }}</h3>
             {%- if comparison_table_left_subtitle != blank -%}
               <p class="twister-table-column-subtitle">{{ comparison_table_left_subtitle }}</p>
             {%- endif -%}
+            <div class="twister-table-product-media">
+              {%- if section.settings.comparison_table_left_image != blank -%}
+                <img
+                  src="{{ section.settings.comparison_table_left_image | image_url: width: 320 }}"
+                  class="twister-table-product-image"
+                  alt="{{ comparison_table_left_title | escape }}"
+                  loading="lazy"
+                >
+              {%- elsif imgs[0] -%}
+                <img
+                  src="{{ imgs[0] | image_url: width: 320 }}"
+                  class="twister-table-product-image"
+                  alt="{{ comparison_table_left_title | escape }}"
+                  loading="lazy"
+                >
+              {%- else -%}
+                <div class="twister-table-image-placeholder">Product</div>
+              {%- endif -%}
+            </div>
           </div>
 
           <div class="twister-table-head-cell twister-table-head-cell--secondary">
@@ -741,21 +753,22 @@
               <span class="twister-table-pill twister-table-pill--secondary">{{ comparison_table_right_badge }}</span>
             {%- endif -%}
 
-            {%- if section.settings.comparison_table_right_image != blank -%}
-              <img
-                src="{{ section.settings.comparison_table_right_image | image_url: width: 320 }}"
-                class="twister-table-product-image"
-                alt="{{ comparison_table_right_title | escape }}"
-                loading="lazy"
-              >
-            {%- else -%}
-              <div class="twister-table-image-placeholder">Alt</div>
-            {%- endif -%}
-
             <h3 class="twister-table-column-title">{{ comparison_table_right_title }}</h3>
             {%- if comparison_table_right_subtitle != blank -%}
               <p class="twister-table-column-subtitle">{{ comparison_table_right_subtitle }}</p>
             {%- endif -%}
+            <div class="twister-table-product-media">
+              {%- if section.settings.comparison_table_right_image != blank -%}
+                <img
+                  src="{{ section.settings.comparison_table_right_image | image_url: width: 320 }}"
+                  class="twister-table-product-image"
+                  alt="{{ comparison_table_right_title | escape }}"
+                  loading="lazy"
+                >
+              {%- else -%}
+                <div class="twister-table-image-placeholder">Alt</div>
+              {%- endif -%}
+            </div>
           </div>
         </div>
 
