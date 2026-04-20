@@ -658,12 +658,6 @@
         >
           {{ primary_button_label }}
         </button>
-        <button
-          onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' })"
-        class="border border-white/40 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition"
-        >
-          {{ secondary_button_label }}
-        </button>
       </div>
 
       <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-8 text-sm text-gray-400">
@@ -1142,71 +1136,43 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
 
-      {%- comment -%} Review 1 — with photo {%- endcomment -%}
-      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden flex flex-col">
-        {%- if imgs[3] -%}
-          <img src="{{ imgs[3] | image_url: width: 600 }}" class="w-full h-44 object-cover" alt="Review photo">
-        {%- else -%}
-          <img src="https://placehold.co/600x280/1f2937/374151?text=[Photo]" class="w-full h-44 object-cover" alt="Review photo">
-        {%- endif -%}
-        <div class="p-5 flex flex-col flex-1">
-          <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
-          <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"After 3 weeks of daily use my arm strength is noticeably better. Started at 22 lbs and now hitting 60 lbs. Love the smooth hydraulic feel."</p>
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">JM</div>
-            <div><p class="text-white text-xs font-semibold">James M.</p><p class="text-gray-500 text-xs">Verified · Mar 2026</p></div>
-          </div>
+      {%- comment -%} Review 1 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"After 3 weeks of daily use my arm strength is noticeably better. Started at 22 lbs and now hitting 60 lbs. Love the smooth hydraulic feel."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">JM</div>
+          <div><p class="text-white text-xs font-semibold">James M.</p><p class="text-gray-500 text-xs">Verified · Mar 2026</p></div>
         </div>
       </div>
 
-      {%- comment -%} Review 2 — with photo {%- endcomment -%}
-      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden flex flex-col">
-        {%- if imgs[4] -%}
-          <img src="{{ imgs[4] | image_url: width: 600 }}" class="w-full h-44 object-cover" alt="Review photo">
-        {%- else -%}
-          <img src="https://placehold.co/600x280/1f2937/374151?text=[Photo]" class="w-full h-44 object-cover" alt="Review photo">
-        {%- endif -%}
-        <div class="p-5 flex flex-col flex-1">
-          <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
-          <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Keep it on my desk and squeeze reps during work calls. My forearms are noticeably stronger. LCD counter keeps me on track."</p>
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">SL</div>
-            <div><p class="text-white text-xs font-semibold">Sarah L.</p><p class="text-gray-500 text-xs">Verified · Feb 2026</p></div>
-          </div>
+      {%- comment -%} Review 2 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Keep it on my desk and squeeze reps during work calls. My forearms are noticeably stronger. LCD counter keeps me on track."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">SL</div>
+          <div><p class="text-white text-xs font-semibold">Sarah L.</p><p class="text-gray-500 text-xs">Verified · Feb 2026</p></div>
         </div>
       </div>
 
-      {%- comment -%} Review 3 — with photo {%- endcomment -%}
-      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden flex flex-col">
-        {%- if imgs[5] -%}
-          <img src="{{ imgs[5] | image_url: width: 600 }}" class="w-full h-44 object-cover" alt="Review photo">
-        {%- else -%}
-          <img src="https://placehold.co/600x280/1f2937/374151?text=[Photo]" class="w-full h-44 object-cover" alt="Review photo">
-        {%- endif -%}
-        <div class="p-5 flex flex-col flex-1">
-          <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
-          <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"No oil leaks after 2 months of daily use. Great for chest and bicep warmups before lifting. Resistance range is impressive."</p>
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">DK</div>
-            <div><p class="text-white text-xs font-semibold">David K.</p><p class="text-gray-500 text-xs">Verified · Jan 2026</p></div>
-          </div>
+      {%- comment -%} Review 3 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"No oil leaks after 2 months of daily use. Great for chest and bicep warmups before lifting. Resistance range is impressive."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">DK</div>
+          <div><p class="text-white text-xs font-semibold">David K.</p><p class="text-gray-500 text-xs">Verified · Jan 2026</p></div>
         </div>
       </div>
 
-      {%- comment -%} Review 4 — with photo {%- endcomment -%}
-      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden flex flex-col">
-        {%- if imgs[6] -%}
-          <img src="{{ imgs[6] | image_url: width: 600 }}" class="w-full h-44 object-cover" alt="Review photo">
-        {%- else -%}
-          <img src="https://placehold.co/600x280/1f2937/374151?text=[Photo]" class="w-full h-44 object-cover" alt="Review photo">
-        {%- endif -%}
-        <div class="p-5 flex flex-col flex-1">
-          <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
-          <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Perfect for my home gym setup. I use it for forearm training between sets. Build quality far exceeds the price point."</p>
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">RT</div>
-            <div><p class="text-white text-xs font-semibold">Ryan T.</p><p class="text-gray-500 text-xs">Verified · Jan 2026</p></div>
-          </div>
+      {%- comment -%} Review 4 — no photo {%- endcomment -%}
+      <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 flex flex-col">
+        <div class="flex text-yellow-400 mb-2">{% for i in (1..5) %}<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>{% endfor %}</div>
+        <p class="text-gray-300 text-sm leading-relaxed flex-1 mb-4">"Perfect for my home gym setup. I use it for forearm training between sets. Build quality far exceeds the price point."</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">RT</div>
+          <div><p class="text-white text-xs font-semibold">Ryan T.</p><p class="text-gray-500 text-xs">Verified · Jan 2026</p></div>
         </div>
       </div>
 
