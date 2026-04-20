@@ -3,14 +3,18 @@
 {% liquid
   assign section_settings = section.settings
   assign image = settings.logo
+  assign fallback_logo_asset = 'trainixy-logo-black.png'
+  assign fallback_logo_aspect_ratio = 2.069
 
   if section_settings.inverse and settings.logo_inverse
     assign image = settings.logo_inverse
+  elsif section_settings.inverse
+    assign fallback_logo_asset = 'trainixy-logo-white.png'
   endif
 %}
 
-{%- if image -%}
-  {% capture logo_image %}
+{% capture logo_image %}
+  {% if image %}
     {{-
       image
       | image_url: width: 3840
@@ -22,8 +26,15 @@
         alt: shop.name,
         sizes: '(min-width: 750px) calc(var(--logo-width)), 100vw'
     -}}
-  {% endcapture %}
-{%- endif -%}
+  {% else %}
+    <img
+      src="{{ fallback_logo_asset | asset_url }}"
+      class="logo-section__image"
+      alt="{{ shop.name }}"
+      loading="lazy"
+    >
+  {% endif %}
+{% endcapture %}
 
 <div class="section-background color-{{ section_settings.color_scheme }}"></div>
 <div
@@ -42,7 +53,7 @@
         {% if image %}
           --logo-width: {{ image.width | times: 1.00 | divided_by: image.height | times: section_settings.pixel_height }}px;
         {% else %}
-          --logo-width: {{ shop.name.size | times: 0.65 }}em;
+          --logo-width: {{ section_settings.pixel_height | times: fallback_logo_aspect_ratio }}px;
           --logo-height: {{ section_settings.pixel_height }}px;
         {% endif %}
       {% endif %}
@@ -54,9 +65,9 @@
         {% else %}
           {% if image %}
             --logo-width-mobile: {{ image.width | times: 1.00 | divided_by: image.height | times: section_settings.pixel_height_mobile }}px;
-            {% else %}
-              --logo-width-mobile: {{ shop.name.size | times: 0.65 }}em;
-              --logo-height-mobile: {{ section_settings.pixel_height_mobile }}px;
+          {% else %}
+            --logo-width-mobile: {{ section_settings.pixel_height_mobile | times: fallback_logo_aspect_ratio }}px;
+            --logo-height-mobile: {{ section_settings.pixel_height_mobile }}px;
           {% endif %}
         {% endif %}
       {% endif %}
@@ -64,13 +75,9 @@
     "
     {{ section.shopify_attributes }}
   >
-    {% if logo_image %}
-      <div class="logo-section__image-wrapper">
-        {{ logo_image }}
-      </div>
-    {% else %}
-      {% render 'jumbo-text', text: shop.name, block_settings: section.settings %}
-    {% endif %}
+    <div class="logo-section__image-wrapper">
+      {{ logo_image }}
+    </div>
   </div>
 </div>
 
