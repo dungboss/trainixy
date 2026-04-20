@@ -151,7 +151,275 @@
     -webkit-user-drag: none;
   }
 
+  .twister-table-wrap {
+    border: 1px solid rgba(249, 115, 22, 0.18);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    min-width: 0;
+    background: #ffffff;
+    box-shadow:
+      0 24px 60px rgba(2, 6, 23, 0.24),
+      0 0 0 1px rgba(255, 255, 255, 0.72) inset;
+  }
+
+  .twister-table-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.78fr) minmax(0, 0.78fr);
+  }
+
+  .twister-table-head-spacer {
+    background: linear-gradient(180deg, #ffffff, #f8fafc);
+    border-right: 1px solid rgba(15, 23, 42, 0.1);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+    display: flex;
+    align-items: flex-end;
+    padding: 0.75rem 0.65rem;
+  }
+
+  .twister-table-feature-heading {
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.1;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #0f172a;
+  }
+
+  .twister-table-head-cell {
+    padding: 0.75rem 0.45rem 0.7rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+    text-align: center;
+  }
+
+  .twister-table-head-cell + .twister-table-head-cell {
+    border-left: 1px solid rgba(15, 23, 42, 0.1);
+  }
+
+  .twister-table-head-cell--primary,
+  .twister-table-cell--primary {
+    background: linear-gradient(180deg, #fff7ed, #ffedd5);
+  }
+
+  .twister-table-head-cell--secondary,
+  .twister-table-cell--secondary {
+    background: linear-gradient(180deg, #f8fafc, #f1f5f9);
+  }
+
+  .twister-table-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.45rem;
+    padding: 0.26rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.54rem;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+    box-shadow: 0 8px 18px rgba(249, 115, 22, 0.22);
+  }
+
+  .twister-table-pill--secondary {
+    background: #e2e8f0;
+    color: #334155;
+    box-shadow: none;
+  }
+
+  .twister-table-product-image {
+    width: 100%;
+    max-width: 3.5rem;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto 0.45rem;
+  }
+
+  .twister-table-image-placeholder {
+    width: 100%;
+    max-width: 3.5rem;
+    aspect-ratio: 1;
+    margin: 0 auto 0.45rem;
+    border-radius: 0.9rem;
+    border: 1px dashed rgba(249, 115, 22, 0.22);
+    background:
+      radial-gradient(circle at 30% 30%, rgba(249, 115, 22, 0.12), transparent 35%),
+      linear-gradient(135deg, #ffffff, #f8fafc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.56rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+
+  .twister-table-column-title {
+    font-size: 0.78rem;
+    line-height: 1.15;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
+    word-break: break-word;
+    color: #0f172a;
+  }
+
+  .twister-table-column-subtitle {
+    margin-top: 0.35rem;
+    font-size: 0.68rem;
+    line-height: 1.35;
+    color: #64748b;
+  }
+
+  .twister-table-row + .twister-table-row {
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+  }
+
+  .twister-table-feature-cell {
+    background: linear-gradient(180deg, #ffffff, #f8fafc);
+    padding: 0.9rem 0.65rem;
+    border-right: 1px solid rgba(15, 23, 42, 0.1);
+  }
+
+  .twister-table-feature-title {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.18;
+    font-weight: 900;
+    color: #0f172a;
+  }
+
+  .twister-table-feature-subtitle {
+    margin-top: 0.28rem;
+    font-size: 0.68rem;
+    line-height: 1.35;
+    color: #64748b;
+  }
+
+  .twister-table-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 0.35rem;
+  }
+
+  .twister-table-cell + .twister-table-cell {
+    border-left: 1px solid rgba(15, 23, 42, 0.1);
+  }
+
+  .twister-table-status {
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
+  }
+
+  .twister-table-status svg {
+    width: 0.86rem;
+    height: 0.86rem;
+  }
+
+  .twister-table-status--check {
+    background: #fb6a4a;
+    color: #ffffff;
+  }
+
+  .twister-table-status--cross {
+    background: #64748b;
+    color: #ffffff;
+  }
+
+  .twister-table-status--dash {
+    width: 2.5rem;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(100, 116, 139, 0.42);
+    box-shadow: none;
+  }
+
   @media (min-width: 768px) {
+    .twister-table-wrap {
+      min-width: 720px;
+    }
+
+    .twister-table-grid {
+      grid-template-columns: minmax(220px, 1.25fr) minmax(210px, 0.92fr) minmax(210px, 0.92fr);
+    }
+
+    .twister-table-head-spacer {
+      padding: 1rem 1rem 0.85rem;
+    }
+
+    .twister-table-feature-heading {
+      font-size: 1.15rem;
+      line-height: 1.15;
+    }
+
+    .twister-table-head-cell {
+      padding: 1rem 1rem 0.85rem;
+    }
+
+    .twister-table-pill {
+      margin-bottom: 0.75rem;
+      padding: 0.36rem 0.72rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+    }
+
+    .twister-table-product-image,
+    .twister-table-image-placeholder {
+      max-width: 6rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .twister-table-image-placeholder {
+      border-radius: 1.25rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+    }
+
+    .twister-table-column-title {
+      font-size: 1.15rem;
+    }
+
+    .twister-table-column-subtitle {
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .twister-table-feature-cell {
+      padding: 1.15rem 1rem;
+    }
+
+    .twister-table-feature-title {
+      font-size: 1.08rem;
+      line-height: 1.2;
+    }
+
+    .twister-table-feature-subtitle {
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .twister-table-cell {
+      padding: 1rem;
+    }
+
+    .twister-table-status {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+
+    .twister-table-status svg {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+
     .twister-hero-shell {
       align-items: center;
       min-height: 600px;
@@ -241,6 +509,16 @@
   assign compare_heading = section.settings.compare_heading | default: 'Why Old Home Workout Gear Falls Short'
   assign compare_subheading = section.settings.compare_subheading | default: 'Switch to the Twister Arm Exerciser'
   assign compare_items_data = section.settings.compare_items_data | default: 'https://cdn.myshopage.com/af890d5a-9317-4602-a938-bf46d7e33f00/w400.jpg##Your home gym ends up cluttered with separate dumbbells and plates just to train your chest and arms.##Train your arms, chest, forearms and core with one compact tool instead of a pile of bulky gear.||https://cdn.myshopage.com/039bce89-25cb-4e30-5744-28d0686f2900/w400.jpg##Old spring-based twisters can snap back hard and give you almost no control.##The hydraulic resistance stays smooth and controlled, helping reduce harsh snap-back during every rep.||https://cdn.myshopage.com/2180b2a1-8bbf-4fae-e958-697de033d400/w400.jpg##It is easy to lose count of reps or wonder whether you are actually making progress.##The built-in LCD counter tracks each rep so you can focus on form and progression.||https://cdn.myshopage.com/083e8d3a-551e-4b51-d6fc-1b57ac4eaf00/w400.jpg##Most home equipment is either too easy or too intense, which slows down progress.##A quick turn of the knob lets you dial the resistance for beginners, daily training or tougher sets.'
+  assign comparison_table_label = section.settings.comparison_table_label | default: 'Comparison'
+  assign comparison_table_heading = section.settings.comparison_table_heading | default: 'See How It Stacks Up'
+  assign comparison_table_subheading = section.settings.comparison_table_subheading
+  assign comparison_table_feature_heading = section.settings.comparison_table_feature_heading | default: 'Features'
+  assign comparison_table_left_badge = section.settings.comparison_table_left_badge
+  assign comparison_table_left_title = section.settings.comparison_table_left_title | default: 'Power Twister'
+  assign comparison_table_left_subtitle = section.settings.comparison_table_left_subtitle
+  assign comparison_table_right_badge = section.settings.comparison_table_right_badge
+  assign comparison_table_right_title = section.settings.comparison_table_right_title | default: 'Generic Alternatives'
+  assign comparison_table_right_subtitle = section.settings.comparison_table_right_subtitle
   assign footer_description = section.settings.footer_description | default: shop.description | default: 'Premium fitness equipment, delivered nationwide.'
   assign footer_links_heading = section.settings.footer_links_heading | default: 'Quick Links'
   assign footer_link_1_label = section.settings.footer_link_1_label | default: 'All Products'
@@ -407,6 +685,133 @@
           </div>
         {%- endif -%}
       {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Comparison table {%- endcomment -%}
+<section class="bg-gradient-to-b from-black via-neutral-950 to-black text-white py-12 md:py-14">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="text-center max-w-4xl mx-auto mb-8 md:mb-10">
+      <p class="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-orange-500 mb-3">{{ comparison_table_label }}</p>
+      <h2 class="text-2xl md:text-4xl font-black leading-tight mb-3">{{ comparison_table_heading }}</h2>
+      {%- if comparison_table_subheading != blank -%}
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed">{{ comparison_table_subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="overflow-hidden md:overflow-x-auto">
+      <div class="twister-table-wrap">
+        <div class="twister-table-grid">
+          <div class="twister-table-head-spacer">
+            <h3 class="twister-table-feature-heading">{{ comparison_table_feature_heading }}</h3>
+          </div>
+
+          <div class="twister-table-head-cell twister-table-head-cell--primary">
+            {%- if comparison_table_left_badge != blank -%}
+              <span class="twister-table-pill">{{ comparison_table_left_badge }}</span>
+            {%- endif -%}
+
+            {%- if section.settings.comparison_table_left_image != blank -%}
+              <img
+                src="{{ section.settings.comparison_table_left_image | image_url: width: 320 }}"
+                class="twister-table-product-image"
+                alt="{{ comparison_table_left_title | escape }}"
+                loading="lazy"
+              >
+            {%- elsif imgs[0] -%}
+              <img
+                src="{{ imgs[0] | image_url: width: 320 }}"
+                class="twister-table-product-image"
+                alt="{{ comparison_table_left_title | escape }}"
+                loading="lazy"
+              >
+            {%- else -%}
+              <div class="twister-table-image-placeholder">Product</div>
+            {%- endif -%}
+
+            <h3 class="twister-table-column-title">{{ comparison_table_left_title }}</h3>
+            {%- if comparison_table_left_subtitle != blank -%}
+              <p class="twister-table-column-subtitle">{{ comparison_table_left_subtitle }}</p>
+            {%- endif -%}
+          </div>
+
+          <div class="twister-table-head-cell twister-table-head-cell--secondary">
+            {%- if comparison_table_right_badge != blank -%}
+              <span class="twister-table-pill twister-table-pill--secondary">{{ comparison_table_right_badge }}</span>
+            {%- endif -%}
+
+            {%- if section.settings.comparison_table_right_image != blank -%}
+              <img
+                src="{{ section.settings.comparison_table_right_image | image_url: width: 320 }}"
+                class="twister-table-product-image"
+                alt="{{ comparison_table_right_title | escape }}"
+                loading="lazy"
+              >
+            {%- else -%}
+              <div class="twister-table-image-placeholder">Alt</div>
+            {%- endif -%}
+
+            <h3 class="twister-table-column-title">{{ comparison_table_right_title }}</h3>
+            {%- if comparison_table_right_subtitle != blank -%}
+              <p class="twister-table-column-subtitle">{{ comparison_table_right_subtitle }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'comparison_row' -%}
+              <div class="twister-table-row twister-table-grid" {{ block.shopify_attributes }}>
+                <div class="twister-table-feature-cell">
+                  <h3 class="twister-table-feature-title">{{ block.settings.title }}</h3>
+                  {%- if block.settings.subtitle != blank -%}
+                    <p class="twister-table-feature-subtitle">{{ block.settings.subtitle }}</p>
+                  {%- endif -%}
+                </div>
+
+                <div class="twister-table-cell twister-table-cell--primary">
+                  {%- case block.settings.left_status -%}
+                    {%- when 'check' -%}
+                      <span class="twister-table-status twister-table-status--check" aria-label="Included">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path d="M6.5 12.5 10.2 16 17.5 8.5" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                      </span>
+                    {%- when 'cross' -%}
+                      <span class="twister-table-status twister-table-status--cross" aria-label="Not included">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path d="M8 8 16 16M16 8 8 16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path>
+                        </svg>
+                      </span>
+                    {%- else -%}
+                      <span class="twister-table-status twister-table-status--dash" aria-hidden="true"></span>
+                    {%- endcase -%}
+                </div>
+
+                <div class="twister-table-cell twister-table-cell--secondary">
+                  {%- case block.settings.right_status -%}
+                    {%- when 'check' -%}
+                      <span class="twister-table-status twister-table-status--check" aria-label="Included">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path d="M6.5 12.5 10.2 16 17.5 8.5" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                      </span>
+                    {%- when 'cross' -%}
+                      <span class="twister-table-status twister-table-status--cross" aria-label="Not included">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path d="M8 8 16 16M16 8 8 16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path>
+                        </svg>
+                      </span>
+                    {%- else -%}
+                      <span class="twister-table-status twister-table-status--dash" aria-hidden="true"></span>
+                    {%- endcase -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
     </div>
   </div>
 </section>
@@ -1232,6 +1637,19 @@
     { "type": "text", "id": "specs_heading_accent", "label": "Specs accent heading", "default": "Technical" },
     { "type": "text", "id": "specs_heading_text", "label": "Specs heading", "default": "Specifications" },
     { "type": "textarea", "id": "specs_data", "label": "Specs data", "info": "One item per line: value|label", "default": "440 Lbs|Max Resistance\n6+|Muscle Groups\nSteel|Heavy-duty Frame\n1 Tool|Full Upper Body" },
+    { "type": "header", "content": "Comparison Table" },
+    { "type": "text", "id": "comparison_table_label", "label": "Table label", "default": "Comparison" },
+    { "type": "text", "id": "comparison_table_heading", "label": "Table heading", "default": "See How It Stacks Up" },
+    { "type": "textarea", "id": "comparison_table_subheading", "label": "Table subheading" },
+    { "type": "text", "id": "comparison_table_feature_heading", "label": "Feature column heading", "default": "Features" },
+    { "type": "text", "id": "comparison_table_left_badge", "label": "Left badge", "default": "Complete System" },
+    { "type": "image_picker", "id": "comparison_table_left_image", "label": "Left image" },
+    { "type": "text", "id": "comparison_table_left_title", "label": "Left title", "default": "Power Twister" },
+    { "type": "textarea", "id": "comparison_table_left_subtitle", "label": "Left subtitle", "default": "Adjustable hydraulic resistance for controlled full upper-body training." },
+    { "type": "text", "id": "comparison_table_right_badge", "label": "Right badge", "default": "Common Choice" },
+    { "type": "image_picker", "id": "comparison_table_right_image", "label": "Right image" },
+    { "type": "text", "id": "comparison_table_right_title", "label": "Right title", "default": "Generic Alternatives" },
+    { "type": "textarea", "id": "comparison_table_right_subtitle", "label": "Right subtitle", "default": "Basic spring tools or fixed-resistance gear with fewer training options." },
     { "type": "header", "content": "Before & After" },
     { "type": "text", "id": "before_after_label", "label": "Before & after label", "default": "Before & After" },
     { "type": "text", "id": "before_after_heading", "label": "Before & after heading", "default": "See the Visual Difference" },
@@ -1255,6 +1673,38 @@
     { "type": "text", "id": "footer_newsletter_heading", "label": "Newsletter heading", "default": "Stay Updated" },
     { "type": "text", "id": "footer_newsletter_placeholder", "label": "Newsletter placeholder", "default": "Enter your email" },
     { "type": "text", "id": "footer_newsletter_button", "label": "Newsletter button label", "default": "GO" }
+  ],
+  "blocks": [
+    {
+      "type": "comparison_row",
+      "name": "Comparison row",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Row title", "default": "Adjustable Resistance" },
+        { "type": "text", "id": "subtitle", "label": "Row subtitle", "default": "Dial in lighter or heavier training from one tool." },
+        {
+          "type": "select",
+          "id": "left_status",
+          "label": "Left status",
+          "default": "check",
+          "options": [
+            { "value": "check", "label": "Check" },
+            { "value": "cross", "label": "Cross" },
+            { "value": "dash", "label": "Dash" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "right_status",
+          "label": "Right status",
+          "default": "cross",
+          "options": [
+            { "value": "check", "label": "Check" },
+            { "value": "cross", "label": "Cross" },
+            { "value": "dash", "label": "Dash" }
+          ]
+        }
+      ]
+    }
   ]
 }
 {% endschema %}

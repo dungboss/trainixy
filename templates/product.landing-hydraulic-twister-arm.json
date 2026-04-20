@@ -3,7 +3,60 @@
   "sections": {
     "main": {
       "type": "landing-hydraulic-twister-arm",
-      "settings": {}
+      "settings": {
+        "comparison_table_feature_heading": "Features",
+        "comparison_table_subheading": "",
+        "comparison_table_left_badge": "",
+        "comparison_table_left_title": "Ours",
+        "comparison_table_left_subtitle": "",
+        "comparison_table_right_badge": "",
+        "comparison_table_right_title": "Old Spring Twisters",
+        "comparison_table_right_subtitle": ""
+      },
+      "blocks": {
+        "comparison_row_1": {
+          "type": "comparison_row",
+          "settings": {
+            "title": "Smooth Hydraulic System",
+            "subtitle": "",
+            "left_status": "check",
+            "right_status": "cross"
+          }
+        },
+        "comparison_row_2": {
+          "type": "comparison_row",
+          "settings": {
+            "title": "Adjustable Resistance (22-440 lbs)",
+            "subtitle": "",
+            "left_status": "check",
+            "right_status": "cross"
+          }
+        },
+        "comparison_row_3": {
+          "type": "comparison_row",
+          "settings": {
+            "title": "Built-In Rep Counter",
+            "subtitle": "",
+            "left_status": "check",
+            "right_status": "cross"
+          }
+        },
+        "comparison_row_4": {
+          "type": "comparison_row",
+          "settings": {
+            "title": "High Risk of Snap-Back",
+            "subtitle": "",
+            "left_status": "cross",
+            "right_status": "check"
+          }
+        }
+      },
+      "block_order": [
+        "comparison_row_1",
+        "comparison_row_2",
+        "comparison_row_3",
+        "comparison_row_4"
+      ]
     }
   },
   "order": ["main"]
