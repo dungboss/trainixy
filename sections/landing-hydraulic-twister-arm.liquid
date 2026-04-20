@@ -20,12 +20,29 @@
       radial-gradient(circle at 78% 40%, rgba(249, 115, 22, 0.2), transparent 22rem),
       linear-gradient(90deg, #020617 0%, #020617 36%, rgba(2, 6, 23, 0.88) 56%, rgba(2, 6, 23, 0.26) 82%, rgba(2, 6, 23, 0.08) 100%);
     align-items: flex-start;
-    min-height: auto;
-    padding-bottom: 4rem;
+    min-height: calc(100vh - 4.5rem);
+    min-height: calc(100svh - 4.5rem);
+    min-height: calc(100dvh - 4.5rem);
+    padding-top: clamp(1rem, 4vh, 2rem);
+    padding-bottom: clamp(2.5rem, 7vh, 4rem);
+    overflow: hidden;
+  }
+
+  .twister-hero-mobile-copy {
+    transform: translateY(-1.75rem);
+  }
+
+  .twister-hero-desktop-copy {
+    display: none;
+  }
+
+  .twister-hero-mobile-details {
+    background: #020617;
+    padding: 1.75rem 0 2.25rem;
   }
 
   .twister-hero-background-layer {
-    display: none;
+    display: block;
   }
 
   .twister-hero-background {
@@ -34,32 +51,18 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 72% center;
-    transform: scale(1.04);
-  }
-
-  .twister-hero-mobile-card {
-    display: block;
-    max-width: min(100%, 24rem);
-    margin: 0 auto 1.75rem;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    border: 1px solid rgba(249, 115, 22, 0.22);
-    box-shadow:
-      0 18px 44px rgba(0, 0, 0, 0.36),
-      0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-  }
-
-  .twister-hero-mobile-image {
-    display: block;
-    width: 100%;
-    height: auto;
+    object-position: center center;
+    transform: none;
+    opacity: 1;
+    filter: brightness(1.08) contrast(1.12) saturate(1.04);
   }
 
   .twister-hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(2, 6, 23, 0.98) 0%, rgba(2, 6, 23, 0.95) 42%, rgba(2, 6, 23, 0.82) 58%, rgba(2, 6, 23, 0.28) 80%, rgba(2, 6, 23, 0.92) 100%);
+    background:
+      radial-gradient(circle at 50% 52%, rgba(255, 255, 255, 0.12), transparent 18rem),
+      linear-gradient(180deg, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.72) 22%, rgba(2, 6, 23, 0.18) 46%, rgba(2, 6, 23, 0.26) 64%, rgba(2, 6, 23, 0.62) 82%, rgba(2, 6, 23, 0.92) 100%);
   }
 
   .twister-compare-card {
@@ -434,19 +437,28 @@
     .twister-hero-shell {
       align-items: center;
       min-height: 600px;
+      padding-top: 6rem;
       padding-bottom: 6rem;
     }
 
-    .twister-hero-background-layer {
+    .twister-hero-mobile-copy {
+      transform: none;
+    }
+
+    .twister-hero-desktop-copy {
       display: block;
     }
 
-    .twister-hero-background {
-      object-position: center;
+    .twister-hero-mobile-details {
+      display: none;
     }
 
-    .twister-hero-mobile-card {
-      display: none;
+    .twister-hero-background {
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.04);
+      opacity: 1;
+      filter: none;
     }
 
     .twister-hero-overlay {
@@ -489,7 +501,7 @@
   if section.settings.hero_mobile_image != blank
     assign hero_mobile_image_url = section.settings.hero_mobile_image | image_url: width: 1200
   else
-    assign hero_mobile_image_url = 'hydraulic-twister-mobile-hero.png' | asset_url
+    assign hero_mobile_image_url = 'hydraulic-twister-mobile-hero-v2.png' | asset_url
   endif
 
   assign announcement_text = section.settings.announcement_text | default: '💪 LIMITED OFFER – FREE SHIPPING NATIONWIDE – WHILE STOCKS LAST 💪'
@@ -568,18 +580,21 @@
 {%- comment -%} Hero {%- endcomment -%}
 <section class="twister-hero-shell relative w-full min-h-[600px] flex items-center py-16 md:py-24">
   <div class="twister-hero-background-layer absolute inset-0 overflow-hidden">
-    <img
-      src="{{ hero_background_url }}"
-      class="twister-hero-background"
-      alt=""
-      loading="eager"
-      aria-hidden="true"
-    >
+    <picture class="block w-full h-full">
+      <source media="(min-width: 768px)" srcset="{{ hero_background_url }}">
+      <img
+        src="{{ hero_mobile_image_url }}"
+        class="twister-hero-background"
+        alt=""
+        loading="eager"
+        aria-hidden="true"
+      >
+    </picture>
     <div class="twister-hero-overlay"></div>
   </div>
 
   <div class="relative z-10 container mx-auto px-4 max-w-6xl">
-    <div class="max-w-3xl mx-auto md:mx-0 text-center md:text-left">
+    <div class="twister-hero-mobile-copy max-w-3xl mx-auto md:mx-0 text-center md:text-left">
       <div class="inline-flex items-center gap-2 bg-orange-900/50 border border-orange-700 text-orange-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest mx-auto md:mx-0">
         <i data-lucide="zap" class="w-3.5 h-3.5"></i> {{ hero_badge_text }}
       </div>
@@ -587,34 +602,71 @@
       <h1 class="text-4xl md:text-6xl font-black uppercase gradient-text leading-tight mb-6">
         {{ hero_title | newline_to_br | replace: '||', '<br>' }}
       </h1>
-      <div class="twister-hero-mobile-card">
-        <img
-          src="{{ hero_mobile_image_url }}"
-          class="twister-hero-mobile-image"
-          alt="{{ p.title }}"
-          loading="eager"
-        >
+      <div class="twister-hero-desktop-copy">
+        <p class="text-xl md:text-2xl font-light text-gray-300 mb-8 max-w-lg mx-auto md:mx-0">
+          {{ p.title }} — {{ hero_subtitle }}
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start">
+          <button
+            onclick="document.getElementById('buy-section').scrollIntoView({ behavior: 'smooth' })"
+          class="glow-btn bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white font-bold py-4 px-10 rounded-full text-lg transition transform hover:scale-105"
+          >
+            {{ primary_button_label }}
+          </button>
+          <button
+            onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' })"
+          class="border border-white/40 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition"
+          >
+            {{ secondary_button_label }}
+          </button>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6 mt-8 text-sm text-gray-400">
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-yellow-400 shrink-0 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M11.48 3.5a.56.56 0 0 1 1.04 0l2.12 5.11a.56.56 0 0 0 .47.34l5.52.44c.5.04.7.66.32.98l-4.2 3.6a.56.56 0 0 0-.18.56l1.28 5.39a.56.56 0 0 1-.84.61L12.3 17.7a.56.56 0 0 0-.58 0l-4.74 2.88a.56.56 0 0 1-.84-.61l1.28-5.39a.56.56 0 0 0-.18-.56l-4.2-3.6a.56.56 0 0 1 .32-.98l5.52-.44a.56.56 0 0 0 .47-.34z"></path>
+            </svg>
+            <span>{{ hero_rating_text }}</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-orange-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span>{{ hero_social_text }}</span>
+          </div>
+        </div>
       </div>
-      <p class="text-xl md:text-2xl font-light text-gray-300 mb-8 max-w-lg mx-auto md:mx-0">
+    </div>
+  </div>
+</section>
+
+<div class="twister-hero-mobile-details">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-lg font-light text-gray-300 mb-8">
         {{ p.title }} — {{ hero_subtitle }}
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start">
+      <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
         <button
           onclick="document.getElementById('buy-section').scrollIntoView({ behavior: 'smooth' })"
         class="glow-btn bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white font-bold py-4 px-10 rounded-full text-lg transition transform hover:scale-105"
-      >
-        {{ primary_button_label }}
-      </button>
+        >
+          {{ primary_button_label }}
+        </button>
         <button
           onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' })"
         class="border border-white/40 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition"
-      >
-        {{ secondary_button_label }}
-      </button>
+        >
+          {{ secondary_button_label }}
+        </button>
       </div>
 
-      <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6 mt-8 text-sm text-gray-400">
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-8 text-sm text-gray-400">
         <div class="flex items-center gap-1.5">
           <svg class="w-4 h-4 text-yellow-400 shrink-0 fill-current" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M11.48 3.5a.56.56 0 0 1 1.04 0l2.12 5.11a.56.56 0 0 0 .47.34l5.52.44c.5.04.7.66.32.98l-4.2 3.6a.56.56 0 0 0-.18.56l1.28 5.39a.56.56 0 0 1-.84.61L12.3 17.7a.56.56 0 0 0-.58 0l-4.74 2.88a.56.56 0 0 1-.84-.61l1.28-5.39a.56.56 0 0 0-.18-.56l-4.2-3.6a.56.56 0 0 1 .32-.98l5.52-.44a.56.56 0 0 0 .47-.34z"></path>
@@ -633,7 +685,7 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 
 {%- comment -%} Trust bar {%- endcomment -%}
 <div class="bg-neutral-800 py-4 border-y border-neutral-700">
