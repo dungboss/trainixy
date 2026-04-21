@@ -637,6 +637,16 @@
         "padding-block-end": 48
       }
     },
+    "rock_stepper_elevate_section": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "{%- if product and product.title == 'The Rock Stepper' -%}{% render 'rock-stepper-elevate-section' %}{%- endif -%}",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "product_reviews_section": {
       "type": "custom-liquid",
       "settings": {
@@ -651,6 +661,7 @@
   "order": [
     "main",
     "product_recommendations_qggXJq",
+    "rock_stepper_elevate_section",
     "product_reviews_section"
   ]
 }
