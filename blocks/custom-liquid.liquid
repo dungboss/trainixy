@@ -1,25 +1,22 @@
 
-
-<div>
-  {{ block.settings.custom_liquid }}
-</div>
+{{ block.settings.custom_liquid }}
 
 {% schema %}
 {
-  "name": "t:names.custom_liquid",
+  "name": "Custom Liquid",
   "tag": null,
   "settings": [
     {
       "type": "liquid",
       "id": "custom_liquid",
-      "label": "t:settings.custom_liquid",
-      "info": "t:info.custom_liquid"
+      "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+      "info": "t:sections.custom-liquid.settings.custom_liquid.info"
     }
   ],
   "presets": [
     {
-      "name": "t:names.custom_liquid",
-      "category": "t:categories.custom"
+      "name": "Custom Liquid",
+      "category": "Custom"
     }
   ]
 }

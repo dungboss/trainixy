@@ -1,253 +1,258 @@
-
-
-{% assign block_settings = block.settings %}
-
-{% capture video_style %}
-  {%  render 'spacing-style', settings: block_settings %}
-  {% render 'border-override', settings: block_settings %}
-   --size-style-width: {{ block_settings.custom_width }}%; --size-style-width-mobile: {{ block_settings.custom_width_mobile }}%;
-   --size-style-aspect-ratio: {% if block_settings.source == 'uploaded' %}{{ block_settings.video.aspect_ratio | default: 'auto' }}{% elsif block_settings.cover_image == blank %}{{ block_settings.aspect_ratio }}{% else %}auto{% endif %};
-{% endcapture %}
-
-{% if block_settings.source == 'uploaded' %}
-  {% render 'video',
-    video: block_settings.video,
-    video_class: 'spacing-style size-style border-style',
-    video_loop: block_settings.video_loop,
-    video_style: video_style,
-    video_preview_image: block_settings.video.preview_image,
-    additional_attributes: block.shopify_attributes
-  %}
-{% else %}
-  {% render 'video',
-    video_from_url: true,
-    video: block_settings.video_url.id,
-    video_class: 'spacing-style size-style border-style',
-    video_type: block_settings.video_url.type,
-    video_style: video_style,
-    video_alt: block_settings.alt,
-    video_preview_image: block_settings.cover_image,
-    additional_attributes: block.shopify_attributes
-  %}
-{% endif %}
-
-{% stylesheet %}
-  .placeholder-video {
-    aspect-ratio: 5 / 3;
-  }
-{% endstylesheet %}
+<div
+  class="product-info__image-block{% if block.settings.Full_mobile_width %} product-info__image-block--mobile-full{% endif %}"
+  style="
+    --image-width:{{ block.settings.width }}%;
+    --image-alignment:{{ block.settings.alignment }};
+    --border-radius:{{ block.settings.border_radius | divided_by: 10.0 }}rem;
+    margin-top: {{ block.settings.margin_top | divided_by: 10.0 }}rem;
+    margin-bottom: {{ block.settings.margin_bottom | divided_by: 10.0 }}rem;
+  "
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.video != blank %}
+    <div
+      class="media media--transparent ratio"
+      style="--ratio-percent: {{ 1 | divided_by: block.settings.video.aspect_ratio | times: 100 }}%"
+    >
+      {% render 'video-player', block: block %}
+    </div>
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+  {% endif %}
+</div>
 
 {% schema %}
 {
-  "name": "t:names.video",
+  "name": "Video",
   "tag": null,
   "settings": [
     {
-      "type": "select",
-      "id": "source",
-      "label": "t:settings.video_source",
-      "options": [
-        {
-          "value": "uploaded",
-          "label": "t:options.video_uploaded"
-        },
-        {
-          "value": "url",
-          "label": "t:options.video_external_url"
-        }
-      ],
-      "default": "uploaded"
-    },
-    {
       "type": "video",
       "id": "video",
-      "label": "t:settings.video",
-      "visible_if": "{{ block.settings.source == 'uploaded' }}"
-    },
-    {
-      "type": "video_url",
-      "id": "video_url",
-      "label": "t:settings.video_external_url",
-      "info": "t:info.video_external",
-      "accept": ["youtube", "vimeo"],
-      "visible_if": "{{ block.settings.source == 'url' }}"
-    },
-    {
-      "type": "checkbox",
-      "id": "video_autoplay",
-      "label": "t:settings.video_autoplay",
-      "info": "t:info.video_autoplay",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "video_loop",
-      "label": "t:settings.video_loop",
-      "default": true
+      "label": "Video"
     },
     {
       "type": "image_picker",
-      "id": "cover_image",
-      "label": "t:settings.cover_image",
-      "visible_if": "{{ block.settings.source == 'url' and block.settings.video_autoplay == false }}"
+      "id": "thumbnail",
+      "label": "Thumbnail",
+      "info": "If empty, the first frame of the video will be displayed",
+      "visible_if": "{{ block.settings.video != blank }}"
     },
     {
-      "type": "text",
-      "id": "alt",
-      "label": "t:settings.video_alt_text",
-      "info": "t:info.video_alt_text",
-      "visible_if": "{{ block.settings.source == 'url' }}"
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Video looping",
+      "default": true,
+      "visible_if": "{{ block.settings.video != blank }}"
     },
     {
-      "type": "header",
-      "content": "t:content.size"
+      "type": "checkbox",
+      "id": "muted_autoplay",
+      "label": "Muted autoplay",
+      "default": true,
+      "info": "Use this instead of GIFs & animated WEBPs.",
+      "visible_if": "{{ block.settings.video != blank }}"
     },
     {
-      "type": "range",
-      "id": "custom_width",
-      "label": "t:settings.width",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 100
+      "type": "checkbox",
+      "id": "display_play_btn",
+      "label": "Enable play & pause on click",
+      "default": false,
+      "visible_if": "{{ block.settings.video != blank and block.settings.muted_autoplay }}"
     },
     {
-      "type": "range",
-      "id": "custom_width_mobile",
-      "label": "t:settings.width_mobile",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 100
-    },
-    {
-      "type": "select",
-      "id": "aspect_ratio",
-      "label": "t:settings.aspect_ratio",
-      "visible_if": "{{ block.settings.source == 'url' and block.settings.cover_image == blank }}",
-      "options": [
-        {
-          "value": "auto",
-          "label": "t:options.auto"
-        },
-        {
-          "value": "9/16",
-          "label": "t:options.portrait"
-        },
-        {
-          "value": "1/1",
-          "label": "t:options.square"
-        },
-        {
-          "value": "16/9",
-          "label": "t:options.landscape"
-        }
-      ],
-      "default": "auto"
-    },
-    {
-      "type": "header",
-      "content": "t:content.borders"
+      "type": "checkbox",
+      "id": "btn_animation",
+      "label": "Enable button ripple animation",
+      "default": false,
+      "visible_if": "{{ block.settings.video != blank }}"
     },
     {
       "type": "select",
-      "id": "border",
-      "label": "t:settings.style",
+      "id": "btn_color_scheme",
       "options": [
         {
-          "value": "none",
-          "label": "t:options.none"
+          "value": "accent-1",
+          "label": "Accent 1"
         },
         {
-          "value": "solid",
-          "label": "t:options.solid"
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
         }
       ],
-      "default": "none"
+      "default": "accent-1",
+      "label": "Play button color scheme",
+      "visible_if": "{{ block.settings.video != blank }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_sound_btn",
+      "label": "Display mute/unmute button",
+      "default": false,
+      "visible_if": "{{ block.settings.video != blank }}"
+    },
+    {
+      "type": "select",
+      "id": "sound_btn_color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        }
+      ],
+      "default": "inverse",
+      "label": "Sound button color scheme",
+      "visible_if": "{{ block.settings.video != blank and block.settings.display_sound_btn }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_timeline",
+      "label": "Display timeline",
+      "default": false,
+      "visible_if": "{{ block.settings.video != blank }}"
+    },
+    {
+      "type": "select",
+      "id": "timeline_color",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Text"
+        }
+      ],
+      "default": "accent-1",
+      "label": "Timeline color",
+      "visible_if": "{{ block.settings.video != blank and block.settings.display_timeline }}"
+    },
+    {
+      "type": "header",
+      "content": "Layout",
+      "visible_if": "{{ block.settings.video != blank }}"
     },
     {
       "type": "range",
-      "id": "border_width",
+      "id": "width",
       "min": 0,
       "max": 100,
-      "step": 1,
-      "unit": "px",
-      "label": "t:settings.thickness",
-      "default": 1,
-      "visible_if": "{{ block.settings.border != 'none' }}"
-    },
-    {
-      "type": "range",
-      "id": "border_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 1,
+      "step": 10,
       "unit": "%",
-      "label": "t:settings.opacity",
+      "label": "Video width",
       "default": 100,
-      "visible_if": "{{ block.settings.border != 'none' }}"
+      "visible_if": "{{ block.settings.video != blank }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "Full_mobile_width",
+      "label": "Full container width on mobile",
+      "default": false,
+      "info": "If enabled & Width is set to 100%, the video will be edge-to-edge on mobile.",
+      "visible_if": "{{ block.settings.video != blank and block.settings.width == 100 }}"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Video alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "visible_if": "{{ block.settings.video != blank }}"
     },
     {
       "type": "range",
       "id": "border_radius",
-      "label": "t:settings.border_radius",
       "min": 0,
-      "max": 100,
-      "step": 1,
+      "max": 40,
+      "step": 2,
       "unit": "px",
-      "default": 0
+      "label": "Corner radius",
+      "default": 0,
+      "visible_if": "{{ block.settings.video != blank }}"
     },
     {
       "type": "header",
-      "content": "t:content.padding"
+      "content": "Margins"
     },
     {
       "type": "range",
-      "id": "padding-block-start",
-      "label": "t:settings.top",
+      "id": "margin_top",
+      "label": "Top",
       "min": 0,
-      "max": 32,
-      "step": 1,
+      "max": 45,
+      "step": 3,
       "unit": "px",
-      "default": 0
+      "default": 15
     },
     {
       "type": "range",
-      "id": "padding-block-end",
-      "label": "t:settings.bottom",
+      "id": "margin_bottom",
+      "label": "Bottom",
       "min": 0,
-      "max": 32,
-      "step": 1,
+      "max": 45,
+      "step": 3,
       "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding-inline-start",
-      "label": "t:settings.left",
-      "min": 0,
-      "max": 32,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding-inline-end",
-      "label": "t:settings.right",
-      "min": 0,
-      "max": 32,
-      "step": 1,
-      "unit": "px",
-      "default": 0
+      "default": 15
     }
   ],
   "presets": [
     {
-      "name": "t:names.video",
-      "category": "t:categories.basic"
+      "name": "Video",
+      "category": "Media"
     }
   ]
 }
