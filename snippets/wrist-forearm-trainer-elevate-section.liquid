@@ -1,0 +1,184 @@
+<div class="wft-elevate">
+  <details class="wft-elevate__details" open>
+    <summary class="wft-elevate__summary">
+      <span class="wft-elevate__summary-text">
+        <span class="wft-elevate__title">Elevate Your Grip & Forearm Strength with the 360° Rotating Wrist Trainer</span>
+        <span class="wft-elevate__meta">
+          <span class="wft-elevate__label">Learn more</span>
+          <span class="wft-elevate__arrow" aria-hidden="true">
+            <svg viewBox="0 0 16 16" focusable="false" role="presentation">
+              <path d="M3.5 6.25 8 10.75l4.5-4.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            </svg>
+          </span>
+        </span>
+      </span>
+    </summary>
+    <div class="wft-elevate__content">
+      <p class="wft-elevate__lede">Unlike standard grip trainers, our 360° Rotating Wrist &amp; Forearm Trainer delivers comprehensive rotational resistance training. The full 360° rotation engages all forearm muscle groups simultaneously — extensors, flexors, pronators, and supinators — for complete wrist and arm development.</p>
+
+      <ul class="wft-elevate__list">
+        <li><strong>Pronation &amp; Supination training:</strong> Rotate through the full range of motion to build functional forearm strength used in every sport and daily activity.</li>
+        <li><strong>Wrist flexion &amp; extension:</strong> Target the deep stabilizer muscles of the wrist for improved control, power transfer, and injury prevention.</li>
+      </ul>
+
+      <p>The smooth 360° bearing mechanism provides consistent, controlled resistance throughout the entire rotational arc. This eliminates the "dead zones" found in traditional wrist rollers, ensuring every degree of movement delivers effective muscle activation.</p>
+
+      <h3 class="wft-elevate__heading">Complete Forearm Development in Minutes Per Day</h3>
+      <p>No gym required. The compact design lets you train wrists and forearms anywhere — at your desk, on the couch, or between sets. The progressive resistance system adjusts to your strength level, making it suitable for rehabilitation patients and elite athletes alike. Track your endurance as you extend your sets and feel the forearm pump grow stronger each session.</p>
+
+      <h3 class="wft-elevate__heading">Designed for Athletes, Professionals &amp; Rehab Users</h3>
+      <p>This wrist and forearm trainer is engineered for anyone who demands more from their grip and arms. It is the perfect match for:</p>
+
+      <ul class="wft-elevate__list">
+        <li><strong>Climbers &amp; martial artists:</strong> Who need crushing grip strength and forearm endurance for performance at their highest level.</li>
+        <li><strong>Tennis, golf &amp; racket sport players:</strong> Seeking rotational power and wrist stability to prevent lateral epicondylitis and improve swing mechanics.</li>
+        <li><strong>Office workers &amp; gamers:</strong> Looking to counteract repetitive strain and carpal tunnel symptoms with targeted therapeutic movement.</li>
+        <li><strong>Rehabilitation patients:</strong> Recovering from wrist, elbow, or forearm injuries who need low-impact progressive resistance training.</li>
+      </ul>
+
+      <p>At Trainixy, we engineer training tools that fit seamlessly into your life. We combine full rotational range, portable design, and progressive resistance into a single device that delivers real results — making consistent forearm and grip training achievable for everyone, everywhere.</p>
+
+      <button
+        type="button"
+        class="wft-elevate__collapse"
+        aria-label="Show less"
+        onclick="const details=this.closest('details');if(details){details.open=false;const summary=details.querySelector('summary');if(summary){summary.focus();}}"
+      >
+        <span>Show less</span>
+        <span class="wft-elevate__arrow wft-elevate__arrow--up" aria-hidden="true">
+          <svg viewBox="0 0 16 16" focusable="false" role="presentation">
+            <path d="M3.5 6.25 8 10.75l4.5-4.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </details>
+</div>
+
+{% stylesheet %}
+  .wft-elevate {
+    width: 100%;
+  }
+
+  .wft-elevate__details {
+    overflow: hidden;
+    border: 1px solid rgba(var(--color-foreground-rgb), 0.12);
+    border-radius: 1.5rem;
+    background: linear-gradient(
+      180deg,
+      rgba(var(--color-foreground-rgb), 0.04) 0%,
+      rgba(var(--color-foreground-rgb), 0.02) 100%
+    );
+  }
+
+  .wft-elevate__summary {
+    display: block;
+    padding: 1.5rem 1.75rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .wft-elevate__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .wft-elevate__summary::marker {
+    content: '';
+  }
+
+  .wft-elevate__summary-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .wft-elevate__title {
+    font-size: clamp(1.15rem, 2vw, 1.7rem);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-foreground);
+  }
+
+  .wft-elevate__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(var(--color-foreground-rgb), 0.6);
+  }
+
+  .wft-elevate__arrow svg {
+    width: 1.1em;
+    height: 1.1em;
+    transition: transform 0.25s ease;
+  }
+
+  .wft-elevate__details[open] .wft-elevate__arrow svg {
+    transform: rotate(180deg);
+  }
+
+  .wft-elevate__arrow--up svg {
+    transform: rotate(180deg) !important;
+  }
+
+  .wft-elevate__content {
+    padding: 0 1.75rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .wft-elevate__lede {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(var(--color-foreground-rgb), 0.85);
+    margin: 0;
+  }
+
+  .wft-elevate__list {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+  }
+
+  .wft-elevate__list li {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(var(--color-foreground-rgb), 0.8);
+  }
+
+  .wft-elevate__heading {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-weight: 700;
+    margin: 0.5rem 0 0;
+    color: var(--color-foreground);
+  }
+
+  .wft-elevate__content p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(var(--color-foreground-rgb), 0.8);
+    margin: 0;
+  }
+
+  .wft-elevate__collapse {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: none;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(var(--color-foreground-rgb), 0.6);
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+
+  .wft-elevate__collapse:hover {
+    color: var(--color-foreground);
+  }
+{% endstylesheet %}
